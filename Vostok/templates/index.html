@@ -10,7 +10,7 @@
     {% if user.is_authenticated %}
       <p>Logged as {{ user.username }}</p>
     {% else %}
-      <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+      <a class="btn btn-primary" href="#">
         Login
       </a>
     {% endif %}
