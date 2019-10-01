@@ -13,7 +13,10 @@ def index(request):
             print('Nel con google')
             logged=False
 
-
         context={logged:'logged'}
-
         return render(request, '../templates/index.html',context)
+
+
+
+def login(request):
+    return render(request,'../templates/login.html')
