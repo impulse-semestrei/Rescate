@@ -1,2 +1,4 @@
 pip install -r requirements.txt
 # crear base de datos "Vostok" desde el usuario "postgres"
+# correr makemigrations
+# correr migrate
