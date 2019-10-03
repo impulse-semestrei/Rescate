@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 
 
+######## CONTROLLER US-14#######
 def index(request):
         if request.user.is_authenticated:
             print('Dentro con google')
@@ -20,3 +21,4 @@ def index(request):
 
 def login(request):
     return render(request,'../templates/login.html')
+######## CONTROLLER US-14#######
