@@ -1,11 +1,9 @@
-from django.conf import settings
-#from django.contrib.auth.views import logout
 from django.urls import path
-from django.urls import include
-from .views import vistaCrearMaterial
+from .views import crear_material
+
+app_name = 'material'
 
 
 urlpatterns = [
-    path('crear/',vistaCrearMaterial),
-
+    path('crear/', crear_material, name='crear'),
 ]

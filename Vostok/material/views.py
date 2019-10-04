@@ -4,9 +4,19 @@ from .models import Material
 from .forms import CrearMaterial
 from django.db import DatabaseError
 
-def vistaCrearMaterial(request):
+STATUS_SAVED = 'SAVED'
+STATUS_ERROR = 'ERROR'
+
+
+######## CONTROLLER US36 ########
+
+
+def crear_material(request):
     if request.method == 'POST':
         form = CrearMaterial(request.POST)
+        context = {
+            'form': form,
+        }
         if form.is_valid():
             try:
                 new_material = Material(
@@ -14,18 +24,19 @@ def vistaCrearMaterial(request):
                     descripcion=form.cleaned_data.get('descripcion')
                 )
                 new_material.save()
-                return render(request, '../templates/data_base_error.html')
+                context['status'] = STATUS_SAVED
+                return render(request, '../templates/crear_material.html', context)
             except DatabaseError:
-                return render(request, '../templates/data_base_error.html')
+                context['status'] = STATUS_ERROR
+                return render(request, '../templates/crear_material.html', context)
     else:
         form = CrearMaterial()
-    hola=True
-    context={
-        'hola':hola,
-        'form' : form,
+    context = {
+        'form': form,
     }
-    return render(request,'../templates/crear_material.html',context)
+    return render(request, '../templates/crear_material.html', context)
 
 
+######## CONTROLLER US36 ########
 
 
