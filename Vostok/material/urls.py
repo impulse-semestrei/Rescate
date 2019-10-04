@@ -5,5 +5,5 @@ app_name = 'material'
 
 
 urlpatterns = [
-    path('crear/', crear_material, name='crear'), ######## US36 ########
+    path('crear/', crear_material, name='crear'),
 ]

@@ -8,7 +8,7 @@ STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
 
 
-######## US36 ########
+######## CONTROLLER US36 ########
 
 
 def crear_material(request):
@@ -37,6 +37,6 @@ def crear_material(request):
     return render(request, '../templates/crear_material.html', context)
 
 
-######## US36 ########
+######## CONTROLLER US36 ########
 
 

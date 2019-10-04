@@ -2,12 +2,15 @@ from django.forms import ModelForm
 from .models import Material
 
 
-######## US36 ########
+######## FORM US36 ########
 
 class CrearMaterial(ModelForm):
+    """
+    Forma para crear material
+    """
     class Meta:
         model = Material
         fields = ['nombre', 'descripcion']
 
 
-######## US36 ########
+######## FORM US36 ########

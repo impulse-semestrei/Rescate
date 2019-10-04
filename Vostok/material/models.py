@@ -1,6 +1,6 @@
 from django.db import models
 
-######## US36 ########
+######## MODEL US36 ########
 
 
 class Material(models.Model):
@@ -8,4 +8,4 @@ class Material(models.Model):
     descripcion = models.TextField(null=False)
 
 
-######## US36 ########
+######## MODEL US36 ########
