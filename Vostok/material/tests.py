@@ -71,5 +71,16 @@ class CrearMaterialTestCase(TestCase):
         self.assertEqual(Material.objects.filter(nombre='curita').count(), 1)
         self.assertTrue(sent_exception)
 
-
 ######## TESTS US36 ########
+
+
+######## TESTS US38 ########
+class VerMaterialTestCase(TestCase):
+    def test_verMaterialURL(self):
+        response = self.client.get(reverse('material:ver_material'))
+        self.assertEqual(response.status_code,200)
+
+
+
+
+######## TESTS US38 ########
