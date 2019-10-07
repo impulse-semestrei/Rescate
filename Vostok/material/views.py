@@ -10,7 +10,6 @@ STATUS_ERROR = 'ERROR'
 
 ######## CONTROLLER US36 ########
 
-
 def crear_material(request):
     if request.method == 'POST':
         form = CrearMaterial(request.POST)
@@ -21,13 +20,14 @@ def crear_material(request):
             try:
                 new_material = Material(
                     nombre=form.cleaned_data.get('nombre'),
-                    descripcion=form.cleaned_data.get('descripcion')
+                    descripcion=form.cleaned_data.get('descripcion'),
                 )
                 new_material.save()
                 context['status'] = STATUS_SAVED
-                return render(request, '../templates/crear_material.html', context)
+                return render(request, '../templates/index.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
+                form = CrearMaterial()
                 return render(request, '../templates/crear_material.html', context)
     else:
         form = CrearMaterial()
@@ -36,7 +36,21 @@ def crear_material(request):
     }
     return render(request, '../templates/crear_material.html', context)
 
-
 ######## CONTROLLER US36 ########
+
+######## CONTROLLER US38 ########
+
+def ver_material(request):
+    materiales = Material.objects.all()
+    context = {'materiales':materiales,}
+
+
+    return render(request,'../templates/ver_material.html',context)
+
+
+######## CONTROLLER US38 ########
+
+
+
 
 

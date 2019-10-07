@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Ver Material</h1>
+{% if user.is_authenticated %}
+    <table>
+
+{% for material in materiales %}
+      <tr>
+        <td>{{ material.nombre }}</td>
+        <td>{{ material.descripcion }}</td>
+    </tr>
+
+{% endfor %}
+    </table>
+{% else %}
+    <h1>No estas autenticado</h1>
+{% endif %}
+
+</body>
+</html>
