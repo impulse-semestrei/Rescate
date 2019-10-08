@@ -23,6 +23,6 @@ def crearInventarioView(request):
             return render(request, '../templates/data_base_error.html')
     context = {'form': form}
 
-    return render(request, '../templates/crear_inventario.html', context)
+    return render(request, '../templates/inventario/crear_inventario.html', context)
 
 ####### MODELS US-04############
