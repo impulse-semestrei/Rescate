@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'social_django',
     'material.apps.MaterialConfig',
+    'inventario.apps.InventarioConfig',
 ]
 
 MIDDLEWARE = [
