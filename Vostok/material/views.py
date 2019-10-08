@@ -36,21 +36,20 @@ def crear_material(request):
     }
     return render(request, '../templates/material/crear_material.html', context)
 
+
 ######## CONTROLLER US36 ########
 
+
 ######## CONTROLLER US38 ########
+
 
 def ver_material(request):
     materiales = Material.objects.all()
     context = {'materiales':materiales,}
-
-
     return render(request, '../templates/material/ver_material.html', context)
 
 
 ######## CONTROLLER US38 ########
-
-
 
 
 
