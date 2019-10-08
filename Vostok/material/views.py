@@ -28,13 +28,13 @@ def crear_material(request):
             except DatabaseError:
                 context['status'] = STATUS_ERROR
                 form = CrearMaterial()
-                return render(request, '../templates/crear_material.html', context)
+                return render(request, '../templates/material/crear_material.html', context)
     else:
         form = CrearMaterial()
     context = {
         'form': form,
     }
-    return render(request, '../templates/crear_material.html', context)
+    return render(request, '../templates/material/crear_material.html', context)
 
 ######## CONTROLLER US36 ########
 
@@ -45,7 +45,7 @@ def ver_material(request):
     context = {'materiales':materiales,}
 
 
-    return render(request,'../templates/ver_material.html',context)
+    return render(request, '../templates/material/ver_material.html', context)
 
 
 ######## CONTROLLER US38 ########
