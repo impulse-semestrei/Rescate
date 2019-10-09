@@ -5,7 +5,7 @@ from django.core.validators import MinValueValidator
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 
-####### FORMS US-04############
+####### FORM US04############
 class crearInventarioForm(ModelForm):
     class Meta:
         model = Inventario
@@ -28,5 +28,6 @@ class AgregarMaterialInventario(Form):
         except ObjectDoesNotExist:
             raise ValidationError('Material no existente')
         return material
+
 
 ######## FORMS US1 ########

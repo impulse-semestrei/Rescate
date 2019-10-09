@@ -13,7 +13,7 @@ STATUS_UPDATED = 'UPDATED'
 
 
 # Create your views here.
-####### VIEWS US-04############
+####### VIEW US-04############
 
 @login_required
 def crearInventarioView(request):
@@ -69,4 +69,13 @@ def agregar_material_inventario(request, pk):
 
 
 ######## CONTROLLER US1 ########
+
+
+####### MODELS US-07############
+def ver_inventario(request):
+    inventarios = Inventario.objects.all()
+    context = {'inventarios': inventarios, }
+    return render(request, '../templates/inventario/ver_inventario.html', context)
+
+####### MODELS US-07############
 

@@ -82,5 +82,4 @@ class VerMaterialTestCase(TestCase):
 
 
 
-
 ######## TESTS US38 ########
