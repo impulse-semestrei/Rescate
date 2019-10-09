@@ -7,9 +7,9 @@ from .models import InventarioMaterial
 from material.models import Material
 
 
-STATUS_SAVED = 'SAVED'
+STATUS_CREATED = 'CREATED'
 STATUS_ERROR = 'ERROR'
-STATUS_NOT_NEW = 'NOT_NEW'
+STATUS_UPDATED = 'UPDATED'
 
 
 # Create your views here.
@@ -52,13 +52,13 @@ def agregar_material_inventario(request, pk):
                     inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
                     inventario_material.cantidad = cantidad
                     inventario_material.save()
+                    context['status'] = STATUS_UPDATED
                 except:
                     InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad)
-                context['status'] = STATUS_SAVED
-                return render(request, '../templates/index.html', context)
+                    context['status'] = STATUS_CREATED
+                return render(request, '../templates/material/crear_material.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
-                form = AgregarMaterialInventario()
                 return render(request, '../templates/material/crear_material.html', context)
     else:
         form = AgregarMaterialInventario()
