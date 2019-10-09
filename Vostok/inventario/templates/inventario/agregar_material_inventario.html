@@ -1,0 +1,14 @@
+<!-- ######## VIEW US1 ######## -->
+
+<div class="container-fluid">
+    <button type="button" data-toggle="modal" data-target="#modalCancel">Regresar</button>
+    <h4>Agregar material a {{ nombre_inventario }}</h4>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="button" data-toggle="modal" data-target="#modalCancel">Cancelar</button>
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+
+<!-- ######## VIEW US1 ######## -->
