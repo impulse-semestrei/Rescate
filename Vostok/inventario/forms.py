@@ -1,10 +1,10 @@
 from django.forms import ModelForm,Form
 from .models import Inventario
 
-####### FORMS US-04############
+####### FORM US04############
 class crearInventarioForm(ModelForm):
     class Meta:
         model = Inventario
         fields=['nombre']
 
-####### FORMS US-04############
+####### FORMS US04############

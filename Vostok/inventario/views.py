@@ -7,7 +7,7 @@ from .models import Inventario_Material
 
 
 # Create your views here.
-####### VIEWS US-04############
+####### VIEW US-04############
 
 @login_required
 def crearInventarioView(request):
@@ -25,4 +25,4 @@ def crearInventarioView(request):
 
     return render(request, '../templates/inventario/crear_inventario.html', context)
 
-####### MODELS US-04############
+####### VIEW US-04############
