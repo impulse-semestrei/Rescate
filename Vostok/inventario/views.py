@@ -25,4 +25,15 @@ def crearInventarioView(request):
 
     return render(request, '../templates/inventario/crear_inventario.html', context)
 
+
 ####### VIEW US-04############
+
+
+####### MODELS US-07############
+def ver_inventario(request):
+    inventarios = Inventario.objects.all()
+    context = {'inventarios': inventarios, }
+    return render(request, '../templates/inventario/ver_inventario.html', context)
+
+####### MODELS US-07############
+

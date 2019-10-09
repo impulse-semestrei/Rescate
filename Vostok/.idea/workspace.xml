@@ -1,297 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f95e27bc-a9b7-43fc-bcfc-57beb64be930" name="Default Changelist" comment="">
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/dashboard/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/app-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/app-rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/app-rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/app.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/app.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/icons.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/css/icons.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/data/ajax_children.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/data/ajax_roots.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/dripicons-v2.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/dripicons-v2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/dripicons-v2.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/dripicons-v2.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/dropify.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/dropify.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/dropify.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/dropify.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-brands-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-brands-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-brands-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-brands-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-brands-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-regular-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-regular-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-regular-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-regular-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-regular-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-solid-900.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-solid-900.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-solid-900.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-solid-900.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/fa-solid-900.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/feather.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/feather.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/feather.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/feather.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/materialdesignicons-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/materialdesignicons-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/materialdesignicons-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/materialdesignicons-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/materialdesignicons-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/summernote.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/summernote.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/summernote.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/themify.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/themify.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/themify.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/themify.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/weathericons-regular-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/weathericons-regular-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/weathericons-regular-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/weathericons-regular-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/fonts/weathericons-regular-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/attached-files/img-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/attached-files/img-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/attached-files/img-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/big/bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/big/bg1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/big/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/big/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/big/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/big/img4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/big/img5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/clear.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/email/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/email/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/email/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/gallery/9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/jstree.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/logo-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/logo-light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/logo-sm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/mail_confirm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/multiple-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/profile.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/small/img-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/small/img-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/small/img-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/small/img-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/images/users/user-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/app.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/app.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/chartist.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/chartjs.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/charts-other.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/countdown.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/dashboard.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/datatables.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/draggable.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/flot.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/form-advanced.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/form-editor.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/form-fileupload.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/form-validation.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/form-wizard.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/form-xeditable.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/fullcalendar.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/gallery.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/google-maps.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/inbox.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/jvectormap.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/kanban.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/morris.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/range-sliders.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/responsive-table.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/sweet-alerts.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/tabledit.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/tablesaw.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/toastr.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/tour.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/pages/treeview.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/vendor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/vendor.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/js/vendor.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-datepicker/bootstrap-datepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-datepicker/bootstrap-datepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-daterangepicker/daterangepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-daterangepicker/daterangepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-maxlength/bootstrap-maxlength.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-timepicker/bootstrap-timepicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-timepicker/bootstrap-timepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/chart-js/Chart.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/chartist/chartist-plugin-tooltip.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/chartist/chartist.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/chartist/chartist.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/custombox/custombox.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/custombox/custombox.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/buttons.bootstrap4.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/buttons.bootstrap4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/buttons.flash.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/buttons.html5.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/buttons.print.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/dataTables.bootstrap4.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/dataTables.bootstrap4.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/dataTables.buttons.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/dataTables.keyTable.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/dataTables.responsive.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/dataTables.select.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/jquery.dataTables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/responsive.bootstrap4.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/responsive.bootstrap4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/datatables/select.bootstrap4.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/dropify/dropify.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/dropify/dropify.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.crosshair.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.orderBars.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.pie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.resize.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.selection.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.stack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.time.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/flot-charts/jquery.flot.tooltip.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/fullcalendar/fullcalendar.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/fullcalendar/fullcalendar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/gmaps/gmaps.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/hopscotch/hopscotch.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/hopscotch/hopscotch.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/ion-rangeslider/ion.rangeSlider.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/ion-rangeslider/ion.rangeSlider.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/isotope/isotope.pkgd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-countdown/jquery.countdown.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-knob/jquery.knob.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-mask-plugin/jquery.mask.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-quicksearch/jquery.quicksearch.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-sparkline/jquery.sparkline.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-tabledit/jquery.tabledit.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-ui/jquery-ui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-vectormap/jquery-jvectormap-1.2.2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-vectormap/jquery-jvectormap-1.2.2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-vectormap/jquery-jvectormap-au-mill-en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-vectormap/jquery-jvectormap-ca-lcc-en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-vectormap/jquery-jvectormap-uk-mill-en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-vectormap/jquery-jvectormap-us-merc-en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/jquery-vectormap/jquery-jvectormap-world-mill-en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/katex/katex.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/magnific-popup/jquery.magnific-popup.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/magnific-popup/magnific-popup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/moment/moment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/morris-js/morris.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/morris-js/morris.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/multiselect/jquery.multi-select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/multiselect/multi-select.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/parsleyjs/parsley.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/pdfmake/pdfmake.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/pdfmake/vfs_fonts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/peity/jquery.peity.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/quill/quill.bubble.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/quill/quill.core.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/quill/quill.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/quill/quill.snow.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/raphael/raphael.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/rwd-table/rwd-table.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/rwd-table/rwd-table.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/select2/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/select2/select2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/summernote/summernote-bs4.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/summernote/summernote-bs4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/sweetalert2/sweetalert2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/sweetalert2/sweetalert2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/switchery/switchery.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/switchery/switchery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/tablesaw/tablesaw.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/tablesaw/tablesaw.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/toastr/toastr.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/toastr/toastr.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/treeview/jstree.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/treeview/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/x-editable/bootstrap-editable.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/libs/x-editable/bootstrap-editable.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/Activate.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/activate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/activate.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/chardetect.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/deactivate.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/django-admin.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/django-admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/easy_install-3.7-script.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/easy_install-3.7.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/easy_install-script.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/easy_install.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip-script.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip3-script.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip3.7-script.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip3.7.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip3.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/pyjwt.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/python.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/pythonw.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/sqlformat.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/Vostok.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/Vostok.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Vostok.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Vostok.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="149e8169-70ec-4840-beb9-52847e99def9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/inventario/templates/inventario/ver_inventario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Vostok.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vostok/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vostok/settings.py" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventario/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/tests.py" afterDir="false" />
->>>>>>> 2a76d9496acbc1fa2bf9f04f5f0ee5b330685fa8
+      <change beforePath="$PROJECT_DIR$/inventario/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/views.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -300,136 +20,8 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1135979870">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="js" value="1" />
-          <entry key="py" value="2" />
-          <entry key="setup_instructions" value="1" />
-          <entry key="txt" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JavaScript" value="1" />
-          <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="py" value="13" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Python" value="13" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inventario/migrations/0001_initial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Vostok/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
-=======
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/users/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="48" lean-forward="true" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/material/templates/material/ver_material.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="21" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="12" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/material/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/material/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/inventario/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/material/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="79" column="55" selection-start-line="79" selection-start-column="55" selection-end-line="79" selection-end-column="55" />
->>>>>>> 2a76d9496acbc1fa2bf9f04f5f0ee5b330685fa8
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -452,46 +44,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/requierements.txt" />
-        <option value="$PROJECT_DIR$/setup_instructions" />
-        <option value="$PROJECT_DIR$/users/tests.py" />
-        <option value="$PROJECT_DIR$/users/views.py" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/templates/login.html" />
-        <option value="$PROJECT_DIR$/material/forms.py" />
-        <option value="$PROJECT_DIR$/material/models.py" />
-        <option value="$PROJECT_DIR$/material/urls.py" />
-        <option value="$PROJECT_DIR$/material/tests.py" />
-        <option value="$PROJECT_DIR$/templates/ver_material.html" />
-        <option value="$PROJECT_DIR$/inventario/url.py" />
-        <option value="$PROJECT_DIR$/Vostok/urls.py" />
-        <option value="$PROJECT_DIR$/inventario/admin.py" />
-        <option value="$PROJECT_DIR$/inventario/models.py" />
-        <option value="$PROJECT_DIR$/inventario/urls.py" />
-        <option value="$PROJECT_DIR$/inventario/forms.py" />
-        <option value="$PROJECT_DIR$/templates/crear_inventario.html" />
         <option value="$PROJECT_DIR$/inventario/views.py" />
-        <option value="$PROJECT_DIR$/material/views.py" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/Vostok/settings.py" />
-=======
+        <option value="$PROJECT_DIR$/inventario/models.py" />
+        <option value="$PROJECT_DIR$/material/templates/material/ver_material.html" />
+        <option value="$PROJECT_DIR$/inventario/forms.py" />
         <option value="$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html" />
-        <option value="$PROJECT_DIR$/inventario/tests.py" />
->>>>>>> 2a76d9496acbc1fa2bf9f04f5f0ee5b330685fa8
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="779" />
-    <option name="y" value="43" />
-    <option name="width" value="943" />
-    <option name="height" value="1087" />
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="952" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -499,51 +63,20 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Vostok" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Vostok" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Vostok" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Vostok" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
-              <item name="Vostok" type="462c0819:PsiDirectoryNode" />
-=======
-              <item name="inventario" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Vostok" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Vostok" type="462c0819:PsiDirectoryNode" />
-              <item name="material" type="462c0819:PsiDirectoryNode" />
->>>>>>> 2a76d9496acbc1fa2bf9f04f5f0ee5b330685fa8
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ReneOv\Desktop\Move to HDD\ITESM\Semestre 6\Git Repo Web\Vostok\Vostok\dashboard\static" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ReneOv\Desktop\Move to HDD\ITESM\Semestre 6\Git Repo Web\Vostok\Vostok\dashboard\templates" />
+      <recent name="$PROJECT_DIR$/dashboard/static/dashboard" />
+      <recent name="$PROJECT_DIR$/dashboard/templates/dashboard" />
       <recent name="$PROJECT_DIR$/users/templates/users" />
       <recent name="$PROJECT_DIR$/material/templates/material" />
       <recent name="$PROJECT_DIR$/inventario/templates/inventario" />
-      <recent name="$PROJECT_DIR$/inventario/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -565,7 +98,6 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="Vostok.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -595,59 +127,70 @@
       <option name="presentableId" value="Default" />
       <updated>1570035432084</updated>
       <workItem from="1570035434699" duration="1387000" />
-      <workItem from="1570460368505" duration="15660000" />
+      <workItem from="1570460368505" duration="12637000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11891000" />
+    <option name="totallyTimeSpent" value="12600000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26736495" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25885227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.498779" weight="0.32857144" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993895" weight="0.32857144" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32857144" />
-<<<<<<< HEAD
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.28794178" />
-      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4993895" weight="0.32857144" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50061053" side_tool="true" weight="0.32857144" />
-      <window_info anchor="bottom" id="Educational.CheckDetails" order="13" show_stripe_button="false" />
-=======
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2887755" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4993895" weight="0.32857144" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.501221" side_tool="true" weight="0.32857144" />
->>>>>>> 2a76d9496acbc1fa2bf9f04f5f0ee5b330685fa8
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50061053" side_tool="true" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25885227" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993895" weight="0.32857144" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32857144" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2887755" />
+      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4993895" weight="0.32857144" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50061053" side_tool="true" weight="0.32857144" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/material/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -655,6 +198,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vostok/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -671,6 +221,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Vostok/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/inventario/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -681,161 +238,120 @@
     <entry file="file://$PROJECT_DIR$/material/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/material/templates/material/ver_material.html">
+    <entry file="file://$PROJECT_DIR$/inventario/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ver_material.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="21" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html">
+    <entry file="file://$PROJECT_DIR$/templates/crear_material.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/crear_inventario.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-=======
-    <entry file="file://$PROJECT_DIR$/inventario/migrations/0001_initial.py">
+        <state relative-caret-position="255">
+          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inventario/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
->>>>>>> 2a76d9496acbc1fa2bf9f04f5f0ee5b330685fa8
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/material/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inventario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/material/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/material/templates/material/crear_material.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/inventario/models.py">
+    <entry file="file://$PROJECT_DIR$/material/templates/material/ver_material.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="13" column="53" lean-forward="true" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
+        <state relative-caret-position="-8">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/material/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inventario/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inventario/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inventario/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/material/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/Vostok/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/static/libs/gmaps/gmaps.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup_instructions">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inventario/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vostok/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
-=======
-    <entry file="file://$PROJECT_DIR$/users/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="48" lean-forward="true" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/material/templates/material/ver_material.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="21" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/material/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/material/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
->>>>>>> 2a76d9496acbc1fa2bf9f04f5f0ee5b330685fa8
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/material/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="79" column="55" selection-start-line="79" selection-start-column="55" selection-end-line="79" selection-end-column="55" />
+        <state relative-caret-position="45">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inventario/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state>
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inventario/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="1" column="36" lean-forward="true" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/material/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="43" column="35" lean-forward="true" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
         </state>
       </provider>
     </entry>
