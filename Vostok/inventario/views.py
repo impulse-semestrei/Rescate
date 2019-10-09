@@ -52,7 +52,7 @@ def agregar_material_inventario(request, pk):
                 try:
                     with transaction.atomic():
                         inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
-                        inventario_material.cantidad = cantidad
+                        inventario_material.cantidad += cantidad
                         inventario_material.save()
                         context['status'] = STATUS_UPDATED
                 except:
