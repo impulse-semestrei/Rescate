@@ -1,7 +1,7 @@
 from django.db import models
 from material.models import Material
 
-####### MODELS US-04############
+######## MODEL US04########
 class Inventario(models.Model):  #crea el modelo para inventario en la base de datos#
     nombre = models.CharField(max_length=100,unique=True,null=False)
     #Solo puede haber un nombre de cada modelo solo puede haber un material, por lo que debe ser único
@@ -14,6 +14,6 @@ class Inventario_Material(models.Model):
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE)
     material = models.ForeignKey(Material,on_delete=models.CASCADE)
     cantidad = models.IntegerField()
-####### MODELS US-04############
+####### MODEL US04###########
 
 

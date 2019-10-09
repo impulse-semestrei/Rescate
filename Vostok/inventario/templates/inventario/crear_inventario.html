@@ -1,13 +1,14 @@
+<!--  ######VIEW US38###### -->
 {% extends 'dashboard/base.html' %}
 
 {% load staticfiles %}
 
 {% block content %}
+
 <h1>Crear Inventario</h1>
 
-
     <div class="container-fluid">
-<!--  Template US-4  -->
+
 {% if user.is_authenticated %} <!-- comprueba si la sesión del usuario está iniciada -->
 <form method="post">
   {% csrf_token %}
@@ -20,6 +21,7 @@
             {% if form.errors %}
     {% for field in form %}
         {% for error in field.errors %}
+             <br>
             <div class="alert alert-danger">
                 <strong>{{ error|escape }}</strong>
             </div>
@@ -48,7 +50,6 @@
 
     </div>
 
-<!--  Template US-4  -->
-
 {% endblock %}
 
+<!--  ########VIEW US38####### -->
