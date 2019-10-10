@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Inventario,Inventario_Material
+from .models import Inventario,InventarioMaterial
 
 # Register your models here.
 
@@ -11,6 +11,6 @@ class InventarioAdmin(admin.ModelAdmin):
 admin.site.register(Inventario, InventarioAdmin)
 
 
-class Inventario_materialAdmin(admin.ModelAdmin):
+class InventarioMaterialAdmin(admin.ModelAdmin):
     pass
-admin.site.register(Inventario_Material,Inventario_materialAdmin)
+admin.site.register(InventarioMaterial,InventarioMaterialAdmin)
