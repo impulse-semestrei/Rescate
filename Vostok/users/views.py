@@ -2,23 +2,32 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
-
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from .serializers import UserSerializer
 
 
 ######## CONTROLLER US-14#######
+
 def index(request):
-        if request.user.is_authenticated:
-            print('Dentro con google')
-            logged= True
-        else:
-            print('Nel con google')
-            logged=False
+    if request.user.is_authenticated:
+        print('Dentro con google')
+        logged = True
+    else:
+        print('Nel con google')
+        logged = False
 
-        context={logged:'logged'}
-        return render(request, '../templates/index.html',context)
-
+    context = {logged: 'logged'}
+    return render(request, '../templates/index.html', context)
 
 
 def login(request):
     return render(request, '../templates/users/login.html')
+
+
 ######## CONTROLLER US-14#######
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
