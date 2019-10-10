@@ -12,5 +12,10 @@ class CrearMaterial(ModelForm):
         model = Material
         fields = ['nombre', 'descripcion']
 
+    def __init__(self):
+        super().__init__()
+        self.fields['nombre'].widget.attrs['class'] = 'form-control'
+        self.fields['descripcion'].widget.attrs['class'] = 'form-control'
+
 
 ######## FORM US36 ########
