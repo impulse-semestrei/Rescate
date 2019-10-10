@@ -20,5 +20,5 @@ def index(request):
 
 
 def login(request):
-    return render(request,'../templates/login.html')
+    return render(request, '../templates/users/login.html')
 ######## CONTROLLER US-14#######

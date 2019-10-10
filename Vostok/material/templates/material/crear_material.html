@@ -1,52 +1,10 @@
 <!-- ######## VIEW US36 ######## -->
 
-{% extends 'dashboard/base.html' %}
-{% load staticfiles %}
-{% block content %}
-    <div class="container-fluid">
-        <button type="button" data-toggle="modal" data-target="#modalCancel">Regresar</button>
-        <form method="post" novalidate>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="button" data-toggle="modal" data-target="#modalCancel">Cancelar</button>
-            <button type="submit">Guardar</button>
-        </form>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
 
-        {% if status == "SAVED" %}
-        <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <p>Se ha creado el material nuevo {{ material_name }}</p>
-              </div>
-              <div class="modal-footer">
-                <a href="/material/ver/" class="btn btn-primary">De acuerdo</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <script>
-            $("#modalSaved").modal({
-                backdrop: "static",
-                keyboard: false
-            });
-        </script>
-        {% endif %}
-
-        <div class="modal" id="modalCancel" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <p>Si sales ahora no se guardará el material nuevo</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar editando</button>
-                  <a href="/material/ver/" class="btn btn-primary">Salir sin guardar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-{% endblock %}
 
 <!-- ######## VIEW US36 ######## -->
