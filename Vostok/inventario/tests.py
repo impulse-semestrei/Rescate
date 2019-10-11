@@ -132,3 +132,16 @@ class deleteInventarioTest(TestCase):
 
 
 ####### TESTS US-03############
+
+
+####### TESTS US-05############
+class VerMaterialTestCase(TestCase):
+    def test_MaterialInventarioURL(self):
+        self.inventario = Inventario.objects.create(nombre="almacen")
+        self.material = Material.objects.create(nombre='curita', descripcion='proteccion de herida')
+        self.MatInv = InventarioMaterial.objects.create(inventario=self.inventario, material=self.material, cantidad=4)
+
+        response = self.client.get(reverse('inventario:material_inventario', args={self.inventario.id}))
+        self.assertEqual(response.status_code, 200)
+
+####### TESTS US-05############

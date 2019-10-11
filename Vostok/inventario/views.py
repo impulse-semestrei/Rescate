@@ -93,3 +93,10 @@ def delete_inventario(request,id):
 ###### CONTROLLER US03 #######
 
 
+####### CONTROLLER US-05############
+def ver_inventario_material(request, pk):
+    InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=pk))
+    context = {'inventarios': InventarioMateriales.all, }
+    return render(request, '../templates/inventario/ver_material_inventario.html', context)
+
+####### CONTROLLER US-05############
