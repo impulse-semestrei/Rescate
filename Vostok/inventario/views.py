@@ -3,10 +3,7 @@ from .forms import crearInventarioForm, AgregarMaterialInventario
 from .models import Inventario
 from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
-from .models import Inventario_Material
 from django.utils import timezone
-=======
 from .models import InventarioMaterial
 from material.models import Material
 
@@ -14,7 +11,6 @@ from material.models import Material
 STATUS_CREATED = 'CREATED'
 STATUS_ERROR = 'ERROR'
 STATUS_UPDATED = 'UPDATED'
->>>>>>> 318f7ba2de846503cfd84d1339d1bd0619a6e2a9
 
 
 # Create your views here.
@@ -36,11 +32,7 @@ def crearInventarioView(request):
 
     return render(request, '../templates/inventario/crear_inventario.html', context)
 
-<<<<<<< HEAD
 ####### CONTROLLER US04############
-
-=======
-####### MODELS US-04############
 
 
 ######## CONTROLLER US1 ########
@@ -78,7 +70,6 @@ def agregar_material_inventario(request, pk):
 
 
 ######## CONTROLLER US1 ########
->>>>>>> 318f7ba2de846503cfd84d1339d1bd0619a6e2a9
 
 ####### CONTROLLER US07############
 def ver_inventario(request):

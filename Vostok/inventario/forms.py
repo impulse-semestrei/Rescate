@@ -26,8 +26,8 @@ class deleteInventarioForm(forms.Form):
 
 
 class AgregarMaterialInventario(Form):
-    material = CharField(max_length=100)
-    cantidad = IntegerField(min_value=0)
+    material = CharField(max_length=100, attrs={'class': 'form-control'})
+    cantidad = IntegerField(min_value=0, attrs={'class': 'form-control'})
 
     def clean_material(self):
         nombre = self.cleaned_data['material']
