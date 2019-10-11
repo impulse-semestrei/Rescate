@@ -5,7 +5,6 @@ from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import InventarioMaterial
-from material.models import Material
 
 
 STATUS_CREATED = 'CREATED'

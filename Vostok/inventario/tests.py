@@ -4,10 +4,8 @@ from material.forms import CrearMaterial
 from django.urls import reverse
 from .models import Inventario, InventarioMaterial
 from material.models import Material
-<<<<<<< HEAD
 from django.utils import timezone
 from .views import delete_inventario
-=======
 from .forms import AgregarMaterialInventario
 
 # Create your tests here.
@@ -58,7 +56,6 @@ class AgregarMaterialInventarioTestCase(TestCase):
 
 
 ######## TESTS US1 ########
->>>>>>> 318f7ba2de846503cfd84d1339d1bd0619a6e2a9
 
 
 ####### TESTS US-04############
@@ -114,7 +111,7 @@ class deleteInventarioTest(TestCase):
         status_before = inventario.status
         date_before = inventario.fechaMod
 
-        inventario.status = False;
+        inventario.status = False
 
         inventario.fechaMod = timezone.now()
         inventario.save()
@@ -129,7 +126,7 @@ class deleteInventarioTest(TestCase):
         inventario = Inventario.objects.create(nombre="Testing_view")
 
         inventario.status = False
-        delete_inventario(self.client.get('/inventario/delete/4/'), str(inventario.id))
+        delete_inventario(self.client.get('/inventario/delete/'+str(inventario.id)+'/'), str(inventario.id))
 
         self.assertFalse(inventario.status)
 

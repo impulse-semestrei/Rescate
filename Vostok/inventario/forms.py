@@ -1,6 +1,6 @@
 from django import forms
 from .models import Inventario
-from django.forms import ModelForm, CharField, Form, IntegerField, Field
+from django.forms import ModelForm, CharField, Form, IntegerField, Field, TextInput, NumberInput
 from .models import Inventario, InventarioMaterial
 from material.models import Material
 from django.core.validators import MinValueValidator
@@ -26,8 +26,10 @@ class deleteInventarioForm(forms.Form):
 
 
 class AgregarMaterialInventario(Form):
-    material = CharField(max_length=100, attrs={'class': 'form-control'})
-    cantidad = IntegerField(min_value=0, attrs={'class': 'form-control'})
+    material = CharField(max_length=100, widget=TextInput(attrs={'class': 'form-control'}))
+    cantidad = IntegerField(min_value=0, widget=NumberInput(attrs={'class': 'form-control'}))
+
+
 
     def clean_material(self):
         nombre = self.cleaned_data['material']
