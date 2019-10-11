@@ -9,7 +9,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <div class="row">
         <div class="col text-center m-3">
-                <h1>Agregar nuevo material</h1>
+                <h1>Agregar material a {{ nombre_inventario }}</h1>
         </div>
     </div>
     <div class="container-fluid">
@@ -41,15 +41,34 @@
             </div>
         </div>
 
-        {% if status == "SAVED" %}
+        {% if status == "CREATED" %}
         <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-body">
-                <p>Se ha creado el material nuevo {{ material_name }}</p>
+                <p>Se han agregado {{ cantidad }} unidades de {{ nombre_material }}  a {{ nombre_inventario }}</p>
               </div>
               <div class="modal-footer">
-                <a href="/material/ver/" class="btn btn-primary">De acuerdo</a>
+                <a href="/inventario/{{ id_inventario }}/" class="btn btn-primary">De acuerdo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+            $("#modalSaved").modal({
+                backdrop: "static",
+                keyboard: false
+            });
+        </script>
+        {% elif status == "UPDATED" %}
+        <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>Se han agregado {{ cantidad }} unidades de {{ nombre_material }}  a {{ nombre_inventario }} </p>
+              </div>
+              <div class="modal-footer">
+                <a href="/inventario/{{ id_inventario }}/" class="btn btn-primary">De acuerdo</a>
               </div>
             </div>
           </div>
@@ -70,7 +89,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar editando</button>
-                  <a href="/material/ver/" class="btn btn-primary">Salir sin guardar</a>
+                  <a href="/inventario/{{ id_inventario }}/" class="btn btn-primary">Salir sin guardar</a>
               </div>
             </div>
           </div>

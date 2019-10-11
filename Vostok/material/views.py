@@ -11,6 +11,7 @@ STATUS_ERROR = 'ERROR'
 
 ######## CONTROLLER US36 ########
 
+@login_required
 def crear_material(request):
     if request.method == 'POST':
         form = CrearMaterial(request.POST)

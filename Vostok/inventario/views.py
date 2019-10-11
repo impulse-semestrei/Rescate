@@ -36,11 +36,12 @@ def crearInventarioView(request):
 
 ######## CONTROLLER US1 ########
 
-
+@login_required
 def agregar_material_inventario(request, pk):
     inventario = Inventario.objects.get(id=pk)
     context = {
         'nombre_inventario': inventario,
+        'id_inventario': inventario.id,
     }
     if request.method == 'POST':
         form = AgregarMaterialInventario(request.POST)
@@ -49,6 +50,8 @@ def agregar_material_inventario(request, pk):
             try:
                 material = form.cleaned_data.get('material')
                 cantidad = form.cleaned_data.get('cantidad')
+                context['nombre_material'] = material
+                context['cantidad'] = cantidad
                 try:
                     with transaction.atomic():
                         inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
