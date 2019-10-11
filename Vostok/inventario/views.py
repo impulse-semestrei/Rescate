@@ -5,6 +5,8 @@ from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import InventarioMaterial
+from django.core.exceptions import ObjectDoesNotExist
+from material.models import Material
 
 
 STATUS_CREATED = 'CREATED'
@@ -42,6 +44,7 @@ def agregar_material_inventario(request, pk):
     context = {
         'nombre_inventario': inventario,
         'id_inventario': inventario.id,
+        'lista_materiales': Material.objects.all()
     }
     if request.method == 'POST':
         form = AgregarMaterialInventario(request.POST)
@@ -58,7 +61,7 @@ def agregar_material_inventario(request, pk):
                         inventario_material.cantidad += cantidad
                         inventario_material.save()
                         context['status'] = STATUS_UPDATED
-                except:
+                except ObjectDoesNotExist:
                     InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad)
                     context['status'] = STATUS_CREATED
                 return render(request, '../templates/inventario/agregar_material_inventario.html', context)

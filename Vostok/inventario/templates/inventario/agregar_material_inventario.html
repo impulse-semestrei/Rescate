@@ -95,6 +95,79 @@
           </div>
         </div>
     </div>
+    <div id="suggestions">
+
+    </div>
+    <script>
+        // the number of matches that, when exceeded, makes the scrollbar appear
+        let MATCHES_LIMIT = 3;
+        // the height to which the suggestions div gets fixed when there is a scrollbar
+        let SUGGESTIONS_HEIGHT = "140px";
+        // get the materials from the backend
+        let materials = [
+            {% for material in lista_materiales %}
+                "{{ material.nombre }}",
+            {% endfor %}
+            ];
+        // get the text input for the material name
+        let input = document.getElementById("id_material");
+        // avoid browser from showing the default autocomplete
+        input.setAttribute("autocomplete", "off");
+        // create a div to contain the suggestions
+        let suggestions = document.createElement("div");
+        // this will make the div have a scroll when its defined height is exceeded
+        // defined height is not specified now, since it would make the div visible
+        // as an empty space below the input when it isn't necessary
+        suggestions.style.overflowY = "auto";
+        // function for clearing the suggestions
+        clear = (element) => {
+            while(element.hasChildNodes()){
+                element.removeChild(element.firstChild)
+            }
+        };
+        // add the suggestions to the parent of the input so that they appear below
+        // the text input
+        input.parentElement.appendChild(suggestions);
+        input.onkeyup = () => {
+            // the quantity of materials that match the text introduced by the user
+            let matches = 0;
+            // clear whatever was inside suggestions
+            clear(suggestions);
+            // if the user has written something
+            if(input.value.length > 0){
+                materials
+                    // get material names that match what is in the input
+                .filter((material) => material.includes(input.value))
+                .forEach((material) => {
+                    // create a new suggestion
+                    let suggestion  = document.createElement("div");
+                    // this makes it look like a button with borders and makes it
+                    // have the same width as the input
+                    suggestion.className = "btn btn-outline-primary btn-block m-0";
+                    suggestion.innerText = material;
+                    // when a suggestion is clicked, the text in the input gets updated,
+                    // the suggestions are erased and their height is reset
+                    suggestion.onclick = () => {
+                        input.value = material;
+                        clear(suggestions);
+                        // this is needed since the height gets fixed to a specific value
+                        // when the matches number exceeds a limit
+                        suggestions.style.height = "auto";
+                    };
+                    suggestions.appendChild(suggestion);
+                    matches++;
+                });
+            }
+            if(matches > MATCHES_LIMIT){
+                // fix the height of the suggestions div for the automatic scrollbar to appear
+                suggestions.style.height = SUGGESTIONS_HEIGHT;
+            } else {
+                suggestions.style.height = "auto";
+            }
+        }
+    </script>
+
+
 {% endblock %}
 
 <!-- ######## VIEW US1 ######## -->
