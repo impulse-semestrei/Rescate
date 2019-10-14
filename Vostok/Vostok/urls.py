@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from users.views import UserViewSet
+from users.views import UserViewSet, test
 
 router = routers.DefaultRouter()
 router.register(r'api', UserViewSet)
@@ -27,4 +27,5 @@ urlpatterns = [
     path('material/', include('material.urls')),
     path('inventario/', include('inventario.urls')),
     path('api/', include(router.urls)),
+    path('api/test/', test)
 ]
