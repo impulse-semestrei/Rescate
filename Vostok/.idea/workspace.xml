@@ -2,13 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="149e8169-70ec-4840-beb9-52847e99def9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/terminal.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventario/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventario/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventario/templates/inventario/agregar_material_inventario.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventario/templates/inventario/ver_material_inventario.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/Vostok.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Vostok.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Vostok.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vostok/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vostok/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/static/dashboard/css/app-rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/static/dashboard/css/app-rtl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/static/dashboard/css/app-rtl.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/static/dashboard/css/app-rtl.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/static/dashboard/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/static/dashboard/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vostok/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vostok/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/templates/dashboard/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/templates/inventario/crear_inventario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/templates/inventario/ver_inventario.html" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/templates/inventario/ver_inventario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/material/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/material/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/migrations/0002_auto_20191003_1346.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/migrations/0003_material_cantidad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/migrations/0004_remove_material_cantidad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/material/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/templates/material/crear_material.html" beforeDir="false" afterPath="$PROJECT_DIR$/material/templates/material/crear_material.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/material/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Activate.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/activate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/chardetect.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/deactivate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/django-admin.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/django-admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/easy_install-3.7-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/easy_install-3.7.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/easy_install-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/easy_install.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pip-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pip.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pip3-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pip3.7-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pip3.7.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pip3.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pyjwt.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/python.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pythonw.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/sqlformat.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +154,7 @@
       <workItem from="1570035434699" duration="1387000" />
       <workItem from="1570460368505" duration="12637000" />
       <workItem from="1570637566881" duration="6028000" />
-      <workItem from="1571016720968" duration="1491000" />
+      <workItem from="1571016720968" duration="2498000" />
     </task>
     <servers />
   </component>

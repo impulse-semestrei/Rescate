@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import Material
 from .forms import CrearMaterial
 from django.db import DatabaseError
+from django.contrib.auth.decorators import login_required
 
 STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
@@ -10,6 +11,7 @@ STATUS_ERROR = 'ERROR'
 
 ######## CONTROLLER US36 ########
 
+@login_required
 def crear_material(request):
     if request.method == 'POST':
         form = CrearMaterial(request.POST)
@@ -24,7 +26,8 @@ def crear_material(request):
                 )
                 new_material.save()
                 context['status'] = STATUS_SAVED
-                return render(request, '../templates/index.html', context)
+                context['material_name'] = new_material.nombre
+                return render(request, '../templates/material/crear_material.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
                 form = CrearMaterial()
@@ -38,19 +41,17 @@ def crear_material(request):
 
 ######## CONTROLLER US36 ########
 
+
 ######## CONTROLLER US38 ########
+
 
 def ver_material(request):
     materiales = Material.objects.all()
     context = {'materiales':materiales,}
-
-
     return render(request, '../templates/material/ver_material.html', context)
 
 
 ######## CONTROLLER US38 ########
-
-
 
 
 
