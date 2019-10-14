@@ -20,9 +20,12 @@ def index(request):
 
 
 def login(request):
-    return render(request, '../templates/users/login.html')
-
-
+    # if request.user.is_authenticated:
+    #     logged = True
+    #     context={logged:'logged'}
+    #     return render(request, '../templates/index.html',context)
+    # else:
+        return render(request, '../templates/users/login.html')
 ######## CONTROLLER US-14#######
 
 class UserViewSet(viewsets.ModelViewSet):
