@@ -7,6 +7,5 @@ app_name = 'material'
 
 urlpatterns = [
     path('crear/', crear_material, name='crear'),
-    path('ver/',ver_material,name='ver_material'),
-
+    path('ver/', ver_material, name='ver_material'),
 ]

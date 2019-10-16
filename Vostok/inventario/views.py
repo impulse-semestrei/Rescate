@@ -26,7 +26,7 @@ def crearInventarioView(request):
             temp_form = form.save(commit=False)
             temp_form.save()
 
-            return render(request,'../templates/index.html')
+            return render(request, '../templates/index.html')
         except DatabaseError:
             return render(request, '../templates/data_base_error.html')
     context = {'form': form}
@@ -87,14 +87,14 @@ def ver_inventario(request):
 ###### CONTROLLER US03 #######
 
 
-def delete_inventario(request,id):
+def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.status = False
     inventario.fechaMod = timezone.now()
     inventario.save()
     inventarios = Inventario.objects.filter(status=True)
     context = {'inventarios': inventarios, }
-    return render(request, '../templates/inventario/ver_inventario.html',context)
+    return render(request, '../templates/inventario/ver_inventario.html', context)
 
 ###### CONTROLLER US03 #######
 

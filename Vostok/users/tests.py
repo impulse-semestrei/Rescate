@@ -4,15 +4,14 @@ from django.test import TestCase
 
 
 ###### TEST US-14 ###############
-class tests(TestCase):
+class Tests(TestCase):
     def test_login(self):
         response = self.client.get('')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code, 200)
 
     def test_index(self):
         response = self.client.get('/index/')
         self.assertEqual(response.status_code, 200)
-
 
     def test_google(self):
         response = self.client.get('/auth/google/login/google-oauth2/')
