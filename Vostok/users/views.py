@@ -5,7 +5,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from .serializers import UserSerializer
-
+import firebase_admin
+from firebase_admin import auth
 
 ######## CONTROLLER US-14#######
 def index(request):
@@ -31,4 +32,13 @@ def login(request):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+def login_movil(request):
+     default_app = firebase_admin.initialize_app()
+     decoded_token = auth.verify_id_token(request.GET["id_token"])
+     print(decoded_token)
+     return render(request, '../templates/index.html')
+
+
 
