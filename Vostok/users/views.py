@@ -36,6 +36,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 def login_movil(request):
      default_app = firebase_admin.initialize_app()
+     print(request.GET)
      decoded_token = auth.verify_id_token(request.GET["id_token"])
      print(decoded_token)
      return render(request, '../templates/index.html')
