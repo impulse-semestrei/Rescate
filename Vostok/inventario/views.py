@@ -84,10 +84,10 @@ def ver_inventario(request):
 
 ####### CONTROLLER US07############
 
-###### CONTROLLER US03 #######
+###### CONTROLLER US06 #######
 
 
-def delete_inventario(request,id):
+def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.status = False
     inventario.fechaMod = timezone.now()
@@ -96,13 +96,30 @@ def delete_inventario(request,id):
     context = {'inventarios': inventarios, }
     return render(request, '../templates/inventario/ver_inventario.html',context)
 
-###### CONTROLLER US03 #######
+###### CONTROLLER US06 #######
 
 
 ####### CONTROLLER US-05############
 def ver_inventario_material(request, pk):
     InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=pk))
-    context = {'inventarios': InventarioMateriales.all, }
+    context = {'inventarios': InventarioMateriales.all,
+               'inventario_id': pk,
+               }
     return render(request, '../templates/inventario/ver_material_inventario.html', context)
 
 ####### CONTROLLER US-05############
+
+
+###### CONTROLLER US03 ########
+
+def eliminar_material_inventario(request, inventario_id, material_id):
+    material = InventarioMaterial.objects.get(id=material_id)
+    material.delete()
+    InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=inventario_id))
+    context = {'inventarios': InventarioMateriales.all,
+               'inventario_id': inventario_id,
+               }
+    return render(request, '../templates/inventario/ver_material_inventario.html', context)
+
+
+###### CONTROLLER US03 ########
