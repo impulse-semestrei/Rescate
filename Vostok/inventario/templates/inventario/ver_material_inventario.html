@@ -2,12 +2,27 @@
 
 {% load staticfiles %}
 {% block content %}
-    <!--  Template US-5  -->
-         <div class="container">
-    {% if user.is_authenticated %}
-    <div class="container-fluid">
-    <h1> <i class="zmdi zmdi-shape"> </i>Inventario 1 </h1>
 
+    <!--  Template US-5  -->
+    <div class="container">
+        {% if user.is_authenticated %}
+             <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="container-fluid">
+                        <h1> <i class="zmdi zmdi-shape"> </i>Inventario 1 </h1>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div  class="nav justify-content-end">
+                        <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light ">Agregar material</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <table class="table table-hover table-dark">
       <thead>
@@ -24,17 +39,35 @@
         <tr>
             <td scope="row">{{ material.material.nombre}}</td>
             <td>{{ material.cantidad }}</td>
-            <td><a href="/inventario/{{inventario_id}}/ver/material_inventario/{{material.id}}">Eliminar</a></td>
+            <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmacion"><i class="fas fa-trash"></i></button></td>
         </tr>
 
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ¿Estas seguro que deseas eliminar el material?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a href="/inventario/{{inventario_id}}/ver/material_inventario/{{material.id}}"><button type="button" class="btn btn-primary">Aceptar</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
 
     {% endfor %}
     <!--  Template US-5  -->
     </tbody>
     </table>
-    </div>
-        <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light">Añadir</button>
-        </div>
+
+
 
 {% else %}
     <h1>No estas autenticado</h1>
