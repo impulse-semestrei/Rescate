@@ -30,7 +30,7 @@
                         <button type="button" class="btn btn-secondary dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-chevron-down"></i> </button>
                         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Editar</a>
+                            <a href="javascript:void(0);" class="dropdown-item"  data-toggle="modal" data-target="#editar_inventario">Editar</a>
                             <!-- item-->
                             <a href="#delete-modal-{{ Inventario.id }}" class="dropdown-item" data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a">Eliminar</a>
                         </div>
@@ -69,6 +69,34 @@
                 </form>
             </div>
         </div>
+
+<!-- US08 -->
+
+    <div class="modal fade" id="editar_inventario" tabindex="-1" role="dialog" aria-labelledby="titulo_inventario" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="titulo_inventario">Editar Inventario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                    <div>
+                        <label for="nombre">Nombre del Inventario: </label>
+                        <input type="text" class="form-control" id="nombre" >
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+    </div>
+<!-- US08 -->
 
         {% endfor %}
 
