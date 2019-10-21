@@ -69,7 +69,7 @@ def delete_inventario(request,id):
     inventario.save()
     inventarios = Inventario.objects.filter(status=True)
     context = {'inventarios': inventarios, }
-    return render(request, '../templates/inventario/ver_inventario.html',context)
+    return render(request, '../templates/inventario/ver_inventario.html', context)
 """
 
 ######## CONTROLLER US39 ########
