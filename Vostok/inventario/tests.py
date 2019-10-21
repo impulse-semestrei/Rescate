@@ -5,7 +5,7 @@ from django.urls import reverse
 from .models import Inventario, InventarioMaterial
 from material.models import Material
 from django.utils import timezone
-from .views import delete_inventario
+from .views import delete_inventario, eliminar_material_inventario
 from .forms import AgregarMaterialInventario
 
 # Create your tests here.
@@ -99,7 +99,7 @@ class verInventarioTest(TestCase):
         self.assertEqual(response.status_code,200)
 
 
-####### TESTS US-03############
+####### TESTS US-06############
 class deleteInventarioTest(TestCase):
     def test_url(self):
         inventario=Inventario.objects.create(nombre="Test")
@@ -131,7 +131,7 @@ class deleteInventarioTest(TestCase):
         self.assertFalse(inventario.status)
 
 
-####### TESTS US-03############
+####### TESTS US-06############
 
 
 ####### TESTS US-05############
@@ -145,3 +145,17 @@ class VerMaterialTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 ####### TESTS US-05############
+
+
+######## TEST US-03 ########
+class EliminarMaterialInventarioTestCase(TestCase):
+    def test_eliminarMaterial(self):
+        self.inventario = Inventario.objects.create(nombre="almacen")
+        self.material = Material.objects.create(nombre='curita', descripcion='proteccion de herida')
+        self.MatInv = InventarioMaterial.objects.create(inventario=self.inventario, material=self.material, cantidad=4)
+        self.MatInv.delete()
+        self.assertFalse(InventarioMaterial.objects.filter(material=self.MatInv.material))
+
+
+
+######## TEST US-03 ########
