@@ -21,10 +21,10 @@ class AgregarMaterialInventarioTestCase(TestCase):
 
     def test_url_correct(self):
         """
-        Regresar un codigo 200
+        Regresar un codigo 302 porque el usuario no está logueado y debe redireccionarse
         """
         response = self.client.get(reverse('inventario:agregar_material_inventario', args={self.inventario.id}))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_form_correct(self):
         """

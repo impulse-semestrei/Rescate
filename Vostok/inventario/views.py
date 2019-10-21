@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import crearInventarioForm, AgregarMaterialInventario
 from .models import Inventario
 from django.db import DatabaseError, transaction
@@ -79,7 +79,10 @@ def agregar_material_inventario(request, pk):
 ####### CONTROLLER US07############
 def ver_inventario(request):
     inventarios = Inventario.objects.filter(status=True)
-    context = {'inventarios': inventarios, }
+    context = {
+                'inventarios': inventarios,
+                'form': crearInventarioForm(),
+    }
     return render(request, '../templates/inventario/ver_inventario.html', context)
 
 ####### CONTROLLER US07############
@@ -93,8 +96,12 @@ def delete_inventario(request, id):
     inventario.fechaMod = timezone.now()
     inventario.save()
     inventarios = Inventario.objects.filter(status=True)
-    context = {'inventarios': inventarios, }
-    return render(request, '../templates/inventario/ver_inventario.html', context)
+
+    context = {'inventarios': inventarios,
+               'form': crearInventarioForm(),
+    }
+    return render(request, '../templates/inventario/ver_inventario.html',context)
+
 
 ###### CONTROLLER US06 #######
 
@@ -123,3 +130,22 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 
 
 ###### CONTROLLER US03 ########
+
+
+###### CONTROLLER US08 ########
+
+def editar_inventario(request, id):
+
+    inventario = Inventario.objects.get(id=id)
+    form = crearInventarioForm(request.POST)
+    if form.is_valid():
+        nombre = form.cleaned_data.get('nombre')
+    else:
+        return redirect('/inventario/ver/')
+    inventario.nombre = nombre
+    inventario.save()
+
+    return redirect('/inventario/ver/')
+
+
+###### CONTROLLER US08 ########
