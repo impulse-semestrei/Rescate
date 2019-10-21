@@ -22,9 +22,10 @@ router = routers.DefaultRouter()
 router.register(r'api', UserViewSet)
 
 urlpatterns = [
-    path('', include('users.urls')),
     path('admin/', admin.site.urls),
+    path('', include('users.urls')),
     path('material/', include('material.urls')),
     path('inventario/', include('inventario.urls')),
     path('api/', include(router.urls)),
+    path('revision/', include('revision.urls'))
 ]
