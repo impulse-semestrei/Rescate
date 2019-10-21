@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <!--######## VIEW US41 ########-->
+ <div class="card-box">
+
+                                    <h4 class="header-title">Inverse table</h4>
+                                    <p class="text-muted font-14 mb-3">
+                                        Your awesome text goes here.Your awesome text goes here.
+                                    </p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-dark mb-0">
+                                            <thead>
+                                            <tr>
+
+                                                <th>Nombre de inventario</th>
+                                                <th>Fecha de Revision</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+    {% if  revisiones  %}
+        {% for revision in revisiones %}
+
+             <tr>
+
+                 <td>{{ revision.inventario.nombre}}</td>
+                 <td>{{ revision.fecha }}</td>
+                 <td><button class="btn btn-primary btn-rounded width-md waves-effect waves-light"><a>Ver detalle</a></button></td>
+
+             </tr>
+
+        {% endfor %}
+    {% else %}
+
+
+
+
+        <h1>No Sirvio</h1>
+    {% endif %}
+       </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+    <!--######## VIEW US41 ########-->
+
+{% endblock %}
