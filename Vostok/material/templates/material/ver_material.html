@@ -36,7 +36,19 @@
             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed" role="grid" aria-describedby="datatable_info" style="width: 1347px;">
 
                                         <thead>
-                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 222.4px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Id</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 328.4px;" aria-label="Position: activate to sort column ascending">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 166.4px;" aria-label="Office: activate to sort column ascending">Descripcion</th>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 222.4px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                                Id
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 328.4px;" aria-label="Position: activate to sort column ascending">
+                                                Nombre
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 166.4px;" aria-label="Office: activate to sort column ascending">
+                                                Descripcion
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">
+                                                Ajustes
+                                            </th>
                                         </thead>
 
 
@@ -47,6 +59,17 @@
                                             <td tabindex="0" class="sorting_1">{{ material.id }}</td>
                                             <td>{{ material.nombre }}</td>
                                             <td>{{ material.descripcion }}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-secondary dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-chevron-down"></i> </button>
+                                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item">Editar</a>
+                                                        <!-- item-->
+                                                        <a href="#delete-modal-{{ material.id }}" class="dropdown-item" data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a">Eliminar</a>
+                                                    </div>
+                                                </div>
+                                            </td>
 
 
                                         </tr>
@@ -55,6 +78,31 @@
                                     </table>
                                 </div>
                             </div>
+
+    <!-- ##########View US39##### -->
+        {% for material in materiales %}
+
+            <div id="delete-modal-{{ material.id }}" class="modal-demo">
+            <button type="button" class="close" onclick="Custombox.modal.close();">
+                <span>×</span><span class="sr-only">Close</span>
+            </button>
+            <h4 class="custom-modal-title">Eliminar el material <span>{{ material.nombre }}</span>?</h4>
+            <div class="custom-modal-text">
+                Quieres eliminar el material {{ material.nombre }} permanentemente?
+                <form action="#" data-parsley-validate="" novalidate="">
+                    <div class="form-group text-right mb-0">
+                        <button class="btn btn-danger waves-effect waves-light mr-1" type="submit">
+                            <a href="{% url 'material:delete_material' material.id %}">Eliminar</a>
+                        </button>
+                        <button type="reset" class="btn btn-secondary waves-effect waves-light" onclick="Custombox.modal.close();">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% endfor %}
                         </div> <!-- end row -->
     </tbody>
     </table>
