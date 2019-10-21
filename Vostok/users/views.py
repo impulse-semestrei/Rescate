@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
@@ -15,7 +13,9 @@ def index(request):
     else:
         return render(request, '../templates/data_base_error.html')
 
-    context = {logged: 'logged'}
+    context = {
+        logged: 'logged'
+    }
     return render(request, '../templates/index.html', context)
 
 
@@ -25,10 +25,10 @@ def login(request):
     #     context={logged:'logged'}
     #     return render(request, '../templates/index.html',context)
     # else:
-        return render(request, '../templates/users/login.html')
+    return render(request, '../templates/users/login.html')
 ######## CONTROLLER US-14#######
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-

@@ -54,7 +54,6 @@ class AgregarMaterialInventarioTestCase(TestCase):
         self.assertFalse(form.is_valid())
 
 
-
 ######## TESTS US1 ########
 
 
@@ -119,7 +118,7 @@ class deleteInventarioTest(TestCase):
         status_after = inventario.status
         date_after = inventario.fechaMod
 
-        self.assertNotEqual(status_before,status_after)
+        self.assertNotEqual(status_before, status_after)
         self.assertNotEqual(date_before, date_after)
 
     def test_view(self):

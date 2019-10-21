@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="149e8169-70ec-4840-beb9-52847e99def9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/Vostok.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Vostok.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -10,6 +11,23 @@
       <change beforePath="$PROJECT_DIR$/inventario/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/inventario/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/material/migrations/0001_initial.py" beforeDir="false" />
+=======
+    <list default="true" id="7d3ab2c1-7b3c-4d93-aa0a-857190781fde" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventario/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/material/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/material/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/material/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/material/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/material/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+>>>>>>> 8669b417d212207d251a1de279830cf017bb37d3
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -255,7 +273,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="149e8169-70ec-4840-beb9-52847e99def9" name="Default Changelist" comment="" />
+      <changelist id="7d3ab2c1-7b3c-4d93-aa0a-857190781fde" name="Default Changelist" comment="" />
       <created>1570035432084</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -264,7 +282,11 @@
       <workItem from="1570460368505" duration="12637000" />
       <workItem from="1570637566881" duration="6028000" />
       <workItem from="1571016720968" duration="2498000" />
+<<<<<<< HEAD
       <workItem from="1571669861923" duration="8225000" />
+=======
+      <workItem from="1571073145382" duration="642000" />
+>>>>>>> 8669b417d212207d251a1de279830cf017bb37d3
     </task>
     <servers />
   </component>
