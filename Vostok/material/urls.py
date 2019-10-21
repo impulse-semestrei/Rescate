@@ -1,11 +1,13 @@
 from django.urls import path
-from .views import crear_material
-from .views import ver_material
+from . import views
 
 app_name = 'material'
 
 
 urlpatterns = [
-    path('crear/', crear_material, name='crear'),
-    path('ver/', ver_material, name='ver_material'),
+
+    path('crear/', views.crear_material, name='crear'),
+    path('ver/', views.ver_material, name='ver_material'),
+    path('delete/<int:id>/', views.delete_material, name="delete_material"),
+
 ]

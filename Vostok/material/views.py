@@ -55,5 +55,25 @@ def ver_material(request):
 
 ######## CONTROLLER US38 ########
 
+######## CONTROLLER US39 ########
+
+def delete_material(request, id):
+    materiales = Material.objects.all()
+    context = {'materiales':materiales,}
+    return render(request, '../templates/material/ver_material.html', context)
+
+
+"""
+def delete_inventario(request,id):
+    inventario = Inventario.objects.get(id=id)
+    inventario.status = False
+    inventario.fechaMod = timezone.now()
+    inventario.save()
+    inventarios = Inventario.objects.filter(status=True)
+    context = {'inventarios': inventarios, }
+    return render(request, '../templates/inventario/ver_inventario.html', context)
+"""
+
+######## CONTROLLER US39 ########
 
 
