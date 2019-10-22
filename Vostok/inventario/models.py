@@ -13,7 +13,7 @@ class Inventario(models.Model):  #crea el modelo para inventario en la base de d
     #Pone en lista Materiales creados para que los puedas añadir al inventario que estás creando.
 
     status = models.BooleanField(default=True,null=False)
-    fechaMod=models.DateTimeField(default=timezone.now(),null=False)
+    fechaMod=models.DateTimeField(default=timezone.now,null=False)
 
 ####### MODEL US03 ########
 ####### MODELS US-04############
@@ -26,7 +26,7 @@ class InventarioMaterial(models.Model):
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE)
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
     cantidad = models.IntegerField(null=False)
-    fecha = models.DateTimeField(null=False,default=timezone.now())
+    fecha = models.DateTimeField(null=False,default=timezone.now)
 
 
 ######## MODELS US1 ########
