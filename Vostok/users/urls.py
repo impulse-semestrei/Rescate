@@ -7,10 +7,7 @@ from users.views import login
 
 
 urlpatterns = [
-    path('',login),
+    path('', login),
     path('auth/google/', include('social_django.urls', namespace='social')),
-    path('index/',index),
-    #path('logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL},
-    #name='logout'),
-
+    path('index/', index),
 ]

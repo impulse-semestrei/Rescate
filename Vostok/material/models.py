@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
 
+
 ######## MODEL US36 ########
+
 
 class Material(models.Model):
     nombre = models.CharField(max_length=100, unique=True, null=False)
@@ -13,6 +15,3 @@ class Material(models.Model):
         return self.nombre
 
 ######## MODEL US36 ########
-
-
-
