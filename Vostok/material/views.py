@@ -4,6 +4,7 @@ from .models import Material
 from .forms import CrearMaterial
 from django.db import DatabaseError
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
@@ -46,8 +47,10 @@ def crear_material(request):
 
 
 def ver_material(request):
-    materiales = Material.objects.all()
-    context = {'materiales':materiales,}
+    materiales = Material.objects.filter(status=True)
+    context = {'materiales':materiales,
+               'form':CrearMaterial(),
+               }
     return render(request, '../templates/material/ver_material.html', context)
 
 
@@ -56,22 +59,36 @@ def ver_material(request):
 ######## CONTROLLER US39 ########
 
 def delete_material(request, id):
-    materiales = Material.objects.all()
-    context = {'materiales':materiales,}
+    material = Material.objects.get(id=id)
+    material.status = False
+    material.fechaMod = timezone.now()
+    material.save()
+
+    materiales = Material.objects.filter(status=True)
+    context = {
+        'materiales': materiales,
+        'form': CrearMaterial(),
+    }
     return render(request, '../templates/material/ver_material.html', context)
-
-
-"""
-def delete_inventario(request,id):
-    inventario = Inventario.objects.get(id=id)
-    inventario.status = False
-    inventario.fechaMod = timezone.now()
-    inventario.save()
-    inventarios = Inventario.objects.filter(status=True)
-    context = {'inventarios': inventarios, }
-    return render(request, '../templates/inventario/ver_inventario.html', context)
-"""
 
 ######## CONTROLLER US39 ########
 
 
+# ------------- CONTROLLER US34 --------------
+def editar_material(request, id):
+    material = Material.objects.get(id=id)
+    form = CrearMaterial(request.POST)
+    if(form.is_valid):
+        material.nombre = request.POST.get('nombre')
+        material.descripcion = request.POST.get('descripcion')
+        material.fechaMod = timezone.now()
+        material.save()
+
+    materiales = Material.objects.filter(status=True)
+    context = {
+        'materiales': materiales,
+        'form': CrearMaterial(),
+    }
+    return render(request, '../templates/material/ver_material.html', context)
+
+# ------------- CONTROLLER US34 --------------

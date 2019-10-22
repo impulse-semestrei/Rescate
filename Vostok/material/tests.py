@@ -81,5 +81,13 @@ class VerMaterialTestCase(TestCase):
         self.assertEqual(response.status_code,200)
 
 
-
 ######## TESTS US38 ########
+
+
+# ------- TESTS US 34 -------
+
+class EditarMaterialTests(TestCase):
+    def test_editarMaterialName(self):
+        Material.objects.create(nombre='Test', descripcion='Material for test')
+        self.client.get('material:editar_material',)
+
