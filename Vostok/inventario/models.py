@@ -5,13 +5,9 @@ from django.utils import timezone
 
 ######## MODEL US04########
 ####### MODEL US03 ########
-class Inventario(models.Model):  #crea el modelo para inventario en la base de datos#
+class Inventario(models.Model):
     nombre = models.CharField(max_length=100, unique=True, null=False)
-    # Solo puede haber un nombre de cada modelo solo puede haber un material, por lo que debe ser único
-    # Además de que no se puede dejar vacio
     materiales = models.ManyToManyField(Material,through='InventarioMaterial')
-    #Pone en lista Materiales creados para que los puedas añadir al inventario que estás creando.
-
     status = models.BooleanField(default=True,null=False)
     fechaMod=models.DateTimeField(default=timezone.now,null=False)
 
