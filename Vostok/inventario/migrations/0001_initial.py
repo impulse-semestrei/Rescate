@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=100, unique=True)),
                 ('status', models.BooleanField(default=True)),
-                ('fechaMod', models.DateTimeField(default=datetime.datetime(2019, 10, 21, 15, 28, 8, 433719, tzinfo=utc))),
+                ('fecha_mod', models.DateTimeField(default=datetime.datetime(2019, 10, 21, 15, 28, 8, 433719, tzinfo=utc))),
             ],
         ),
         migrations.CreateModel(

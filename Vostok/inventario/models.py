@@ -13,7 +13,7 @@ class Inventario(models.Model):  #crea el modelo para inventario en la base de d
     #Pone en lista Materiales creados para que los puedas añadir al inventario que estás creando.
 
     status = models.BooleanField(default=True,null=False)
-    fechaMod=models.DateTimeField(default=timezone.now(),null=False)
+    fecha_mod = models.DateTimeField(default=timezone.now(), null=False)
 
 ####### MODEL US03 ########
 ####### MODELS US-04############

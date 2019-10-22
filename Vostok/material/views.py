@@ -61,7 +61,7 @@ def ver_material(request):
 def delete_material(request, id):
     material = Material.objects.get(id=id)
     material.status = False
-    material.fechaMod = timezone.now()
+    material.fecha_mod = timezone.now()
     material.save()
 
     materiales = Material.objects.filter(status=True)
@@ -81,7 +81,7 @@ def editar_material(request, id):
     if(form.is_valid):
         material.nombre = request.POST.get('nombre')
         material.descripcion = request.POST.get('descripcion')
-        material.fechaMod = timezone.now()
+        material.fecha_mod = timezone.now()
         material.save()
 
     materiales = Material.objects.filter(status=True)

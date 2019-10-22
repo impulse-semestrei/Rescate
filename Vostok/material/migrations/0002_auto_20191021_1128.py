@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='material',
-            name='fechaMod',
+            name='fecha_mod',
             field=models.DateTimeField(default=django.utils.timezone.now),
         ),
         migrations.AddField(
