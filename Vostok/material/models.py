@@ -5,6 +5,7 @@ from django.utils import timezone
 ######## MODEL US36 ########
 #### MODEL US21 ####
 
+
 class Material(models.Model):
     nombre = models.CharField(max_length=100, unique=True, null=False)
     descripcion = models.TextField(null=False)
@@ -14,5 +15,7 @@ class Material(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
 #### MODEL US21 ####
 ######## MODEL US36 ########

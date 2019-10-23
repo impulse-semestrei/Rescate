@@ -162,10 +162,28 @@ class EliminarMaterialInventarioTestCase(TestCase):
 class ChecklistTestCase(TestCase):
     def setUp(self):
         self.inventario = Inventario.objects.create(nombre="inventario")
-        self.material1 = Material.objects.create(nombre="material1", descripcion="material1", cantidad=1)
-        self.material2 = Material.objects.create(nombre="material2", descripcion="material2", cantidad=2)
-        InventarioMaterial.objects.create(inventario=self.inventario, material=self.material1, fecha=timezone.now(), cantidad=1)
-        InventarioMaterial.objects.create(inventario=self.inventario, material=self.material2, fecha=timezone.now(), cantidad=2)
+        self.material1 = Material.objects.create(
+            nombre="material1",
+            descripcion="material1",
+            cantidad=1
+        )
+        self.material2 = Material.objects.create(
+            nombre="material2",
+            descripcion="material2",
+            cantidad=2
+        )
+        InventarioMaterial.objects.create(
+            inventario=self.inventario,
+            material=self.material1,
+            fecha=timezone.now(),
+            cantidad=1
+        )
+        InventarioMaterial.objects.create(
+            inventario=self.inventario,
+            material=self.material2,
+            fecha=timezone.now(),
+            cantidad=2
+        )
 
     def test_response(self):
         response = self.client.get(reverse('inventario:checklist', args=[self.inventario.id]))
@@ -212,11 +230,16 @@ class ChecklistTestCase(TestCase):
 
 
 ######## TEST US-02 ########
+
 class EditarMaterialInventarioTest(TestCase):
     def setUp(self):
         self.inventario = Inventario.objects.create(nombre="almacen")
         self.material = Material.objects.create(nombre='curita', descripcion='proteccion de herida')
-        self.MatInv = InventarioMaterial.objects.create(inventario=self.inventario, material=self.material, cantidad=4)
+        self.MatInv = InventarioMaterial.objects.create(
+            inventario=self.inventario,
+            material=self.material,
+            cantidad=4
+        )
 
     def test_form_correct(self):
         data = {
