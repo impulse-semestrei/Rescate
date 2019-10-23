@@ -162,7 +162,7 @@ def editar_material(request, inventario_id, material_id):
     material.cantidad = cantidad
     material.save()
     id = material.inventario
-    messages.success(request, 'Se actualizo')
+    messages.info(request, 'Se ha editado la cantidad del material con exito')
     return redirect('inventario:material_inventario', pk=inventario_id)
 
 ###### CONTROLLER US02 ########
