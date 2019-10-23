@@ -22,11 +22,7 @@ class InventarioMaterial(models.Model):
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE)
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
     cantidad = models.IntegerField(null=False)
-<<<<<<< HEAD
-    fecha = models.DateTimeField(null=False, default=timezone.now())
-=======
     fecha = models.DateTimeField(null=False,default=timezone.now)
->>>>>>> ebae107f453a8eef0378624bbe36bbdb3ac10842
 
 
 ######## MODELS US1 ########
