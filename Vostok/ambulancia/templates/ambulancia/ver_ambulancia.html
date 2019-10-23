@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'dashboard/base.html' %}
+{% load staticfiles %}
+{% block content %}
 
-</body>
-</html>
+    <h1>Ambulancias</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-box">
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Inventario</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ambulancia in Ambulancias %}
+                                <tr>
+                                    <th scope="row">{{ ambulancia.id }}</th>
+                                    <td>{{ ambulancia.nombre }}</td>
+                                    <td>{{ ambulancia.inventario.nombre }}</td>
+                                    <td><button type="button" class="btn btn-bordred-dark waves-effect  width-md waves-light">Editar</button></td>
+                                    <td><button type="button" class="btn btn-bordred-danger waves-effect  width-md waves-light">Eliminar</button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
