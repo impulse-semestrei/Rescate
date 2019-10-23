@@ -23,14 +23,42 @@
                                     <th scope="row">{{ ambulancia.id }}</th>
                                     <td>{{ ambulancia.nombre }}</td>
                                     <td>{{ ambulancia.inventario.nombre }}</td>
-                                    <td><button type="button" class="btn btn-bordred-dark waves-effect  width-md waves-light">Editar</button></td>
+                                    <td><a href="#edit-modal-{{ ambulancia.id }}" data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a"><button type="button" class=" btn btn-success"><i class="fas fa-edit"></i></button></a></td>
                                     <td><button type="button" class="btn btn-bordred-danger waves-effect  width-md waves-light">Eliminar</button></td>
                                 </tr>
+
+
                             {% endfor %}
+
                         </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    <!-- ######## VIEW US44 ######## -->
+{% for ambulancia in Ambulancias %}
+    <div id="edit-modal-{{ ambulancia.id }}" class="modal-demo">
+        <button type="button" class="close" onclick="Custombox.modal.close();">
+            <span>×</span><span class="sr-only">Close</span>
+        </button>
 
+        <h4 class="custom-modal-title">Editar la ambulancia<span>{{ ambulancia.nombre }}</span>?</h4>
+        <div class="custom-modal-text">
+            Editar la ambulancia {{ ambulancia.nombre }}:
+            <form method="post" action="{% url "ambulancia:editar_ambulancias" ambulancia.id %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ form.as_p }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="Custombox.modal.close();">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    {% endfor %}
+    <!-- ######## VIEW US44 ######## -->
 {% endblock %}

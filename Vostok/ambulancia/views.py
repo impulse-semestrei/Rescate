@@ -47,6 +47,27 @@ def crear_ambulancia(request):
 # -------- CONTROLLER US46 ---------
 def ver_ambulancias(request):
     ambulancias = Ambulancia.objects.filter(status=True)
-    context = {'Ambulancias':ambulancias}
+    context = {'Ambulancias': ambulancias,
+               'form': CrearAmbulancia
+               }
     return render(request, '../templates/ambulancia/ver_ambulancia.html', context)
 # -------- CONTROLLER US46 ---------
+
+
+####### CONTROLLER US45############
+def editar_ambulancias(request, id):
+    ambulancia = Ambulancia.objects.get(id=id)
+    form = CrearAmbulancia(request.POST)
+    if(form.is_valid):
+        ambulancia.nombre = request.POST.get('nombre')
+        ambulancia.inventario_id = request.POST.get('inventario')
+        ambulancia.save()
+
+    ambulancias = Ambulancia.objects.filter(status=True)
+    context = {
+        'ambulancias': ambulancias,
+        'form': CrearAmbulancia(),
+    }
+    return render(request, '../templates/ambulancia/ver_ambulancia.html', context)
+
+####### CONTROLLER US45############
