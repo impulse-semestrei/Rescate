@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from material.models import Material
 import json
 from django.http import JsonResponse
-
+from revision.models import Revision
 
 
 STATUS_CREATED = 'CREATED'
@@ -166,20 +166,22 @@ def serializar_inventario(inventario):
     return json.dumps(output)
 
 
-def guardar_inventario(inventario, data):
+def guardar_inventario(inventario, datos_json):
+    datos = json.loads(datos_json)
     objects = []
-    for item in data.getlist("materiales"):
+    fecha = timezone.now()
+    for item in datos['materiales']:
         try:
-            material = json.loads(item)
-            m = Material.objects.get(id=material["id"])
+            m = Material.objects.get(id=item['id'])
         except ObjectDoesNotExist:
             return False
-        objects.append(InventarioMaterial(inventario=inventario, material=m, cantidad=material["cantidad"],fecha=timezone.now()))
+        objects.append(InventarioMaterial(inventario=inventario, material=m, cantidad=item['cantidad'],fecha=fecha))
 
     try:
         with transaction.atomic():
             for item in objects:
                 item.save()
+            Revision.objects.create(inventario=inventario, fecha=timezone.now())
     except Exception:
         return False
 
@@ -191,8 +193,7 @@ def checklist(request, pk):
     if request.method == "GET":
         return JsonResponse(serializar_inventario(inventario), safe=False)
     elif request.method == "POST":
-        if guardar_inventario(inventario, request.POST):
-            print(InventarioMaterial.objects.all().count())
-            return JsonResponse(json.dumps({"status": "OK"}))
-        return JsonResponse(json.dumps({"status": "NOPE"}))
+        if guardar_inventario(inventario, request.POST["datos"]):
+            return JsonResponse(json.dumps({"status": "OK"}), safe=False)
+        return JsonResponse(json.dumps({"status": "ERROR"}), safe=False)
 

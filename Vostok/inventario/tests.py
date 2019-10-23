@@ -188,8 +188,7 @@ class ChecklistTestCase(TestCase):
         )
 
     def test_request(self):
-        response = self.client.post(
-            reverse('inventario:checklist', args=[self.inventario.id]),
+        datos = json.dumps(
             {
                 "materiales": [
                     {
@@ -203,4 +202,8 @@ class ChecklistTestCase(TestCase):
                         "cantidad": 3
                     }
                 ]
-            })
+            }
+        )
+        response = self.client.post(reverse('inventario:checklist', args=[self.inventario.id]), {"datos": datos})
+        self.assertJSONEqual(json.loads(response.content), {"status": "OK"})
+        self.assertTrue(InventarioMaterial.objects.all().count(), 4)
