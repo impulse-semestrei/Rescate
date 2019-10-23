@@ -8,5 +8,5 @@ from django.utils import timezone
 
 class Revision(models.Model):
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE)
-    fecha = models.DateTimeField(null=False, default=timezone.now())
+    fecha = models.DateTimeField(null=False, default=timezone.now)
 ######## MODEL US41 ########
