@@ -7,6 +7,7 @@ from material.models import Material
 from django.utils import timezone
 from .views import delete_inventario, eliminar_material_inventario
 from .forms import AgregarMaterialInventario
+import json
 
 # Create your tests here.
 
@@ -154,8 +155,52 @@ class EliminarMaterialInventarioTestCase(TestCase):
         self.MatInv = InventarioMaterial.objects.create(inventario=self.inventario, material=self.material, cantidad=4)
         self.MatInv.delete()
         self.assertFalse(InventarioMaterial.objects.filter(material=self.MatInv.material))
-
-
-
 ######## TEST US-03 ########
 
+
+class ChecklistTestCase(TestCase):
+    def setUp(self):
+        self.inventario = Inventario.objects.create(nombre="inventario")
+        self.material1 = Material.objects.create(nombre="material1", descripcion="material1", cantidad=1)
+        self.material2 = Material.objects.create(nombre="material2", descripcion="material2", cantidad=2)
+        InventarioMaterial.objects.create(inventario=self.inventario, material=self.material1, fecha=timezone.now(), cantidad=1)
+        InventarioMaterial.objects.create(inventario=self.inventario, material=self.material2, fecha=timezone.now(), cantidad=2)
+
+    def test_response(self):
+        response = self.client.get(reverse('inventario:checklist', args=[self.inventario.id]))
+        materiales = json.loads(response.content)
+        self.assertJSONEqual(
+            materiales,
+            {
+                "materiales": [
+                    {
+                        "id": self.material1.id,
+                        "nombre": self.material1.nombre,
+                        "cantidad": 1
+                    },
+                    {
+                        "id": self.material2.id,
+                        "nombre": self.material2.nombre,
+                        "cantidad": 2
+                    }
+                ]
+            }
+        )
+
+    def test_request(self):
+        response = self.client.post(
+            reverse('inventario:checklist', args=[self.inventario.id]),
+            {
+                "materiales": [
+                    {
+                        "id": self.material1.id,
+                        "nombre": self.material1.nombre,
+                        "cantidad": 2
+                    },
+                    {
+                        "id": self.material2.id,
+                        "nombre": self.material2.nombre,
+                        "cantidad": 3
+                    }
+                ]
+            })

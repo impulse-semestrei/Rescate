@@ -7,6 +7,9 @@ from django.utils import timezone
 from .models import InventarioMaterial
 from django.core.exceptions import ObjectDoesNotExist
 from material.models import Material
+import json
+from django.http import JsonResponse
+
 
 
 STATUS_CREATED = 'CREATED'
@@ -149,3 +152,47 @@ def editar_inventario(request, id):
 
 
 ###### CONTROLLER US08 ########
+
+
+def serializar_inventario(inventario):
+    materiales = inventario.materiales.all()
+    output = {"materiales": []}
+    for material in materiales:
+        output["materiales"].append({
+            "id": material.id,
+            "nombre": material.nombre,
+            "cantidad": material.cantidad
+        })
+    return json.dumps(output)
+
+
+def guardar_inventario(inventario, data):
+    objects = []
+    for item in data.getlist("materiales"):
+        try:
+            material = json.loads(item)
+            m = Material.objects.get(id=material["id"])
+        except ObjectDoesNotExist:
+            return False
+        objects.append(InventarioMaterial(inventario=inventario, material=m, cantidad=material["cantidad"],fecha=timezone.now()))
+
+    try:
+        with transaction.atomic():
+            for item in objects:
+                item.save()
+    except Exception:
+        return False
+
+    return True
+
+
+def checklist(request, pk):
+    inventario = Inventario.objects.get(id=pk)
+    if request.method == "GET":
+        return JsonResponse(serializar_inventario(inventario), safe=False)
+    elif request.method == "POST":
+        if guardar_inventario(inventario, request.POST):
+            print(InventarioMaterial.objects.all().count())
+            return JsonResponse(json.dumps({"status": "OK"}))
+        return JsonResponse(json.dumps({"status": "NOPE"}))
+
