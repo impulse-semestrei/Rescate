@@ -41,3 +41,14 @@ class AgregarMaterialInventario(Form):
 
 
 ######## FORMS US1 ########
+
+
+######## FORMS US2 ########
+
+
+class EditarMaterialInventario(Form):
+
+    cantidad = IntegerField(min_value=0, widget=NumberInput(attrs={'class': 'form-control'}))
+
+
+######## FORMS US2 ########
