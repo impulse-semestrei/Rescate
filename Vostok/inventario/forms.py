@@ -11,7 +11,7 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 class crearInventarioForm(forms.ModelForm):
     class Meta:
         model = Inventario
-        fields=['nombre']
+        fields = ['nombre']
 
 ####### FORMS US04############
 

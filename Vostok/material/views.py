@@ -47,7 +47,9 @@ def crear_material(request):
 
 def ver_material(request):
     materiales = Material.objects.all()
-    context = {'materiales':materiales,}
+    context = {
+        'materiales': materiales,
+    }
     return render(request, '../templates/material/ver_material.html', context)
 
 
