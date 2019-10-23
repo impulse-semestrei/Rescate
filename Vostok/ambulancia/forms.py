@@ -16,7 +16,7 @@ class CrearAmbulancia(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['nombre'].widget.attrs['class'] = 'form-control'
         self.fields['inventario'].widget.attrs['class'] = 'form-control'
-        self.fields['inventario'].queryset = Inventario.objects.all()
+        self.fields['inventario'].queryset = Inventario.objects.filter(status=True)
         self.fields['inventario'].label_from_instance = lambda obj: "%s " % obj.nombre
 
 

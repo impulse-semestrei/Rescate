@@ -8,5 +8,6 @@ app_name = "ambulancia"
 urlpatterns = [
     path('crear/', views.crear_ambulancia, name='crear'),
     path('ver/', views.ver_ambulancias, name='ver_ambulancias'),
+    path('eliminar/<int:id>', views.eliminar_ambulancias, name='eliminar_ambulancia'),
 ]
 ######## CONTROLLER US44 ########
