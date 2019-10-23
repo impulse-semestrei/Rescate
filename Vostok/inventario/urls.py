@@ -7,7 +7,7 @@ from .views import crearInventarioView, agregar_material_inventario, ver_inventa
 
 app_name= "inventario"
 urlpatterns = [
-    path('crear/', crearInventarioView),
+    path('crear/', crearInventarioView, name='crear_inventario'),
     path('ver/', ver_inventario, name='ver_inventario'),
     path('<int:pk>/agregar_material/', agregar_material_inventario, name='agregar_material_inventario'),
     path('delete/<int:id>/', delete_inventario, name="delete_inventario"),
