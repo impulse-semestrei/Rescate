@@ -27,5 +27,6 @@ urlpatterns = [
     path('material/', include('material.urls')),
     path('inventario/', include('inventario.urls')),
     path('api/', include(router.urls)),
-    path('revision/', include('revision.urls'))
+    path('revision/', include('revision.urls')),
+    path('ambulancia/', include('ambulancia.urls'))
 ]
