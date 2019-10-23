@@ -64,7 +64,7 @@
                                                     <button type="button" class="btn btn-secondary dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-chevron-down"></i> </button>
                                                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                         <!-- item-->
-                                                        <a href="javascript:void(0);" class="dropdown-item">Editar</a>
+                                                        <a href="#edit-modal-{{ material.id }}" class="dropdown-item" data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a">Editar</a>
                                                         <!-- item-->
                                                         <a href="#delete-modal-{{ material.id }}" class="dropdown-item" data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a">Eliminar</a>
                                                     </div>
@@ -82,7 +82,7 @@
     <!-- ##########View US39##### -->
         {% for material in materiales %}
 
-            <div id="delete-modal-{{ material.id }}" class="modal-demo">
+        <div id="delete-modal-{{ material.id }}" class="modal-demo">
             <button type="button" class="close" onclick="Custombox.modal.close();">
                 <span>×</span><span class="sr-only">Close</span>
             </button>
@@ -102,7 +102,35 @@
             </div>
         </div>
 
+        <!-- US39 -->
+
+
+        <!-- #### US#34 #### -->
+        <div id="edit-modal-{{ material.id }}" class="modal-demo">
+            <button type="button" class="close" onclick="Custombox.modal.close();">
+                <span>×</span><span class="sr-only">Close</span>
+            </button>
+            <h4 class="custom-modal-title">Editar el material <span>{{ material.nombre }}</span>?</h4>
+            <div class="custom-modal-text">
+                Editar el material {{ material.nombre }}:
+                <form method="post" action="{% url "material:edit_material" material.id %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {{ form.as_p }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="Custombox.modal.close();">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- #### US#34 #### -->
+
         {% endfor %}
+
+
                         </div> <!-- end row -->
     </tbody>
     </table>

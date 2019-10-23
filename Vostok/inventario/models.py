@@ -9,7 +9,7 @@ class Inventario(models.Model):
     nombre = models.CharField(max_length=100, unique=True, null=False)
     materiales = models.ManyToManyField(Material,through='InventarioMaterial')
     status = models.BooleanField(default=True,null=False)
-    fechaMod=models.DateTimeField(default=timezone.now,null=False)
+    fecha_mod = models.DateTimeField(default=timezone.now(), null=False)
 
 ####### MODEL US03 ########
 ####### MODELS US-04############

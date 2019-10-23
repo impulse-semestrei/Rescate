@@ -93,7 +93,7 @@ def ver_inventario(request):
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.status = False
-    inventario.fechaMod = timezone.now()
+    inventario.fecha_mod = timezone.now()
     inventario.save()
     inventarios = Inventario.objects.filter(status=True)
 
