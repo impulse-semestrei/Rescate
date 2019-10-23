@@ -8,6 +8,7 @@ from django.utils import timezone
 from .views import delete_inventario, eliminar_material_inventario
 from .forms import AgregarMaterialInventario
 import json
+from .forms import AgregarMaterialInventario, EditarMaterialInventario
 
 # Create your tests here.
 
@@ -157,7 +158,7 @@ class EliminarMaterialInventarioTestCase(TestCase):
         self.assertFalse(InventarioMaterial.objects.filter(material=self.MatInv.material))
 ######## TEST US-03 ########
 
-
+#### TESTS US21 ####
 class ChecklistTestCase(TestCase):
     def setUp(self):
         self.inventario = Inventario.objects.create(nombre="inventario")
@@ -207,3 +208,27 @@ class ChecklistTestCase(TestCase):
         response = self.client.post(reverse('inventario:checklist', args=[self.inventario.id]), {"datos": datos})
         self.assertJSONEqual(json.loads(response.content), {"status": "OK"})
         self.assertTrue(InventarioMaterial.objects.all().count(), 4)
+#### TESTS US21 ####
+
+
+######## TEST US-02 ########
+class EditarMaterialInventarioTest(TestCase):
+    def setUp(self):
+        self.inventario = Inventario.objects.create(nombre="almacen")
+        self.material = Material.objects.create(nombre='curita', descripcion='proteccion de herida')
+        self.MatInv = InventarioMaterial.objects.create(inventario=self.inventario, material=self.material, cantidad=4)
+
+    def test_form_correct(self):
+        data = {
+            'cantidad': 2,
+        }
+        form = EditarMaterialInventario(data)
+        self.assertTrue(form.is_valid())
+        cant = form.cleaned_data['cantidad']
+        self.MatInv.cantidad = cant
+        self.MatInv.save()
+        self.assertTrue(
+            InventarioMaterial.objects.filter(material=self.MatInv.material, inventario=self.MatInv.inventario))
+
+
+######## TEST US-02 ########
