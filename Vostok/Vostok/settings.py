@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'social_django',
     'material.apps.MaterialConfig',
     'inventario.apps.InventarioConfig',
+    'ambulancia.apps.AmbulanciaConfig',
+    'revision.apps.RevisionConfig',
     'dashboard.apps.DashboardConfig',
     'rest_framework',
 ]
