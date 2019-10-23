@@ -6,7 +6,7 @@ from .forms import CrearAmbulancia
 from django.urls import reverse
 
 ####### TEST US44############
-class AgregarMaterialInventarioTestCase(TestCase):
+class CrearAmbulanciaTest(TestCase):
     def setUp(self):
         self.inventario = Inventario.objects.create(nombre="almacen")
 
