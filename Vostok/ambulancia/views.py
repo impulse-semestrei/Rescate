@@ -42,3 +42,11 @@ def crear_ambulancia(request):
     }
     return render(request, '../templates/ambulancia/crear_ambulancia.html', context)
 ####### CONTROLLER US44############
+
+
+# -------- CONTROLLER US46 ---------
+def ver_ambulancias(request):
+    ambulancias = Ambulancia.objects.filter(status=True)
+    context = {'Ambulancias':ambulancias}
+    return render(request, '../templates/ambulancia/ver_ambulancia.html', context)
+# -------- CONTROLLER US46 ---------
