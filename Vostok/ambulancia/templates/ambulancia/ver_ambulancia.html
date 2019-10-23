@@ -7,28 +7,34 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card-box">
-                    <table class="table table-hover table-dark">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Inventario</th>
-                                <th scope="col">Editar</th>
-                                <th scope="col">Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for ambulancia in Ambulancias %}
+                    <div class="row">
+                        <a href="{% url "ambulancia:crear" %}" type="button" class="btn btn-bordred-info waves-effect  width-md waves-light">Crear nueva ambulancia</a>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <table class="table table-hover table-dark">
+                            <thead>
                                 <tr>
-                                    <th scope="row">{{ ambulancia.id }}</th>
-                                    <td>{{ ambulancia.nombre }}</td>
-                                    <td>{{ ambulancia.inventario.nombre }}</td>
-                                    <td><button type="button" class="btn btn-bordred-dark waves-effect  width-md waves-light">Editar</button></td>
-                                    <td><button type="button" class="btn btn-bordred-danger waves-effect  width-md waves-light">Eliminar</button></td>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Inventario</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Eliminar</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {% for ambulancia in Ambulancias %}
+                                    <tr>
+                                        <th scope="row">{{ ambulancia.id }}</th>
+                                        <td>{{ ambulancia.nombre }}</td>
+                                        <td>{{ ambulancia.inventario.nombre }}</td>
+                                        <td><button type="button" class="btn btn-bordred-dark waves-effect  width-xs waves-light btn-sm">Editar</button></td>
+                                        <td><button type="button" class="btn btn-bordred-danger waves-effect  width-xs waves-light btn-sm">Eliminar</button></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
