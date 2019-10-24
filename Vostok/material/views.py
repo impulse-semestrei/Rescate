@@ -24,6 +24,7 @@ def crear_material(request):
                 new_material = Material(
                     nombre=form.cleaned_data.get('nombre'),
                     descripcion=form.cleaned_data.get('descripcion'),
+                    cantidad=form.cleaned_data.get('cantidad'),
                 )
                 new_material.save()
                 context['status'] = STATUS_SAVED

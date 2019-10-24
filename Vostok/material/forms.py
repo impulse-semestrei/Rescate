@@ -10,12 +10,12 @@ class CrearMaterial(ModelForm):
     """
     class Meta:
         model = Material
-        fields = ['nombre', 'descripcion']
+        fields = ['nombre', 'descripcion','cantidad']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['nombre'].widget.attrs['class'] = 'form-control'
         self.fields['descripcion'].widget.attrs['class'] = 'form-control'
-
+        self.fields['cantidad'].widget.attrs['class'] = 'form-control'
 
 ######## FORM US36 ########
