@@ -8,7 +8,7 @@ urlpatterns = [
     path('<int:id>/revisiones/', ver_revisiones, name='revisiones'),
 
     ###### URLS US42 #####
-    path('<int:id>/revisiones/<int:id_revision>/',ver_detalle_revsion,name='detalle_revision')
+    path('<int:id>/revisiones/<int:id_revision>/', ver_detalle_revsion, name='detalle_revision')
     ###### URLS US42 #####
 
 ]
