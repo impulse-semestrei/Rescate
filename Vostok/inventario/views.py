@@ -140,7 +140,6 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 ###### CONTROLLER US08 ########
 
 def editar_inventario(request, id):
-
     inventario = Inventario.objects.get(id=id)
     form = crearInventarioForm(request.POST)
     if form.is_valid():
