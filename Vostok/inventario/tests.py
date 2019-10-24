@@ -97,15 +97,15 @@ class InventarioTestCase(TestCase):
 class verInventarioTest(TestCase):
     def test_url(self):
         response = self.client.get('/inventario/ver/')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code, 200)
 
 
 ####### TESTS US-06############
 class deleteInventarioTest(TestCase):
     def test_url(self):
-        inventario=Inventario.objects.create(nombre="Test")
+        inventario = Inventario.objects.create(nombre="Test")
         response=self.client.get('/inventario/delete/'+str(inventario.id)+'/')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code, 200)
 
     def test_model(self):
         inventario = Inventario.objects.create(nombre="Test")

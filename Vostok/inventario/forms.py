@@ -30,7 +30,6 @@ class AgregarMaterialInventario(Form):
     cantidad = IntegerField(min_value=0, widget=NumberInput(attrs={'class': 'form-control'}))
 
 
-
     def clean_material(self):
         nombre = self.cleaned_data['material']
         try:

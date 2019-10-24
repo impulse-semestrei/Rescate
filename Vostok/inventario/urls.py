@@ -5,7 +5,7 @@ from .views import crearInventarioView, agregar_material_inventario, ver_inventa
 ####### URLS US-04############
 
 
-app_name= "inventario"
+app_name = "inventario"
 urlpatterns = [
     path('crear/', crearInventarioView, name='crear_inventario'),
     path('ver/', ver_inventario, name='ver_inventario'),

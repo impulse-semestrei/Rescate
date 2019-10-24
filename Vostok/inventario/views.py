@@ -104,7 +104,7 @@ def delete_inventario(request, id):
     context = {'inventarios': inventarios,
                'form': crearInventarioForm(),
     }
-    return render(request, '../templates/inventario/ver_inventario.html',context)
+    return render(request, '../templates/inventario/ver_inventario.html', context)
 
 
 ###### CONTROLLER US06 #######
@@ -176,7 +176,7 @@ def guardar_inventario(inventario, datos_json):
             m = Material.objects.get(id=item['id'])
         except ObjectDoesNotExist:
             return False
-        objects.append(InventarioMaterial(inventario=inventario, material=m, cantidad=item['cantidad'],fecha=fecha))
+        objects.append(InventarioMaterial(inventario=inventario, material=m, cantidad=item['cantidad'], fecha=fecha))
 
     try:
         with transaction.atomic():
