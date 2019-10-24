@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import crearInventarioForm, AgregarMaterialInventario
+from .forms import crearInventarioForm, AgregarMaterialInventario, EditarMaterialInventario
 from .models import Inventario
 from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
@@ -7,6 +7,10 @@ from django.utils import timezone
 from .models import InventarioMaterial
 from django.core.exceptions import ObjectDoesNotExist
 from material.models import Material
+import json
+from django.http import JsonResponse
+from revision.models import Revision
+from django.contrib import messages
 
 
 STATUS_CREATED = 'CREATED'
@@ -110,7 +114,8 @@ def delete_inventario(request, id):
 def ver_inventario_material(request, pk):
     InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=pk))
     context = {'inventarios': InventarioMateriales.all,
-               'inventario_id': pk,
+               'inventario_pk': pk,
+               'form': EditarMaterialInventario,
                }
     return render(request, '../templates/inventario/ver_material_inventario.html', context)
 
@@ -148,3 +153,67 @@ def editar_inventario(request, id):
 
 
 ###### CONTROLLER US08 ########
+
+##### CONTROLLER US21 ####
+def serializar_inventario(inventario):
+    materiales = inventario.materiales.all()
+    output = {"materiales": []}
+    for material in materiales:
+        output["materiales"].append({
+            "id": material.id,
+            "nombre": material.nombre,
+            "cantidad": material.cantidad
+        })
+    return json.dumps(output)
+
+
+def guardar_inventario(inventario, datos_json):
+    datos = json.loads(datos_json)
+    objects = []
+    fecha = timezone.now()
+    for item in datos['materiales']:
+        try:
+            m = Material.objects.get(id=item['id'])
+        except ObjectDoesNotExist:
+            return False
+        objects.append(InventarioMaterial(inventario=inventario, material=m, cantidad=item['cantidad'],fecha=fecha))
+
+    try:
+        with transaction.atomic():
+            for item in objects:
+                item.save()
+            Revision.objects.create(inventario=inventario, fecha=timezone.now())
+    except Exception:
+        return False
+
+    return True
+
+
+def checklist(request, pk):
+    inventario = Inventario.objects.get(id=pk)
+    if request.method == "GET":
+        return JsonResponse(serializar_inventario(inventario), safe=False)
+    elif request.method == "POST":
+        if guardar_inventario(inventario, request.POST["datos"]):
+            return JsonResponse(json.dumps({"status": "OK"}), safe=False)
+        return JsonResponse(json.dumps({"status": "ERROR"}), safe=False)
+
+##### CONTROLLER US21 ####
+
+###### CONTROLLER US02 ########
+
+
+def editar_material(request, inventario_id, material_id):
+    material = InventarioMaterial.objects.get(inventario__id=inventario_id, material__id=material_id)
+    form = EditarMaterialInventario(request.POST)
+    if form.is_valid():
+        cantidad = form.cleaned_data.get('cantidad')
+    else:
+        return redirect('inventario:material_inventario', pk=inventario_id)
+    material.cantidad = cantidad
+    material.save()
+    id = material.inventario
+    messages.info(request, 'Se ha editado la cantidad del material con exito')
+    return redirect('inventario:material_inventario', pk=inventario_id)
+
+###### CONTROLLER US02 ########

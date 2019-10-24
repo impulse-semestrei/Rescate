@@ -268,3 +268,11 @@ Vostok/.idea/**/markdown-navigator/
 # Pyre type checker
 
 # End of https://www.gitignore.io/api/pycharm,python,django
+Vostok/material/migrations/
+Vostok/inventario/migrations/
+Vostok/revision/migrations/
+Vostok/ambulancia/migrations/
+
+Vostok/.idea/Vostok.iml
+Vostok/.idea/misc.xml
+Vostok/Vostok/settings.py

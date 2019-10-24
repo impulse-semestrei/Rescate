@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Ambulancia
 from .forms import CrearAmbulancia
 from inventario.models import Inventario
 from django.db import DatabaseError
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from inventario.models import Inventario
+
 
 
 STATUS_CREATED = 'SAVED'
@@ -54,7 +57,26 @@ def ver_ambulancias(request):
 # -------- CONTROLLER US46 ---------
 
 
+
+# -------- CONTROLLER US47 ---------
+def eliminar_ambulancias(request, id):
+     ambulancia = Ambulancia.objects.get(id=id)
+     ambulancia.status = False
+     ambulancia.fecha_mod = timezone.now()
+     ambulancia.save()
+     pk = ambulancia.inventario
+     inventario = Inventario.objects.get(id=pk.id)
+     inventario.status = False
+     #inventario.fechaMod = timezone.now()
+     inventario.save()
+
+     return redirect('/ambulancia/ver/')
+
+# -------- CONTROLLER US46 ---------
+
 ####### CONTROLLER US45############
+
+
 def editar_ambulancias(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     form = CrearAmbulancia(request.POST)
