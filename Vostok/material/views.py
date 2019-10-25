@@ -82,6 +82,7 @@ def editar_material(request, id):
     if(form.is_valid):
         material.nombre = request.POST.get('nombre')
         material.descripcion = request.POST.get('descripcion')
+        material.cantidad = request.POST.get('cantidad')
         material.fecha_mod = timezone.now()
         material.save()
 
@@ -91,5 +92,14 @@ def editar_material(request, id):
         'form': CrearMaterial(),
     }
     return render(request, '../templates/material/ver_material.html', context)
+
+def editar_material_view(request, id):
+    material = Material.objects.get(id=id)
+    form = CrearMaterial({'nombre': material.nombre, 'descripcion': material.descripcion, 'cantidad':material.cantidad})
+    context = {
+            'material': material,
+            'form': form,
+               }
+    return render(request, '../templates/material/editar_material.html', context)
 
 # ------------- CONTROLLER US34 --------------
