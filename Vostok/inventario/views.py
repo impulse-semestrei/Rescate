@@ -11,7 +11,7 @@ import json
 from django.http import JsonResponse
 from revision.models import Revision
 from django.contrib import messages
-
+from django.views.decorators.csrf import csrf_exempt
 
 STATUS_CREATED = 'CREATED'
 STATUS_ERROR = 'ERROR'
@@ -164,11 +164,11 @@ def serializar_inventario(inventario):
             "nombre": material.nombre,
             "cantidad": material.cantidad
         })
-    return json.dumps(output)
+    return output
 
 
-def guardar_inventario(inventario, datos_json):
-    datos = json.loads(datos_json)
+def guardar_inventario(inventario, request):
+    datos = json.loads(request.body)
     objects = []
     fecha = timezone.now()
     for item in datos['materiales']:
@@ -188,15 +188,15 @@ def guardar_inventario(inventario, datos_json):
 
     return True
 
-
+@csrf_exempt
 def checklist(request, pk):
     inventario = Inventario.objects.get(id=pk)
     if request.method == "GET":
         return JsonResponse(serializar_inventario(inventario), safe=False)
     elif request.method == "POST":
-        if guardar_inventario(inventario, request.POST["datos"]):
-            return JsonResponse(json.dumps({"status": "OK"}), safe=False)
-        return JsonResponse(json.dumps({"status": "ERROR"}), safe=False)
+        if guardar_inventario(inventario, request):
+            return JsonResponse({"status": "OK"}, safe=False)
+        return JsonResponse({"status": "ERROR"}, safe=False)
 
 ##### CONTROLLER US21 ####
 
