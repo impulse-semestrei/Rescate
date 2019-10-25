@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 from .models import Material
 from .forms import CrearMaterial
@@ -91,15 +92,17 @@ def editar_material(request, id):
         'materiales': materiales,
         'form': CrearMaterial(),
     }
-    return render(request, '../templates/material/ver_material.html', context)
+    messages.info(request, 'Se ha editado tu material')
+    return redirect('material:ver_material')
 
 def editar_material_view(request, id):
     material = Material.objects.get(id=id)
-    form = CrearMaterial({'nombre': material.nombre, 'descripcion': material.descripcion, 'cantidad':material.cantidad})
+    form = CrearMaterial({'nombre': material.nombre, 'descripcion': material.descripcion, 'cantidad': material.cantidad})
     context = {
             'material': material,
             'form': form,
                }
+
     return render(request, '../templates/material/editar_material.html', context)
 
 # ------------- CONTROLLER US34 --------------
