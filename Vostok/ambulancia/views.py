@@ -6,6 +6,7 @@ from django.db import DatabaseError
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from inventario.models import Inventario
+from django.contrib import messages
 
 
 
@@ -76,6 +77,14 @@ def eliminar_ambulancias(request, id):
 
 ####### CONTROLLER US45############
 
+def mostrar_editar(request, id):
+    ambulancia= Ambulancia.objects.get(id=id)
+    form = CrearAmbulancia({'nombre':ambulancia.nombre, 'inventario':ambulancia.inventario})
+    context = {
+        'form': form,
+        'ambulancia': ambulancia,
+    }
+    return render(request, '../templates/ambulancia/editar_ambulancia.html', context)
 
 def editar_ambulancias(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
@@ -87,9 +96,12 @@ def editar_ambulancias(request, id):
 
     ambulancias = Ambulancia.objects.filter(status=True)
     context = {
-        'ambulancias': ambulancias,
-        'form': CrearAmbulancia(),
-    }
+               'Ambulancias': ambulancias,
+               'form': CrearAmbulancia(),
+               }
+    messages.info(request, 'Se ha guardado exitosamente el cambio')
     return render(request, '../templates/ambulancia/ver_ambulancia.html', context)
 
 ####### CONTROLLER US45############
+
+
