@@ -164,7 +164,7 @@ def serializar_inventario(inventario):
             "nombre": material.nombre,
             "cantidad": material.cantidad
         })
-    return json.dumps(output)
+    return output
 
 
 def guardar_inventario(inventario, datos_json):
@@ -195,8 +195,8 @@ def checklist(request, pk):
         return JsonResponse(serializar_inventario(inventario), safe=False)
     elif request.method == "POST":
         if guardar_inventario(inventario, request.POST["datos"]):
-            return JsonResponse(json.dumps({"status": "OK"}), safe=False)
-        return JsonResponse(json.dumps({"status": "ERROR"}), safe=False)
+            return JsonResponse({"status": "OK"}, safe=False)
+        return JsonResponse({"status": "ERROR"}, safe=False)
 
 ##### CONTROLLER US21 ####
 
