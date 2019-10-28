@@ -30,7 +30,7 @@ def crearInventarioView(request):
             temp_form = form.save(commit=False)
             temp_form.save()
 
-            return render(request, '../templates/index.html')
+            return redirect('inventario:ver_inventario')
         except DatabaseError:
             return render(request, '../templates/data_base_error.html')
     context = {'form': form}
@@ -151,7 +151,6 @@ def editar_inventario(request, id):
 
     return redirect('/inventario/ver/')
 
-
 ###### CONTROLLER US08 ########
 
 ##### CONTROLLER US21 ####
@@ -217,3 +216,18 @@ def editar_material(request, inventario_id, material_id):
     return redirect('inventario:material_inventario', pk=inventario_id)
 
 ###### CONTROLLER US02 ########
+
+
+####### CONTROLLER US07############
+def editar_inventario_view(request, id):
+    inventario = Inventario.objects.get(id=id)
+    form = crearInventarioForm({'nombre':inventario.nombre})
+    context = {
+        'inventario': inventario,
+        'form': form,
+    }
+    return render(request, '../templates/inventario/editar_inventario.html', context)
+
+
+####### CONTROLLER US07############
+
