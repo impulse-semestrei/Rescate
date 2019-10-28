@@ -11,7 +11,7 @@ import json
 from django.http import JsonResponse
 from revision.models import Revision
 from django.contrib import messages
-
+from django.views.decorators.csrf import csrf_exempt
 
 STATUS_CREATED = 'CREATED'
 STATUS_ERROR = 'ERROR'
@@ -29,6 +29,7 @@ def crearInventarioView(request):
         try:
             temp_form = form.save(commit=False)
             temp_form.save()
+
             inventarios = Inventario.objects.filter(status=True)
             context = {
                 'inventarios': inventarios,
@@ -36,6 +37,7 @@ def crearInventarioView(request):
             }
             messages.info(request, 'Se ha creado el inventario')
             return render(request, '../templates/inventario/ver_inventario.html', context)
+
         except DatabaseError:
             return render(request, '../templates/data_base_error.html')
     context = {'form': form}
@@ -156,7 +158,6 @@ def editar_inventario(request, id):
 
     return redirect('/inventario/ver/')
 
-
 ###### CONTROLLER US08 ########
 
 ##### CONTROLLER US21 ####
@@ -169,11 +170,11 @@ def serializar_inventario(inventario):
             "nombre": material.nombre,
             "cantidad": material.cantidad
         })
-    return json.dumps(output)
+    return output
 
 
-def guardar_inventario(inventario, datos_json):
-    datos = json.loads(datos_json)
+def guardar_inventario(inventario, request):
+    datos = json.loads(request.body)
     objects = []
     fecha = timezone.now()
     for item in datos['materiales']:
@@ -193,15 +194,15 @@ def guardar_inventario(inventario, datos_json):
 
     return True
 
-
+@csrf_exempt
 def checklist(request, pk):
     inventario = Inventario.objects.get(id=pk)
     if request.method == "GET":
         return JsonResponse(serializar_inventario(inventario), safe=False)
     elif request.method == "POST":
-        if guardar_inventario(inventario, request.POST["datos"]):
-            return JsonResponse(json.dumps({"status": "OK"}), safe=False)
-        return JsonResponse(json.dumps({"status": "ERROR"}), safe=False)
+        if guardar_inventario(inventario, request):
+            return JsonResponse({"status": "OK"}, safe=False)
+        return JsonResponse({"status": "ERROR"}, safe=False)
 
 ##### CONTROLLER US21 ####
 
@@ -222,3 +223,18 @@ def editar_material(request, inventario_id, material_id):
     return redirect('inventario:material_inventario', pk=inventario_id)
 
 ###### CONTROLLER US02 ########
+
+
+####### CONTROLLER US07############
+def editar_inventario_view(request, id):
+    inventario = Inventario.objects.get(id=id)
+    form = crearInventarioForm({'nombre':inventario.nombre})
+    context = {
+        'inventario': inventario,
+        'form': form,
+    }
+    return render(request, '../templates/inventario/editar_inventario.html', context)
+
+
+####### CONTROLLER US07############
+
