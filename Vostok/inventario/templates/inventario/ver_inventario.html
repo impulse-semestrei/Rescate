@@ -16,13 +16,11 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
-
                 <table class="table table-hover table-dark">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Ajustes</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                     </tr>
@@ -34,22 +32,6 @@
                         <tr>
                             <th scope="row">{{ Inventario.id }}</th>
                             <td>{{ Inventario.nombre }}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle waves-effect"
-                                            data-toggle="dropdown" aria-expanded="false"><i
-                                            class="mdi mdi-chevron-down"></i></button>
-                                    <div class="dropdown-menu" x-placement="bottom-start"
-                                         style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                        <!-- item-->
-                                        <a href="#editar-modal-{{ Inventario.id }}" class="dropdown-item"
-                                           data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a">Editar</a>
-                                        <!-- item-->
-                                        <a href="#delete-modal-{{ Inventario.id }}" class="dropdown-item"
-                                           data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a">Eliminar</a>
-                                    </div>
-                                </div>
-                            </td>
                             <td><a href="{% url 'inventario:editar_inventario_view' Inventario.id %}">
                                 <button class="btn btn-success"><i class="fas fa-edit"></i>
                                 </button>
@@ -63,6 +45,7 @@
                                         data-target="#modalConfirmacion"><i
                                         class="fas fa-trash"></i></button>
                             </a></td>
+
                         </tr>
 
                     {% endfor %}
@@ -97,35 +80,6 @@
                                 </button>
                             </div>
                         </form>
-                    </div>
-                </div>
-
-                <!-- US08 -->
-
-                <div id="editar-modal-{{ Inventario.id }}" class="modal-demo">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <h4 class="custom-modal-title" id="titulo_inventario">Estas editando el
-                                inventario {{ Inventario.nombre }}</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                                    onclick="Custombox.modal.close();">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <form method="post" action="{% url "inventario:editar_inventario" Inventario.id %}">
-                                {% csrf_token %}
-                                <div class="modal-body">
-                                    {{ form.as_p }}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" onclick="Custombox.modal.close();">
-                                        Cancelar
-                                    </button>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
                     </div>
                 </div>
 
