@@ -5,44 +5,59 @@
 
 {% block content %}
 
-<h1>Crear Inventario</h1>
+    <h1>Crear Inventario</h1>
 
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 offset-lg-2">
+                <div class="row">
+                    <div class="col mb-6">
+                        {% if user.is_authenticated %} <!-- comprueba si la sesión del usuario está iniciada -->
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="card-box">
+                                            <div class="input-field ">
+                                                <label class="active">Nombre de inventario:</label>
+                                                <input class="form-control" name="nombre" maxlength="100" required=""
+                                                       id="nombre">
+                                                {% if form.errors %}
+                                                    {% for field in form %}
+                                                        {% for error in field.errors %}
+                                                            <br>
+                                                            <div class="alert alert-danger">
+                                                                <strong>{{ error|escape }}</strong>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                    {% for error in form.non_field_errors %}
+                                                        <div class="alert alert-danger">
+                                                            <strong>{{ error|escape }}</strong>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                         <a href="{% url 'inventario:ver_inventario' %}" class="btn btn-dark">Regresar</a>
+                                                    </div>
+                                                    <div class="col-md-2 offset-md-8">
+                                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                                    </div>
+                                                </div>
 
-{% if user.is_authenticated %} <!-- comprueba si la sesión del usuario está iniciada -->
-    <form method="post">
-  {% csrf_token %}
-    <div class="row">
-     <div class="col-lg-6">
-         <div class="card-box">
-        <div class="input-field ">
-           <label class="active" >Nombre de inventario:</label>
-            <input class="form-control" name="nombre" maxlength="100" required="" id="nombre" >
-            {% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-             <br>
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
-        </div>
-    {% endfor %}
-{% endif %}
-                    <br>
-                    <a href="{% url 'inventario:ver_inventario' %}" class="btn btn-dark">Regresar</a>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
                 </div>
-             </div>
+            </div>
         </div>
-    </div>
 
 
-</form>
 {% else %}
 <h1>Not authenticated</h1> <!-- si la sesión no está iniciada te muestra -->
 
