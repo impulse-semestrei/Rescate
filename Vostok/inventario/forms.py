@@ -13,6 +13,10 @@ class crearInventarioForm(forms.ModelForm):
         model = Inventario
         fields = ['nombre']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nombre'].widget.attrs['class'] = 'form-control'
+
 ####### FORMS US04############
 
 
