@@ -29,8 +29,13 @@ def crearInventarioView(request):
         try:
             temp_form = form.save(commit=False)
             temp_form.save()
-
-            return render(request, '../templates/index.html')
+            inventarios = Inventario.objects.filter(status=True)
+            context = {
+                'inventarios': inventarios,
+                'form': crearInventarioForm(),
+            }
+            messages.info(request, 'Se ha creado el inventario')
+            return render(request, '../templates/inventario/ver_inventario.html', context)
         except DatabaseError:
             return render(request, '../templates/data_base_error.html')
     context = {'form': form}
