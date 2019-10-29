@@ -4,34 +4,56 @@
 {% block content %}
     <!--  ########View US04#######  -->
     <!--  ########View US03#######  -->
-    <div class="container">
-        {% if user.is_authenticated %}
-            <div class="container-fluid">
-                <h1><i class="zmdi zmdi-shape"> </i>Editar Inventario {{ inventario.nombre }} </h1>
-            </div>
 
-            <!-- ##########View US03##### -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 offset-lg-2">
+                <div class="row">
+                    <div class="col mb-6">
+                        {% if user.is_authenticated %}
 
-                <!-- US08 -->
-                <form method="post" action="{% url "inventario:editar_inventario" inventario.id %}">
-                    {% csrf_token %}
-                    <div class="modal-body">
-                        {{ form.as_p }}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onclick="Custombox.modal.close();">
-                            Cancelar
-                        </button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
-                </div>
+                            <h1><i class="zmdi zmdi-shape"> </i>Editar Inventario {{ inventario.nombre }} </h1>
+                                <a href="{% url 'inventario:ver_inventario' %}">
+                        <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel"><i
+                                class="fas fa-arrow-left"></i></button></a>
+                            <br><br>
+
+                            <!-- ##########View US03##### -->
+
+                            <!-- US08 -->
+                            <form method="post" action="{% url "inventario:editar_inventario" inventario.id %}">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="card-box">
+                                            {% csrf_token %}
+                                            <div class="modal-body">
+                                                {{ form.as_p }}
+                                            </div>
+                                            <div class="row">
+                                                    <div class="offset col-md-2">
+                                                        <a href="{% url 'inventario:ver_inventario' %}"
+                                                           class="btn btn-danger">Cancelar</a>
+                                                    </div>
+                                                    <div class="col-md-2 offset-md-7">
+                                                        <button type="submit" class="btn btn-success">Guardar</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
 
 
 
 
-        {% else %}
-            <h1>No estas autenticado</h1>
-        {% endif %}
+
+                        {% else %}
+                            <h1>No estas autenticado</h1>
+                        {% endif %}
 
 {% endblock %}
