@@ -84,7 +84,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Vostok',
         'USER': 'postgres',
-        'PASSWORD': 'quirotagoras1595',
+
+        'PASSWORD': 'postgres',
+
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -119,7 +121,7 @@ REST_FRAMEWORK = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
 TIME_ZONE = 'UTC'
 

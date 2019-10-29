@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import crearInventarioView, agregar_material_inventario, ver_inventario, delete_inventario,\
-    ver_inventario_material, eliminar_material_inventario, editar_inventario, checklist, editar_material
+    ver_inventario_material, eliminar_material_inventario, editar_inventario, checklist, editar_material, editar_inventario_view
 
 ####### URLS US-04############
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path('editar/<int:id>/', editar_inventario, name="editar_inventario"), ######## US08 ########
     path('<int:pk>/json/', checklist, name='checklist'), #### URL US21 ####
     path('<int:inventario_id>/editar_material/<int:material_id>/', editar_material, name="editar_cantidad_material"), ######## US02 ########
+    path('editar_inventario/<int:id>/', editar_inventario_view, name="editar_inventario_view"), ######## US08 ########
 ]
 
 

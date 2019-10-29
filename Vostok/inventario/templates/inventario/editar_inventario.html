@@ -1,0 +1,37 @@
+{% extends 'dashboard/base.html' %}
+
+{% load staticfiles %}
+{% block content %}
+    <!--  ########View US04#######  -->
+    <!--  ########View US03#######  -->
+    <div class="container">
+        {% if user.is_authenticated %}
+            <div class="container-fluid">
+                <h1><i class="zmdi zmdi-shape"> </i>Editar Inventario {{ inventario.nombre }} </h1>
+            </div>
+
+            <!-- ##########View US03##### -->
+
+                <!-- US08 -->
+                <form method="post" action="{% url "inventario:editar_inventario" inventario.id %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {{ form.as_p }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="Custombox.modal.close();">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+                </div>
+
+
+
+
+        {% else %}
+            <h1>No estas autenticado</h1>
+        {% endif %}
+
+{% endblock %}
