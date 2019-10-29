@@ -162,19 +162,26 @@ def editar_inventario(request, id):
 
 ##### CONTROLLER US21 ####
 def serializar_inventario(inventario):
-    materiales = inventario.materiales.all()
+    ultima_revision = InventarioMaterial.objects.filter(inventario=inventario).order_by('-fecha').first().fecha
+
+    registros = InventarioMaterial.objects.filter(fecha=ultima_revision, inventario=inventario)
     output = {"materiales": []}
-    for material in materiales:
+
+    for registro in registros:
         output["materiales"].append({
-            "id": material.id,
-            "nombre": material.nombre,
-            "cantidad": material.cantidad
+            "id": registro.material.id,
+            "nombre": registro.material.nombre,
+            "cantidad": registro.cantidad,
+            "objetivo": registro.material.cantidad ,
+
         })
     return output
 
 
 def guardar_inventario(inventario, request):
     datos = json.loads(request.body)
+    print('DATOS:')
+    print(datos)
     objects = []
     fecha = timezone.now()
     for item in datos['materiales']:
@@ -188,7 +195,13 @@ def guardar_inventario(inventario, request):
         with transaction.atomic():
             for item in objects:
                 item.save()
-            Revision.objects.create(inventario=inventario, fecha=timezone.now())
+            Revision.objects.create(
+                inventario=inventario,
+                fecha=fecha,
+                nombre_paramedico=datos['nombre_paramedico'],
+                email_paramedico=datos['email_paramedico'],
+
+            )
     except Exception:
         return False
 
