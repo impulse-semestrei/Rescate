@@ -39,6 +39,7 @@ def crearInventarioView(request):
             return render(request, '../templates/inventario/ver_inventario.html', context)
 
         except DatabaseError:
+            messages.info(request, 'Ya existe un inventario con ese nombre.')
             return render(request, '../templates/data_base_error.html')
     context = {'form': form}
 

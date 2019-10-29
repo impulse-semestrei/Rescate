@@ -4,10 +4,16 @@
 {% block content %}
     <!--  ########View US04#######  -->
     <!--  ########View US03#######  -->
-    <div class="container">
+
         {% if user.is_authenticated %}
             <div class="container-fluid">
                 <h1><i class="zmdi zmdi-shape"> </i>Ver Inventario </h1>
+                <div align="right">
+                    <a href="{% url 'inventario:crear_inventario' %}">
+                        <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light"><i class="fas fa-plus"></i> Agregar Inventario
+                        </button>
+                    </a>
+                </div>
 
                 {% if messages %}
                     <ul class="messages">
@@ -16,6 +22,7 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
+                <br>
                 <table class="table table-hover table-dark">
                     <thead>
                     <tr>
@@ -30,8 +37,12 @@
                     {% for Inventario in inventarios %}
 
                         <tr>
-                            <th scope="row">{{ Inventario.id }}</th>
-                            <td>{{ Inventario.nombre }}</td>
+                            <th scope="row"><a style="color:#98a6ad"
+                                               href="/inventario/{{ Inventario.id }}/ver/material_inventario">{{ Inventario.id }}</a>
+                            </th>
+                            <td><a style="color:#98a6ad"
+                                   href="/inventario/{{ Inventario.id }}/ver/material_inventario">{{ Inventario.nombre }}</a>
+                            </td>
                             <td><a href="{% url 'inventario:editar_inventario_view' Inventario.id %}">
                                 <button class="btn btn-success"><i class="fas fa-edit"></i>
                                 </button>
@@ -54,9 +65,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href="{% url 'inventario:crear_inventario' %}">
-                <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light">Añadir</button>
-            </a>
+
             </div>
 
             <!-- ##########View US03##### -->
@@ -108,7 +117,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+
                 <!-- US08 -->
 
             {% endfor %}
