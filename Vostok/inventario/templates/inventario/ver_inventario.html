@@ -5,127 +5,134 @@
     <!--  ########View US04#######  -->
     <!--  ########View US03#######  -->
 
-        {% if user.is_authenticated %}
-            <div class="container-fluid">
-                <h1><i class="zmdi zmdi-shape"> </i>Ver Inventario </h1>
-                <div align="right">
-                    <a href="{% url 'inventario:crear_inventario' %}">
-                        <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light"><i class="fas fa-plus"></i> Agregar Inventario
-                        </button>
-                    </a>
-                </div>
-
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                <br>
-                <table class="table table-hover table-dark">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {% for Inventario in inventarios %}
-
-                        <tr>
-                            <th scope="row"><a style="color:#98a6ad"
-                                               href="/inventario/{{ Inventario.id }}/ver/material_inventario">{{ Inventario.id }}</a>
-                            </th>
-                            <td><a style="color:#98a6ad"
-                                   href="/inventario/{{ Inventario.id }}/ver/material_inventario">{{ Inventario.nombre }}</a>
-                            </td>
-                            <td><a href="{% url 'inventario:editar_inventario_view' Inventario.id %}">
-                                <button class="btn btn-success"><i class="fas fa-edit"></i>
-                                </button>
-                            </a></td>
-                            <td><a href="#delete-modal-{{ Inventario.id }}"
-                                   data-animation="blur"
-                                   data-plugin="custommodal"
-                                   data-overlaycolor="#36404a">
-                                <button type="button" class="btn btn-danger"
-                                        data-toggle="modal"
-                                        data-target="#modalConfirmacion"><i
-                                        class="fas fa-trash"></i></button>
-                            </a></td>
-
-                        </tr>
-
-                    {% endfor %}
-                    <!--  ########View US03#######  -->
-                    <!--  ########View US04####### -->
-                    </tbody>
-                </table>
-            </div>
-
-            </div>
-
-            <!-- ##########View US03##### -->
-            {% for Inventario in inventarios %}
-
-                <div id="delete-modal-{{ Inventario.id }}" class="modal-demo">
-                    <button type="button" class="close" onclick="Custombox.modal.close();">
-                        <span>×</span><span class="sr-only">Close</span>
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <h1><i class="zmdi zmdi-shape"> </i>Inventarios </h1>
+            <div align="right">
+                <a href="{% url 'inventario:crear_inventario' %}">
+                    <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light"><i
+                            class="fas fa-plus"></i> Agregar Inventario
                     </button>
-                    <h4 class="custom-modal-title">Eliminar el inventario <span>{{ Inventario.nombre }}</span>?</h4>
-                    <div class="custom-modal-text">
-                        Quieres eliminar el inventario {{ Inventario.nombre }} permanentemente?
-                        <form action="#" data-parsley-validate="" novalidate="">
-                            <div class="form-group text-right mb-0">
-                                <button class="btn btn-danger waves-effect waves-light mr-1" type="submit">
-                                    <a href="{% url "inventario:delete_inventario" Inventario.id %}">Eliminar</a>
-                                </button>
-                                <button type="reset" class="btn btn-secondary waves-effect waves-light"
-                                        onclick="Custombox.modal.close();">
-                                    Cancelar
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                </a>
+            </div>
 
-                <!-- US08 -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <br>
+            <table class="table table-hover table-dark">
+                <thead>
+                <tr align="center">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Ver Detalle</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+                </thead>
+                <tbody>
 
-                <div id="editar-modal-{{ Inventario.id }}" class="modal-demo">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <h4 class="custom-modal-title" id="titulo_inventario">Estas editando el
-                                inventario {{ Inventario.nombre }}</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                                    onclick="Custombox.modal.close();">
-                                <span aria-hidden="true">&times;</span>
+                {% for Inventario in inventarios %}
+
+                    <tr align="center">
+                        <th scope="row"><a style="color:#98a6ad"
+                                           href="/inventario/{{ Inventario.id }}/ver/material_inventario">{{ Inventario.id }}</a>
+                        </th>
+                        <td><a style="color:#98a6ad"
+                               href="/inventario/{{ Inventario.id }}/ver/material_inventario">{{ Inventario.nombre }}</a>
+                        </td>
+                        <td><a href="/inventario/{{ Inventario.id }}/ver/material_inventario">
+                            <button class="btn btn-info"><i class="fas fa-eye"></i>
                             </button>
-                            <form method="post" action="{% url "inventario:editar_inventario" Inventario.id %}">
-                                {% csrf_token %}
-                                <div class="modal-body">
-                                    {{ form.as_p }}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" onclick="Custombox.modal.close();">
-                                        Cancelar
-                                    </button>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                </div>
-                            </form>
+                        </a></td>
+                        <td><a href="{% url 'inventario:editar_inventario_view' Inventario.id %}">
+                            <button class="btn btn-success"><i class="fas fa-edit"></i>
+                            </button>
+                        </a></td>
+                        <td><a href="#delete-modal-{{ Inventario.id }}"
+                               data-animation="blur"
+                               data-plugin="custommodal"
+                               data-overlaycolor="#36404a">
+                            <button type="button" class="btn btn-danger"
+                                    data-toggle="modal"
+                                    data-target="#modalConfirmacion"><i
+                                    class="fas fa-trash"></i></button>
+                        </a></td>
+
+
+                    </tr>
+
+                {% endfor %}
+                <!--  ########View US03#######  -->
+                <!--  ########View US04####### -->
+                </tbody>
+            </table>
+        </div>
+
+        </div>
+
+        <!-- ##########View US03##### -->
+        {% for Inventario in inventarios %}
+
+            <div id="delete-modal-{{ Inventario.id }}" class="modal-demo">
+                <button type="button" class="close" onclick="Custombox.modal.close();">
+                    <span>×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="custom-modal-title">Confirmación</h4>
+                <div class="custom-modal-text">
+                    ¿Quieres eliminar el inventario {{ Inventario.nombre }} permanentemente?
+                    <form action="#" data-parsley-validate="" novalidate="">
+                        <div class="form-group text-right mb-0">
+                            <button class="btn btn-danger waves-effect waves-light mr-1" type="submit">
+                                <a href="{% url "inventario:delete_inventario" Inventario.id %}">Eliminar</a>
+                            </button>
+                            <button type="reset" class="btn btn-secondary waves-effect waves-light"
+                                    onclick="Custombox.modal.close();">
+                                Cancelar
+                            </button>
                         </div>
-                    </div>
+                    </form>
+                </div>
+            </div>
 
-                <!-- US08 -->
+            <!-- US08 -->
 
-            {% endfor %}
+            <div id="editar-modal-{{ Inventario.id }}" class="modal-demo">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <h4 class="custom-modal-title" id="titulo_inventario">Estas editando el
+                        inventario {{ Inventario.nombre }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            onclick="Custombox.modal.close();">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <form method="post" action="{% url "inventario:editar_inventario" Inventario.id %}">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            {{ form.as_p }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="Custombox.modal.close();">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- US08 -->
+
+        {% endfor %}
 
 
 
-        {% else %}
-            <h1>No estas autenticado</h1>
-        {% endif %}
+    {% else %}
+        <h1>No estas autenticado</h1>
+    {% endif %}
 
 {% endblock %}
