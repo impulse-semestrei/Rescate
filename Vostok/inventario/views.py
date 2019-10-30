@@ -54,7 +54,7 @@ def crearInventarioView(request):
 def agregar_material_inventario(request, pk):
     inventario = Inventario.objects.get(id=pk)
     context = {
-        'nombre_inventario': inventario,
+        'nombre_inventario': inventario.nombre,
         'id_inventario': inventario.id,
         'lista_materiales': Material.objects.all()
     }

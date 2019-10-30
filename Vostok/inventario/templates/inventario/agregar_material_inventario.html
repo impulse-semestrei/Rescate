@@ -61,7 +61,7 @@
                                 a {{ nombre_inventario }}</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="/inventario/{{ id_inventario }}/" class="btn btn-primary">De acuerdo</a>
+                            <a href="{% url 'inventario:material_inventario' id_inventario %}"><button class="btn btn-success">De acuerdo</button></a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,9 @@
                                 a {{ nombre_inventario }} </p>
                         </div>
                         <div class="modal-footer">
-                            <a href="{% url 'inventario:material_inventario' id_inventario %}"><button class="btn btn-success">De acuerdo</button></a>
+                            <a href="{% url 'inventario:material_inventario' id_inventario %}">
+                                <button class="btn btn-success">De acuerdo</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -104,8 +106,10 @@
                         <a href="{% url 'inventario:material_inventario' id_inventario %}">
                             <button class="btn btn-danger">Salir sin guardar</button>
                         </a>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Continuar editando</button>
-
+                        <a href="{% url 'inventario:material_inventario' id_inventario %}">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Continuar editando
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
