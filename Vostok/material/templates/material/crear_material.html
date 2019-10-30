@@ -4,12 +4,18 @@
 {% extends 'dashboard/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
     <div class="row">
         <div class="col text-center m-3">
-                <h1>Agregar nuevo material</h1>
+            <h1>Agregar nuevo material</h1>
         </div>
     </div>
     <div class="container-fluid">
@@ -17,7 +23,8 @@
             <div class="col-md-8 offset-lg-2">
                 <div class="row">
                     <div class="col mb-3">
-                        <button class="btn btn-info" type="button" data-toggle="modal" data-target="#modalCancel">Regresar</button>
+                        <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel"><i
+                                class="fas fa-arrow-left"></i></button>
                     </div>
                 </div>
                 <div class="row">
@@ -28,10 +35,13 @@
                                 {{ form.as_p }}
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCancel">Cancelar</button>
+                                        <button class="btn btn-danger" type="button" data-toggle="modal"
+                                                data-target="#modalCancel">Cancelar
+                                        </button>
                                     </div>
                                     <div class="col-md-2 offset-md-8">
-                                        <button class="btn btn-primary waves-effect waves-light" type="submit">Guardar</button>
+                                        <button class="btn btn-success waves-effect waves-light" type="submit">Guardar
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -42,38 +52,39 @@
         </div>
 
         {% if status == "SAVED" %}
-        <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <p>Se ha creado el material nuevo {{ material_name }}</p>
-              </div>
-              <div class="modal-footer">
-                <a href="/material/ver/" class="btn btn-primary">De acuerdo</a>
-              </div>
+            <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p>Se ha creado el material nuevo {{ material_name }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/material/ver/" class="btn btn-success">De acuerdo</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <script>
-            $("#modalSaved").modal({
-                backdrop: "static",
-                keyboard: false
-            });
-        </script>
+            <script>
+                $("#modalSaved").modal({
+                    backdrop: "static",
+                    keyboard: false
+                });
+            </script>
         {% endif %}
 
         <div class="modal" id="modalCancel" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <p>Si sales ahora no se guardará el material nuevo</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar editando</button>
-                  <a href="/material/ver/" class="btn btn-primary">Salir sin guardar</a>
-              </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Si sales ahora no se guardará el material nuevo</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/material/ver/" class="btn btn-danger">Salir sin guardar</a>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Continuar editando</button>
+
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
     </div>
 {% endblock %}

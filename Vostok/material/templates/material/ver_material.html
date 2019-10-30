@@ -7,7 +7,7 @@
 
     <div class="container-fluid">
         {% if user.is_authenticated %}
-            <div class="row">
+            <div >
                 <h1><i class="zmdi zmdi-shape"> </i>Ver Material </h1></div>
             <div class="col-10">
                 {% if messages %}
@@ -39,37 +39,18 @@
                     <br>
                     <a href="{% url 'material:crear' %}">
                         <button type="button"
-                                class="btn btn-bordred-success waves-effect  width-md waves-light">Agregar Material
+                                class="btn btn-bordred-success waves-effect  width-md waves-light"><i class="fas fa-plus"></i> Agregar Material
                         </button>
                     </a>
                 </div>
             </div>
+            <br>
             <table class="table table-hover table-dark">
                 <tbody>
 
-
-                <div class="content">
-
-                    <!-- Start Content-->
-
-
-                    <div class="row">
-                        <div class="col-12">
-
-
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div id="datatable_filter" class="dataTables_filter">
-
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="datatable"
-                               class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
-                               role="grid" aria-describedby="datatable_info">
+
 
                             <thead>
                             <tr role="row" align="center">

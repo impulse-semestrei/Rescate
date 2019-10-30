@@ -11,12 +11,12 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="container-fluid">
-                        <h1> <i class="zmdi zmdi-shape"> </i>Inventario {{inventario_id}} </h1>
+                        <h1> <i class="zmdi zmdi-shape"> </i>Inventario {{ inventario_pk}} </h1>
                     </div>
                 </div>
                 <div class="col-sm">
                     <div  class="nav justify-content-end">
-                        <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light "><i class="fas fa-plus"></i> Agregar material</button>
+                        <a href="{% url 'inventario:agregar_material_inventario' inventario_pk %}"><button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light "><i class="fas fa-plus"></i> Agregar material</button></a>
                     </div>
 
                 </div>
