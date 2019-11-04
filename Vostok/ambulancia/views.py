@@ -17,6 +17,7 @@ STATUS_UPDATED = 'UPDATED'
 ####### CONTROLLER US44############
 
 
+@login_required
 def crear_ambulancia(request):
     if request.method == 'POST':
         form = CrearAmbulancia(request.POST)
@@ -49,6 +50,7 @@ def crear_ambulancia(request):
 
 
 # -------- CONTROLLER US46 ---------
+@login_required
 def ver_ambulancias(request):
     ambulancias = Ambulancia.objects.filter(status=True)
     context = {'Ambulancias': ambulancias,
@@ -60,6 +62,7 @@ def ver_ambulancias(request):
 
 
 # -------- CONTROLLER US47 ---------
+@login_required
 def eliminar_ambulancias(request, id):
      ambulancia = Ambulancia.objects.get(id=id)
      ambulancia.status = False
@@ -77,6 +80,8 @@ def eliminar_ambulancias(request, id):
 
 ####### CONTROLLER US45############
 
+
+@login_required
 def mostrar_editar(request, id):
     ambulancia= Ambulancia.objects.get(id=id)
     form = CrearAmbulancia({'nombre':ambulancia.nombre, 'inventario':ambulancia.inventario})
@@ -86,6 +91,8 @@ def mostrar_editar(request, id):
     }
     return render(request, '../templates/ambulancia/editar_ambulancia.html', context)
 
+
+@login_required
 def editar_ambulancias(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     form = CrearAmbulancia(request.POST)
