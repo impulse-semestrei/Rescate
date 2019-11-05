@@ -99,9 +99,9 @@ def ver_inventario(request):
 
 ####### CONTROLLER US07############
 
+
 ###### CONTROLLER US06 #######
-
-
+@login_required
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.status = False
@@ -119,6 +119,7 @@ def delete_inventario(request, id):
 
 
 ####### CONTROLLER US-05############
+@login_required
 def ver_inventario_material(request, pk):
     InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=pk))
     context = {'inventarios': InventarioMateriales.all,
@@ -181,8 +182,6 @@ def serializar_inventario(inventario):
 
 def guardar_inventario(inventario, request):
     datos = json.loads(request.body)
-    print('DATOS:')
-    print(datos)
     objects = []
     fecha = timezone.now()
     for item in datos['materiales']:
