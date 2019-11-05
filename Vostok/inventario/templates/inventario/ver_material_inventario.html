@@ -84,7 +84,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar
                                         </button>
-                                        <a href="/inventario/{{ inventario_pk }}/ver/material_inventario/{{ material.id }}">
+                                        <a href="{% url 'inventario:eliminar_material_inventario' inventario_pk material.id %}">
                                             <button type="button" class="btn btn-primary">Aceptar</button>
                                         </a>
                                     </div>
