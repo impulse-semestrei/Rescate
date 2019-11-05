@@ -33,7 +33,7 @@ def crear_ambulancia(request):
                 context['ambulancia_nombre'] = ambulancia
 
 
-                return render(request, '../templates/ambulancia/crear_ambulancia.html', context)
+                return redirect('ambulancia:ver_ambulancias')
             except DatabaseError:
                 context['status'] = STATUS_ERROR
                 print('ERROR')
@@ -44,6 +44,7 @@ def crear_ambulancia(request):
     context = {
         'form': form,
     }
+
     return render(request, '../templates/ambulancia/crear_ambulancia.html', context)
 ####### CONTROLLER US44############
 
