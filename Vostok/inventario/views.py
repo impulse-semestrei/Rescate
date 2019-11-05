@@ -141,7 +141,8 @@ def eliminar_material_inventario(request, inventario_id, material_id):
     context = {'inventarios': InventarioMateriales.all,
                'inventario_id': inventario_id,
                }
-    return render(request, '../templates/inventario/ver_material_inventario.html', context)
+    return redirect('inventario:material_inventario', pk=inventario_id)
+
 
 
 ###### CONTROLLER US03 ########
