@@ -89,6 +89,7 @@ def agregar_material_inventario(request, pk):
 ######## CONTROLLER US1 ########
 
 ####### CONTROLLER US07############
+@login_required
 def ver_inventario(request):
     inventarios = Inventario.objects.filter(status=True)
     context = {
@@ -96,7 +97,6 @@ def ver_inventario(request):
                 'form': crearInventarioForm(),
     }
     return render(request, '../templates/inventario/ver_inventario.html', context)
-
 ####### CONTROLLER US07############
 
 
@@ -132,7 +132,7 @@ def ver_inventario_material(request, pk):
 
 
 ###### CONTROLLER US03 ########
-
+@login_required
 def eliminar_material_inventario(request, inventario_id, material_id):
     material = InventarioMaterial.objects.get(id=material_id)
     material.delete()
@@ -140,14 +140,15 @@ def eliminar_material_inventario(request, inventario_id, material_id):
     context = {'inventarios': InventarioMateriales.all,
                'inventario_id': inventario_id,
                }
-    return render(request, '../templates/inventario/ver_material_inventario.html', context)
+    return redirect('inventario:material_inventario', pk=inventario_id)
+
 
 
 ###### CONTROLLER US03 ########
 
 
 ###### CONTROLLER US08 ########
-
+@login_required
 def editar_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     form = crearInventarioForm(request.POST)
@@ -221,7 +222,7 @@ def checklist(request, pk):
 
 ###### CONTROLLER US02 ########
 
-
+@login_required
 def editar_material(request, inventario_id, material_id):
     material = InventarioMaterial.objects.get(inventario__id=inventario_id, material__id=material_id)
     form = EditarMaterialInventario(request.POST)
@@ -239,6 +240,7 @@ def editar_material(request, inventario_id, material_id):
 
 
 ####### CONTROLLER US07############
+@login_required
 def editar_inventario_view(request, id):
     inventario = Inventario.objects.get(id=id)
     form = crearInventarioForm({'nombre':inventario.nombre})
