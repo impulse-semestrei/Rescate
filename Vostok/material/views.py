@@ -47,7 +47,7 @@ def crear_material(request):
 
 ######## CONTROLLER US38 ########
 
-
+@login_required
 def ver_material(request):
     materiales = Material.objects.filter(status=True)
     context = {'materiales':materiales,
@@ -59,7 +59,7 @@ def ver_material(request):
 ######## CONTROLLER US38 ########
 
 ######## CONTROLLER US39 ########
-
+@login_required
 def delete_material(request, id):
     material = Material.objects.get(id=id)
     material.status = False
@@ -77,6 +77,7 @@ def delete_material(request, id):
 
 
 # ------------- CONTROLLER US34 --------------
+@login_required
 def editar_material(request, id):
     material = Material.objects.get(id=id)
     form = CrearMaterial(request.POST)
@@ -95,6 +96,8 @@ def editar_material(request, id):
     messages.info(request, 'Se ha editado tu material')
     return redirect('material:ver_material')
 
+
+@login_required
 def editar_material_view(request, id):
     material = Material.objects.get(id=id)
     form = CrearMaterial({'nombre': material.nombre, 'descripcion': material.descripcion, 'cantidad': material.cantidad})

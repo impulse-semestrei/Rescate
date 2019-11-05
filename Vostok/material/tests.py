@@ -10,14 +10,14 @@ from django.db import IntegrityError, transaction
 
 class CrearMaterialTestCase(TestCase):
     def setUp(self):
-        Material.objects.create(nombre='curita', descripcion='proteccion de herida')
+        Material.objects.create(nombre='curita', descripcion='proteccion de herida', cantidad=4)
 
     def test_url_correct(self):
         """
         Regresar un codigo 200
         """
         response = self.client.get(reverse('material:crear'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_form_correct(self):
         """
@@ -26,6 +26,7 @@ class CrearMaterialTestCase(TestCase):
         data = {
             'nombre': 'alcohol',
             'descripcion': 'desinfección',
+            'cantidad': 4,
         }
         form = CrearMaterial(data)
         self.assertTrue(form.is_valid())
@@ -37,6 +38,7 @@ class CrearMaterialTestCase(TestCase):
         data = {
             'nombre': '',
             'descripcion': 'proteccion de herida',
+            'cantidad': '',
         }
         form = CrearMaterial(data)
         self.assertFalse(form.is_valid())
@@ -48,6 +50,7 @@ class CrearMaterialTestCase(TestCase):
         data = {
             'nombre': 'curita',
             'descripcion': 'proteccion de herida',
+            'cantidad': 10
         }
         form = CrearMaterial(data)
         self.assertFalse(form.is_valid())
@@ -65,7 +68,7 @@ class CrearMaterialTestCase(TestCase):
         sent_exception = False
         try:
             with transaction.atomic():
-                Material.objects.create(nombre='curita', descripcion='duplicado')
+                Material.objects.create(nombre='curita', descripcion='duplicado', cantidad= 10)
         except IntegrityError:
             sent_exception = True
         self.assertEqual(Material.objects.filter(nombre='curita').count(), 1)
@@ -87,6 +90,6 @@ class VerMaterialTestCase(TestCase):
 
 class EditarMaterialTests(TestCase):
     def test_editarMaterialName(self):
-        Material.objects.create(nombre='Test', descripcion='Material for test')
+        Material.objects.create(nombre='Test', descripcion='Material for test', cantidad = 5)
         self.client.get('material:editar_material',)
 
