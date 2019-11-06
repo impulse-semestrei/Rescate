@@ -97,11 +97,10 @@ def ver_inventario(request):
                 'form': crearInventarioForm(),
     }
     return render(request, '../templates/inventario/ver_inventario.html', context)
-
 ####### CONTROLLER US07############
 
-###### CONTROLLER US06 #######
 
+###### CONTROLLER US06 #######
 @login_required
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
@@ -184,8 +183,6 @@ def serializar_inventario(inventario):
 
 def guardar_inventario(inventario, request):
     datos = json.loads(request.body)
-    print('DATOS:')
-    print(datos)
     objects = []
     fecha = timezone.now()
     for item in datos['materiales']:
