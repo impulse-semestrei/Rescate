@@ -88,6 +88,7 @@ materiales.append(Material.objects.create(nombre="Pato orinal", descripcion="", 
 materiales.append(Material.objects.create(nombre="Cómodo", descripcion="", cantidad=1))
 
 # Materiales de botiquín
+'''
 materiales.append(Material.objects.create(nombre="Termómetro oral", descripcion="", cantidad=1))
 materiales.append(Material.objects.create(nombre="Termómetro rectal", descripcion="", cantidad=1))
 materiales.append(Material.objects.create(nombre="Termómetro digital", descripcion="", cantidad=1))
@@ -136,7 +137,7 @@ materiales.append(Material.objects.create(nombre="Juego de cables pasa-corriente
 materiales.append(Material.objects.create(nombre="Extintor", descripcion="", cantidad=1))
 materiales.append(Material.objects.create(nombre="Lámpara portátil de emergencia", descripcion="", cantidad=1))
 materiales.append(Material.objects.create(nombre="Mapa", descripcion="", cantidad=1))
-
+'''
 fecha = timezone.now()
 
 # Inventario de ambulancia
