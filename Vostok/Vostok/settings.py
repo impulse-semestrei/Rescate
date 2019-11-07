@@ -85,17 +85,19 @@ WSGI_APPLICATION = 'Vostok.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 if env == 'PROD':
+    # DATABASE PARA PRODUCCIÓN
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'Vostok',
+            'NAME': 'vostok',
             'USER': 'vostok',
             'PASSWORD': 'vostok',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
+            'HOST': 'localhost',
+            'PORT': '',
         }
     }
 else:
+    # DATABASE PARA DEVELOPMENT
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
