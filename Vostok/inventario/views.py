@@ -245,7 +245,7 @@ def editar_material(request, inventario_id, material_id):
 @login_required
 def editar_inventario_view(request, id):
     inventario = Inventario.objects.get(id=id)
-    form = crearInventarioForm({'nombre':inventario.nombre})
+    form = crearInventarioForm({'nombre': inventario.nombre})
     context = {
         'inventario': inventario,
         'form': form,
