@@ -1,14 +1,14 @@
 from django.test import TestCase
 from inventario.models import Inventario
 from ambulancia.models import Ambulancia
-from revision.models import Revision
+from revision.models import Revision, RevisionAmbulancia
 from django.urls import reverse
 
 # Create your tests here.
 ####### TESTS US-41############
 
 
-class VerMaterialTestCase(TestCase):
+class VerRevisionTestCase(TestCase):
     def setUp(self):
         self.inventario = Inventario.objects.create(nombre="almacen")
         self.inventario.save()
@@ -42,3 +42,20 @@ class VerDetalleRevision(TestCase):
         response  = self.client.get(reverse('revision:detalle_revision', args=[self.ambulancia.id,self.revision.id]))
 
         self.assertEqual(response.status_code, 302)
+
+
+####### TESTS US-29############
+class VerEstadoAmbulancia(TestCase):
+    def setUp(self):
+        self.inventario = Inventario.objects.create(nombre="almacen")
+        self.ambulancia = Ambulancia.objects.create(nombre="ambulancia", inventario=self.inventario)
+        self.revision = RevisionAmbulancia.objects.create(inventario=self.inventario)
+
+
+    def test_RevisionAmbulanciaURL(self):
+        response = self.client.get(reverse('revision:revisiones_ambulancia', args={self.ambulancia.id}))
+        self.assertEqual(response.status_code, 302)
+
+    def test_model(self):
+        self.assertTrue(RevisionAmbulancia.objects.filter(id=self.revision.id))
+####### TESTS US-29############
