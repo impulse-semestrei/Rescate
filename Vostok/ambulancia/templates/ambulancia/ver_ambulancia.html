@@ -14,15 +14,14 @@
         <div class="row">
             <div id="datatable_filter" class="col"><label>Buscar:<input
                     type="search" class="form-control form-control-sm" placeholder=""
-                    aria-controls="datatable" id="myInput" onkeyup="myFunction()"></label></div>
-
+                    aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
             <div align="right" class="col">
                 <a href="{% url "ambulancia:crear" %}" type="button"
                    class="btn btn-bordred-success waves-effect  width-md waves-light"><i class="fas fa-plus"></i>
                     Agregar Ambulancia</a>
             </div>
             <br>
-            <table class="table table-hover table-dark" id="myTable">
+            <table class="table table-hover table-dark" id="Ambulancias">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -97,25 +96,25 @@
         </div>
     </div>
     <script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
+        function Filter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("Ambulancias");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
 
-</script>
+    </script>
 
 {% endblock %}

@@ -35,7 +35,7 @@
              <br><br>
             <div id="datatable_filter" class="col"><label>Buscar:<input
                     type="search" class="form-control form-control-sm" placeholder=""
-                    aria-controls="datatable" id="myInput" onkeyup="myFunction()"></label></div>
+                    aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
 
 
             {% if messages %}
@@ -46,7 +46,7 @@
                 </ul>
             {% endif %}
 
-            <table class="table table-hover table-dark" id="myTable">
+            <table class="table table-hover table-dark" id="MaterialInventario">
                 <thead>
                 <tr>
                     <th scope="col">Material</th>
@@ -135,11 +135,11 @@
             </tbody>
             </table>
             <script>
-                function myFunction() {
+                function Filter() {
                     var input, filter, table, tr, td, i, txtValue;
                     input = document.getElementById("myInput");
                     filter = input.value.toUpperCase();
-                    table = document.getElementById("myTable");
+                    table = document.getElementById("MaterialInventario");
                     tr = table.getElementsByTagName("tr");
                     for (i = 0; i < tr.length; i++) {
                         td = tr[i].getElementsByTagName("td")[0];
