@@ -1,97 +1,121 @@
 {% extends 'dashboard/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<div class="container-fluid">
-    <h1>Ambulancias</h1>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <div class="container-fluid">
+        <h1>Ambulancias</h1>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
         <div class="row">
-            <div class="col-lg-12">
+            <div id="datatable_filter" class="col"><label>Buscar:<input
+                    type="search" class="form-control form-control-sm" placeholder=""
+                    aria-controls="datatable" id="myInput" onkeyup="myFunction()"></label></div>
 
-                    <div align="right" clas="row">
-                        <a href="{% url "ambulancia:crear" %}" type="button"
-                                class="btn btn-bordred-success waves-effect  width-md waves-light"><i class="fas fa-plus"></i> Agregar Ambulancia</a>
-                    </div>
-                    <br>
-                    <table class="table table-hover table-dark">
-                        <thead>
+            <div align="right" class="col">
+                <a href="{% url "ambulancia:crear" %}" type="button"
+                   class="btn btn-bordred-success waves-effect  width-md waves-light"><i class="fas fa-plus"></i>
+                    Agregar Ambulancia</a>
+            </div>
+            <br>
+            <table class="table table-hover table-dark" id="myTable">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Inventario</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Revisiones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ambulancia in Ambulancias %}
+                    {% if ambulancia.status != true %}
                         <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Inventario</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                            <th>Revisiones</th>
+                            <th scope="row">{{ ambulancia.id }}</th>
+                            <td>{{ ambulancia.nombre }}</td>
+                            <td>{{ ambulancia.inventario.nombre }}</td>
+                            <td><a href="{% url "ambulancia:mostrar_editar"  id=ambulancia.id %}"
+                                   data-animation="blur" data-overlaycolor="#36404a">
+                                <button type="button" class=" btn btn-success"><i class="fas fa-edit"></i>
+                                </button>
+                            </a></td>
+                            <td><a href="#delete-modal-{{ material.id }}" data-animation="blur"
+                                   data-plugin="custommodal" data-overlaycolor="#36404a">
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#modalConfirmacion"><i class="fas fa-trash"></i></button>
+                            </a></td>
+                            <td><a href="{% url "revision:revisiones"  id=ambulancia.id %}"
+                                   data-animation="blur" data-overlaycolor="#36404a">
+                                <button type="button" class=" btn btn-primary"><i class="fas fa-eye"></i>
+                                </button>
+                            </a></td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        {% for ambulancia in Ambulancias %}
-                            {% if ambulancia.status != true %}
-                                <tr>
-                                    <th scope="row">{{ ambulancia.id }}</th>
-                                    <td>{{ ambulancia.nombre }}</td>
-                                    <td>{{ ambulancia.inventario.nombre }}</td>
-                                    <td><a href="{% url "ambulancia:mostrar_editar"  id=ambulancia.id %}"
-                                           data-animation="blur" data-overlaycolor="#36404a">
-                                        <button type="button" class=" btn btn-success"><i class="fas fa-edit"></i>
-                                        </button>
-                                    </a></td>
-                                    <td><a href="#delete-modal-{{ material.id }}" data-animation="blur"
-                                           data-plugin="custommodal" data-overlaycolor="#36404a">
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#modalConfirmacion"><i class="fas fa-trash"></i></button>
-                                    </a></td>
-                                    <td><a href="{% url "revision:revisiones"  id=ambulancia.id %}"
-                                           data-animation="blur" data-overlaycolor="#36404a">
-                                        <button type="button" class=" btn btn-primary"><i class="fas fa-eye"></i>
-                                        </button>
-                                    </a></td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                        {% for ambulancia in Ambulancias %}
-                            <!-- US47 -->
-                            {% if ambulancia.status != true %}
-                                <div id="delete-modal-{{ ambulacias.id }}" class="modal-demo">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <h4 class="custom-modal-title" id="titulo_inventario">Confirmación</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                                                    onclick="Custombox.modal.close();">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                    {% endif %}
+                {% endfor %}
+                {% for ambulancia in Ambulancias %}
+                    <!-- US47 -->
+                    {% if ambulancia.status != true %}
+                        <div id="delete-modal-{{ ambulacias.id }}" class="modal-demo">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <h4 class="custom-modal-title" id="titulo_inventario">Confirmación</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                            onclick="Custombox.modal.close();">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
 
-                                            <div class="modal-body">
-                                                <p>¿Estas seguro que quieres eliminar la
-                                                    ambulancia {{ ambulancia.nombre }}?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger"
-                                                        onclick="Custombox.modal.close();">Cancelar
-                                                </button>
-                                                <a href="{% url "ambulancia:eliminar_ambulancia"  id=ambulancia.id %}">
-                                                    <button class="btn btn-success">Guardar</button>
-                                                </a>
-                                            </div>
-
-                                        </div>
+                                    <div class="modal-body">
+                                        <p>¿Estas seguro que quieres eliminar la
+                                            ambulancia {{ ambulancia.nombre }}?</p>
                                     </div>
-                                </div>
-                                <!-- US08 -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                                onclick="Custombox.modal.close();">Cancelar
+                                        </button>
+                                        <a href="{% url "ambulancia:eliminar_ambulancia"  id=ambulancia.id %}">
+                                            <button class="btn btn-success">Guardar</button>
+                                        </a>
+                                    </div>
 
-                            {% endif %}
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- US08 -->
+
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+
 
         </div>
     </div>
+    <script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+</script>
 
 {% endblock %}

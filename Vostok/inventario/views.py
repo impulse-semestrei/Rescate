@@ -122,7 +122,9 @@ def delete_inventario(request, id):
 @login_required
 def ver_inventario_material(request, pk):
     InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=pk))
+    inventario = Inventario.objects.get(id=pk)
     context = {'inventarios': InventarioMateriales.all,
+               'nombre_inventario': inventario.nombre,
                'inventario_pk': pk,
                'form': EditarMaterialInventario,
                }
