@@ -38,7 +38,7 @@ def ver_detalle_revsion(request, id, id_revision):
 
     context={'materiales':materiales,'ambulancia':ambulancia,'fecha':fecha_revision}
 
-    return render(request, '../templates/revision/ver_detalle_revision.html',context)
+    return render(request, '../templates/revision/ver_detalle_revision.html', context)
 #### CONTROLLER US42 ######
 
 #### CONTROLLER US29 ######
@@ -52,5 +52,16 @@ def ver_revisiones_ambulancia(request, id):
     context = {'revisiones': revisiones, 'ambulancia':ambulancia}
     return render(request, '../templates/revision/ver_revisiones_ambulancia.html', context)
 #### CONTROLLER US29 ######
+
+#### CONTROLLER US30 ######
+@login_required
+def ver_detalle_ambulancia(request, id, id_revision):
+    revision = Revision.objects.get(id=id_revision)
+    ambulancia = Ambulancia.objects.get(id=id)
+    context = {
+        'revision': revision,
+        'ambulancia': ambulancia,
+    }
+    return render(request, '../templates/revision/ver_detalle_ambulancia.html', context)
 
 

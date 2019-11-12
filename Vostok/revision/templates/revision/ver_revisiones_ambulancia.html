@@ -21,13 +21,14 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 {% for revision in revisiones %}
 
                     <tr>
 
                         <td>{{ ambulancia.nombre }}</td>
                         <td>{{ revision.fecha }}</td>
-                        <td><a href="{{ revision.id }}">
+                        <td><a href="{%url 'revision:detalle_ambulancia' id=ambulancia.id id_revision=revision.id %}">
                             <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Ver detalle
                             </button>
                         </a></td>
@@ -81,6 +82,6 @@
 </table>
 </div>
     </div>
-    <!--######## VIEW US41 ########-->
+    <!--######## VIEW US29 ########-->
 
 {% endblock %}

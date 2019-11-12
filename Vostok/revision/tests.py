@@ -51,7 +51,6 @@ class VerEstadoAmbulancia(TestCase):
         self.ambulancia = Ambulancia.objects.create(nombre="ambulancia", inventario=self.inventario)
         self.revision = RevisionAmbulancia.objects.create(inventario=self.inventario)
 
-
     def test_RevisionAmbulanciaURL(self):
         response = self.client.get(reverse('revision:revisiones_ambulancia', args={self.ambulancia.id}))
         self.assertEqual(response.status_code, 302)
@@ -59,3 +58,15 @@ class VerEstadoAmbulancia(TestCase):
     def test_model(self):
         self.assertTrue(RevisionAmbulancia.objects.filter(id=self.revision.id))
 ####### TESTS US-29############
+
+####### TESTS US-30############
+class VerDetalleAmbulancia(TestCase):
+    def setUp(self):
+        self.inventario = Inventario.objects.create(nombre="almacen")
+        self.ambulancia = Ambulancia.objects.create(nombre="ambulancia", inventario=self.inventario)
+        self.revision = RevisionAmbulancia.objects.create(inventario=self.inventario)
+
+    def test_URL(self):
+        response = self.client.get(reverse('revision:detalle_ambulancia', args=[self.ambulancia.id, self.revision.id]))
+        self.assertEqual(response.status_code, 302)
+ ####### TESTS US-30############
