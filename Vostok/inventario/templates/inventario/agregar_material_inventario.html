@@ -157,7 +157,7 @@
             if (input.value.length > 0) {
                 materials
                 // get material names that match what is in the input
-                    .filter((material) => material.includes(input.value))
+                    .filter((material) => material.toUpperCase().includes(input.value.toUpperCase()))
                     .forEach((material) => {
                         // create a new suggestion
                         let suggestion = document.createElement("div");
