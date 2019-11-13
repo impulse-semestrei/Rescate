@@ -9,6 +9,7 @@ from .views import delete_inventario, eliminar_material_inventario
 from .forms import AgregarMaterialInventario
 import json
 from .forms import AgregarMaterialInventario, EditarMaterialInventario
+from revision.models import Revision
 
 # Create your tests here.
 
@@ -40,7 +41,8 @@ class AgregarMaterialInventarioTestCase(TestCase):
         self.assertTrue(form.is_valid())
         material = form.cleaned_data['material']
         cantidad = form.cleaned_data['cantidad']
-        InventarioMaterial.objects.create(inventario=self.inventario, material=material, cantidad=cantidad)
+        revision = Revision.objects.create(fecha=timezone.now())
+        InventarioMaterial.objects.create(inventario=self.inventario, material=material, cantidad=cantidad, revision=revision)
         self.assertEqual(self.inventario.materiales.count(), 1)
         self.assertEqual(self.inventario.materiales.first().nombre, self.material.nombre)
 
@@ -91,7 +93,7 @@ class InventarioTestCase(TestCase):
 class VerInventarioTestCase(TestCase):
     def test_url(self):
         response = self.client.get('/inventario/ver/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
 
 ####### TESTS US-06############
@@ -130,9 +132,10 @@ class VerMaterialTestCase(TestCase):
 ######## TEST US-03 ########
 class EliminarMaterialInventarioTestCase(TestCase):
     def test_eliminarMaterial(self):
+        revision = Revision.objects.create(fecha=timezone.now())
         inventario = Inventario.objects.create(nombre="almacen")
         material = Material.objects.create(nombre='curita', descripcion='proteccion de herida', cantidad=4)
-        mat_inv = InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=4)
+        mat_inv = InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=4, revision=revision)
         mat_inv.delete()
         self.assertFalse(InventarioMaterial.objects.filter(material=mat_inv.material))
 ######## TEST US-03 ########
@@ -141,7 +144,7 @@ class EliminarMaterialInventarioTestCase(TestCase):
 #### TESTS US21 ####
 class ChecklistTestCase(TestCase):
     def setUp(self):
-        fecha = timezone.now()
+        revision = Revision.objects.create(fecha=timezone.now())
         self.inventario = Inventario.objects.create(nombre="inventario")
         self.material1 = Material.objects.create(
             nombre="material1",
@@ -156,14 +159,14 @@ class ChecklistTestCase(TestCase):
         InventarioMaterial.objects.create(
             inventario=self.inventario,
             material=self.material1,
-            fecha=fecha,
-            cantidad=1
+            cantidad=1,
+            revision=revision
         )
         InventarioMaterial.objects.create(
             inventario=self.inventario,
             material=self.material2,
-            fecha=fecha,
-            cantidad=2
+            cantidad=2,
+            revision=revision
         )
 
     def test_response(self):
@@ -192,12 +195,14 @@ class ChecklistTestCase(TestCase):
 
 class EditarMaterialInventarioTest(TestCase):
     def setUp(self):
+        revision = Revision.objects.create(fecha=timezone.now())
         self.inventario = Inventario.objects.create(nombre="almacen")
         self.material = Material.objects.create(nombre='curita', descripcion='proteccion de herida', cantidad=1)
         self.MatInv = InventarioMaterial.objects.create(
             inventario=self.inventario,
             material=self.material,
-            cantidad=4
+            cantidad=4,
+            revision=revision
         )
 
     def test_form_correct(self):

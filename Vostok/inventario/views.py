@@ -161,9 +161,10 @@ class EditarInventario(UpdateView):
 
 ##### CONTROLLER US21 ####
 def serializar_inventario(inventario):
-    ultima_revision = InventarioMaterial.objects.filter(inventario=inventario).order_by('-fecha').first().fecha
+    ultima_revision = InventarioMaterial.objects.filter(inventario=inventario)\
+                        .order_by('-revision__fecha').first().revision
 
-    registros = InventarioMaterial.objects.filter(fecha=ultima_revision, inventario=inventario)
+    registros = InventarioMaterial.objects.filter(revision=ultima_revision, inventario=inventario)
     output = {"materiales": []}
 
     for registro in registros:
@@ -181,24 +182,29 @@ def guardar_inventario(inventario, request):
     datos = json.loads(request.body)
     objects = []
     fecha = timezone.now()
+    revision = Revision(
+        inventario=inventario,
+        fecha=fecha,
+        nombre_paramedico=datos['nombre_paramedico'],
+        email_paramedico=datos['email_paramedico'],
+    )
     for item in datos['materiales']:
         try:
             m = Material.objects.get(id=item['id'])
         except ObjectDoesNotExist:
             return False
-        objects.append(InventarioMaterial(inventario=inventario, material=m, cantidad=item['cantidad'], fecha=fecha))
+        objects.append(InventarioMaterial(
+            inventario=inventario,
+            material=m,
+            cantidad=item['cantidad'],
+            revision=revision)
+        )
 
     try:
         with transaction.atomic():
             for item in objects:
                 item.save()
-            Revision.objects.create(
-                inventario=inventario,
-                fecha=fecha,
-                nombre_paramedico=datos['nombre_paramedico'],
-                email_paramedico=datos['email_paramedico'],
-
-            )
+            revision.save()
     except Exception:
         return False
 
