@@ -1,59 +1,69 @@
+<!-- ######## VIEW US45 ######## -->
 {% extends 'dashboard/base.html' %}
-
 {% load staticfiles %}
 {% block content %}
-    <!--  ########View US04#######  -->
-    <!--  ########View US03#######  -->
-
+    <div class="row">
+        <div class="col text-center m-3">
+            <h1>Editar inventario {{ inventario.nombre }}</h1>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 offset-lg-2">
+            <div class="col-md-8 offset-lg-2">
                 <div class="row">
-                    <div class="col mb-6">
-                        {% if user.is_authenticated %}
-
-                            <h1><i class="zmdi zmdi-shape"> </i>Editar Inventario {{ inventario.nombre }} </h1>
-                                <a href="{% url 'inventario:ver_inventario' %}">
+                    <div class="col mb-3">
                         <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel"><i
-                                class="fas fa-arrow-left"></i></button></a>
-                            <br><br>
-
-                            <!-- ##########View US03##### -->
-
-                            <!-- US08 -->
-                            <form method="post" action="{% url "inventario:editar_inventario" inventario.id %}">
+                                class="fas fa-arrow-left"></i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card-box">
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="card-box">
-                                            {% csrf_token %}
+                                    <div class="col-md-2">
+                                        <button class="btn btn-danger" type="button" data-toggle="modal"
+                                                data-target="#modalCancel">Cancelar
+                                        </button>
+                                    </div>
+                                    <div class="col-md-2 offset-md-8">
+                                        <button class="btn btn-success waves-effect waves-light" type="button" data-toggle="modal"
+                                                data-target="#modalSaved">Guardar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal" id="modalSaved" tabindex="-1" role="dialog" data-backdrop="static">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
                                             <div class="modal-body">
-                                                {{ form.as_p }}
+                                                <p>Se han realizado cambios al inventario</p>
                                             </div>
-                                            <div class="row">
-                                                    <div class="offset col-md-2">
-                                                        <a href="{% url 'inventario:ver_inventario' %}"
-                                                           class="btn btn-danger">Cancelar</a>
-                                                    </div>
-                                                    <div class="col-md-2 offset-md-7">
-                                                        <button type="submit" class="btn btn-success">Guardar</button>
-                                                    </div>
-                                                </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-success waves-effect waves-light" type="submit">De acuerdo</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-
-
-
-
-
-                        {% else %}
-                            <h1>No estas autenticado</h1>
-                        {% endif %}
-
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="modalCancel" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Si sales ahora no se guardarán los cambios en el inventario</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Continuar editando</button>
+                        <a href="/ambulancia/ver/" class="btn btn-danger">Salir sin guardar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

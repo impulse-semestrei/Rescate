@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from inventario.models import Inventario
 from django.contrib import messages
+from django.views.generic.edit import UpdateView
 
 STATUS_CREATED = 'SAVED'
 STATUS_ERROR = 'ERROR'
@@ -85,32 +86,10 @@ def eliminar_ambulancias(request, id):
 ####### CONTROLLER US45############
 
 
-@login_required
-def mostrar_editar(request, id):
-    ambulancia = Ambulancia.objects.get(id=id)
-    form = CrearAmbulancia({'nombre': ambulancia.nombre, 'inventario': ambulancia.inventario})
-    context = {
-        'form': form,
-        'ambulancia': ambulancia,
-    }
-    return render(request, '../templates/ambulancia/editar_ambulancia.html', context)
-
-
-@login_required
-def editar_ambulancias(request, id):
-    ambulancia = Ambulancia.objects.get(id=id)
-    form = CrearAmbulancia(request.POST)
-    if (form.is_valid):
-        ambulancia.nombre = request.POST.get('nombre')
-        ambulancia.inventario_id = request.POST.get('inventario')
-        ambulancia.save()
-
-    ambulancias = Ambulancia.objects.filter(status=True)
-    context = {
-        'Ambulancias': ambulancias,
-        'form': CrearAmbulancia(),
-    }
-    messages.info(request, 'Se ha guardado exitosamente el cambio')
-    return render(request, '../templates/ambulancia/ver_ambulancia.html', context)
+class EditarAmbulancia(UpdateView):
+    model = Ambulancia
+    form_class = CrearAmbulancia
+    template_name = 'ambulancia/editar_ambulancia.html'
+    success_url = '/ambulancia/ver/'
 
 ####### CONTROLLER US45############
