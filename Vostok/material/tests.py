@@ -81,7 +81,7 @@ class CrearMaterialTestCase(TestCase):
 class VerMaterialTestCase(TestCase):
     def test_verMaterialURL(self):
         response = self.client.get(reverse('material:ver_material'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
 ######## TESTS US38 ########
 
