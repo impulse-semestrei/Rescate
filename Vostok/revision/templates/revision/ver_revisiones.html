@@ -6,7 +6,7 @@
 
     <h2>Historial de revisiones de inventarios</h2>
 
-    {% if  revisiones %}
+    {% if  registros %}
         <div class="card-box">
         <br>
 
@@ -15,26 +15,26 @@
                 <thead>
                 <tr>
 
-                    <th>Nombre</th>
+                    <th>Paramédico</th>
                     <th>Fecha de Revision</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                {% for revision in revisiones %}
+                {% for registro in registros %}
 
                     <tr>
 
-                        <td>{{ ambulancia.nombre }}</td>
-                        <td>{{ revision.fecha }}</td>
-                        <td><a href="{{ revision.id }}">
+                        <td>{{ registro.revision.nombre_paramedico }}</td>
+                        <td>{{ registro.revision.fecha }}</td>
+                        <td><a href="{{ registro.revision.id }}">
                             <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Ver detalle
                             </button>
                         </a></td>
 
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                    </table>
                 {% endfor %}
         </div>
 

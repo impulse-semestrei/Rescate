@@ -1,6 +1,7 @@
 from django.db import models
 from material.models import Material
 from django.utils import timezone
+from revision.models import Revision
 
 
 ######## MODEL US04########
@@ -26,7 +27,7 @@ class InventarioMaterial(models.Model):
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE)
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
     cantidad = models.IntegerField(null=False)
-    fecha = models.DateTimeField(null=False, default=timezone.now)
+    revision = models.ForeignKey(Revision, on_delete=models.CASCADE)
 
 
 #### MODEL US21 ####
