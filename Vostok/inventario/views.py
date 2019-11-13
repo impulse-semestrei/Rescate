@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from revision.models import Revision
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.edit import UpdateView
 
 STATUS_CREATED = 'CREATED'
 STATUS_ERROR = 'ERROR'
@@ -149,19 +150,12 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 ###### CONTROLLER US03 ########
 
 
-###### CONTROLLER US08 ########
-@login_required
-def editar_inventario(request, id):
-    inventario = Inventario.objects.get(id=id)
-    form = crearInventarioForm(request.POST)
-    if form.is_valid():
-        nombre = form.cleaned_data.get('nombre')
-    else:
-        return redirect('/inventario/ver/')
-    inventario.nombre = nombre
-    inventario.save()
-
-    return redirect('/inventario/ver/')
+# ###### CONTROLLER US08 ########
+class EditarInventario(UpdateView):
+    model = Inventario
+    form_class = crearInventarioForm
+    template_name = 'inventario/editar_inventario.html'
+    success_url = '/inventario/ver/'
 
 ###### CONTROLLER US08 ########
 
