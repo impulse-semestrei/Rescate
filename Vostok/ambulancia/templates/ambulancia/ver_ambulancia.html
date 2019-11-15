@@ -31,6 +31,7 @@
                     <th>Eliminar</th>
                     <th>Revisiones</th>
                     <th>Estado ambulancia</th>
+                    <th>Viajes</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,7 +40,7 @@
                             <th scope="row">{{ ambulancia.id }}</th>
                             <td>{{ ambulancia.nombre }}</td>
                             <td>{{ ambulancia.inventario.nombre }}</td>
-                            <td><a href="{% url "ambulancia:mostrar_editar"  id=ambulancia.id %}"
+                            <td><a href="{% url "ambulancia:editar_ambulancia"  pk=ambulancia.id %}"
                                    data-animation="blur" data-overlaycolor="#36404a">
                                 <button type="button" class=" btn btn-success"><i class="fas fa-edit"></i>
                                 </button>
@@ -59,6 +60,12 @@
                                 <button type="button" class=" btn btn-success"><i class="fas fa-ambulance"></i>
                                 </button>
                             </a></td>
+                            <td><a href="{% url "ambulancia:viajes_ambulancia"  id=ambulancia.id %}"
+                                   data-animation="blur" data-overlaycolor="#36404a">
+                                <button type="button" class=" btn btn-warning"><i class="fas fa-route"></i>
+                                </button>
+                            </a></td>
+                        <td></td>
                         </tr>
                 {% endfor %}
                 {% for ambulancia in Ambulancias %}

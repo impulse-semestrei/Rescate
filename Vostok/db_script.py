@@ -4,6 +4,12 @@ from ambulancia.models import Ambulancia
 from revision.models import Revision
 from django.utils import timezone
 
+InventarioMaterial.objects.all().delete()
+Ambulancia.objects.all().delete()
+Inventario.objects.all().delete()
+Material.objects.all().delete()
+Revision.objects.all().delete()
+
 materiales = []
 # Materiales de ambulancia
 materiales.append(Material.objects.create(nombre="Desinfectante para manos", descripcion="", cantidad=1))
@@ -146,13 +152,15 @@ inventario_ambulancia = Inventario.objects.create(nombre="Inventario de ambulanc
 # Almacén
 almacen = Inventario.objects.create(nombre="Almacén")
 
+revision = Revision.objects.create(fecha=fecha)
+
 # Añadir todos los materiales a la ambulancia
 for material in materiales:
     InventarioMaterial.objects.create(
         inventario=inventario_ambulancia,
         material=material,
         cantidad=material.cantidad,
-        fecha=fecha
+        revision=revision
     )
 
 # Añadir todos los materiales al almacén
@@ -161,9 +169,7 @@ for material in materiales:
         inventario=almacen,
         material=material,
         cantidad=material.cantidad,
-        fecha=fecha
+        revision=revision
     )
-ambulancia = Ambulancia.objects.create(
-    nombre="Ambulancia",
-    inventario=inventario_ambulancia,
-)
+
+Ambulancia.objects.create(nombre="Ambulancia", inventario=inventario_ambulancia)

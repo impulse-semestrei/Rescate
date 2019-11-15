@@ -80,7 +80,6 @@
             </table>
         </div>
 
-        </div>
         <!-- ##########View US03##### -->
         {% for Inventario in inventarios %}
 
@@ -104,34 +103,6 @@
                     </form>
                 </div>
             </div>
-
-            <!-- US08 -->
-
-            <div id="editar-modal-{{ Inventario.id }}" class="modal-demo">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <h4 class="custom-modal-title" id="titulo_inventario">Estas editando el
-                        inventario {{ Inventario.nombre }}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                            onclick="Custombox.modal.close();">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <form method="post" action="{% url "inventario:editar_inventario" Inventario.id %}">
-                        {% csrf_token %}
-                        <div class="modal-body">
-                            {{ form.as_p }}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onclick="Custombox.modal.close();">
-                                Cancelar
-                            </button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- US08 -->
 
         {% endfor %}
 

@@ -6,6 +6,7 @@ from .forms import CrearMaterial
 from django.db import DatabaseError
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.views.generic.edit import UpdateView
 
 STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
@@ -79,35 +80,10 @@ def delete_material(request, id):
 
 
 # ------------- CONTROLLER US34 --------------
-@login_required
-def editar_material(request, id):
-    material = Material.objects.get(id=id)
-    form = CrearMaterial(request.POST)
-    if(form.is_valid):
-        material.nombre = request.POST.get('nombre')
-        material.descripcion = request.POST.get('descripcion')
-        material.cantidad = request.POST.get('cantidad')
-        material.fecha_mod = timezone.now()
-        material.save()
-
-    materiales = Material.objects.filter(status=True)
-    context = {
-        'materiales': materiales,
-        'form': CrearMaterial(),
-    }
-    messages.info(request, 'Se ha editado tu material')
-    return redirect('material:ver_material')
-
-
-@login_required
-def editar_material_view(request, id):
-    material = Material.objects.get(id=id)
-    form = CrearMaterial({'nombre': material.nombre, 'descripcion': material.descripcion, 'cantidad': material.cantidad})
-    context = {
-            'material': material,
-            'form': form,
-               }
-
-    return render(request, '../templates/material/editar_material.html', context)
+class EditarMaterial(UpdateView):
+    model = Material
+    form_class = CrearMaterial
+    template_name = 'material/editar_material.html'
+    success_url = '/material/ver/'
 
 # ------------- CONTROLLER US34 --------------

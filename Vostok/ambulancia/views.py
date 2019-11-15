@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import Ambulancia
 from .forms import CrearAmbulancia, CambiarEstado
+from .models import Ambulancia, Viaje
 from inventario.models import Inventario
 from django.db import DatabaseError
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from inventario.models import Inventario
 from django.contrib import messages
+from django.views.generic.edit import UpdateView
 
 STATUS_CREATED = 'SAVED'
 STATUS_ERROR = 'ERROR'
@@ -80,34 +81,21 @@ def eliminar_ambulancias(request, id):
 ####### CONTROLLER US45############
 
 
+class EditarAmbulancia(UpdateView):
+    model = Ambulancia
+    form_class = CrearAmbulancia
+    template_name = 'ambulancia/editar_ambulancia.html'
+    success_url = '/ambulancia/ver/'
+
+####### CONTROLLER US45############
+
+####### CONTROLLER US25 ###########
 @login_required
-def mostrar_editar(request, id):
-    ambulancia = Ambulancia.objects.get(id=id)
-    form = CrearAmbulancia({'nombre': ambulancia.nombre, 'inventario': ambulancia.inventario})
-    context = {
-        'form': form,
-        'ambulancia': ambulancia,
-    }
-    return render(request, '../templates/ambulancia/editar_ambulancia.html', context)
-
-
-@login_required
-def editar_ambulancias(request, id):
-    ambulancia = Ambulancia.objects.get(id=id)
-    form = CrearAmbulancia(request.POST)
-    if (form.is_valid):
-        ambulancia.nombre = request.POST.get('nombre')
-        ambulancia.inventario_id = request.POST.get('inventario')
-        ambulancia.save()
-
-    ambulancias = Ambulancia.objects.filter(status=True)
-    context = {
-        'Ambulancias': ambulancias,
-        'form': CrearAmbulancia(),
-    }
-    messages.info(request, 'Se ha guardado exitosamente el cambio')
-    return render(request, '../templates/ambulancia/ver_ambulancia.html', context)
-
+def viajes_ambulancia(request, id):
+    historial = Viaje.objects.filter(ambulancia_id=id)
+    context = {'historial': historial,
+               }
+    return render(request, '../templates/ambulancia/ver_historial.html', context)
 ####### CONTROLLER US45############
 
 ####### CONTROLLER US26############
@@ -133,4 +121,4 @@ def control_ambulancias(request, id):
 
     messages.info(request, 'Se ha cambiado el estado de la ambulancia!')
     return redirect ('ambulancia:ver_control_ambulancias')
-
+####### CONTROLLER US26 ###########

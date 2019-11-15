@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from revision.models import Revision
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.edit import UpdateView
 
 STATUS_CREATED = 'CREATED'
 STATUS_ERROR = 'ERROR'
@@ -119,9 +120,11 @@ def delete_inventario(request, id):
 ####### CONTROLLER US-05############
 @login_required
 def ver_inventario_material(request, pk):
-    InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=pk))
     inventario = Inventario.objects.get(id=pk)
-    context = {'inventarios': InventarioMateriales.all,
+    registros = InventarioMaterial.objects.filter(inventario=inventario)
+    revision = registros.order_by('-revision__fecha').first().revision
+    materiales = registros.filter(revision=revision)
+    context = {'inventarios': materiales,
                'nombre_inventario': inventario.nombre,
                'inventario_pk': pk,
                'form': EditarMaterialInventario,
@@ -147,27 +150,21 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 ###### CONTROLLER US03 ########
 
 
-###### CONTROLLER US08 ########
-@login_required
-def editar_inventario(request, id):
-    inventario = Inventario.objects.get(id=id)
-    form = crearInventarioForm(request.POST)
-    if form.is_valid():
-        nombre = form.cleaned_data.get('nombre')
-    else:
-        return redirect('/inventario/ver/')
-    inventario.nombre = nombre
-    inventario.save()
-
-    return redirect('/inventario/ver/')
+# ###### CONTROLLER US08 ########
+class EditarInventario(UpdateView):
+    model = Inventario
+    form_class = crearInventarioForm
+    template_name = 'inventario/editar_inventario.html'
+    success_url = '/inventario/ver/'
 
 ###### CONTROLLER US08 ########
 
 ##### CONTROLLER US21 ####
 def serializar_inventario(inventario):
-    ultima_revision = InventarioMaterial.objects.filter(inventario=inventario).order_by('-fecha').first().fecha
+    ultima_revision = InventarioMaterial.objects.filter(inventario=inventario)\
+                        .order_by('-revision__fecha').first().revision
 
-    registros = InventarioMaterial.objects.filter(fecha=ultima_revision, inventario=inventario)
+    registros = InventarioMaterial.objects.filter(revision=ultima_revision, inventario=inventario)
     output = {"materiales": []}
 
     for registro in registros:
@@ -185,27 +182,26 @@ def guardar_inventario(inventario, request):
     datos = json.loads(request.body)
     objects = []
     fecha = timezone.now()
-    for item in datos['materiales']:
-        try:
-            m = Material.objects.get(id=item['id'])
-        except ObjectDoesNotExist:
-            return False
-        objects.append(InventarioMaterial(inventario=inventario, material=m, cantidad=item['cantidad'], fecha=fecha))
-
-    try:
-        with transaction.atomic():
-            for item in objects:
-                item.save()
-            Revision.objects.create(
+    revision = Revision(
+        fecha=fecha,
+        nombre_paramedico=datos['nombre_paramedico'],
+        email_paramedico=datos['email_paramedico'],
+    )
+    with transaction.atomic():
+        revision.save()
+        for item in datos['materiales']:
+            try:
+                m = Material.objects.get(id=item['id'])
+            except ObjectDoesNotExist:
+                return False
+            objects.append(InventarioMaterial(
                 inventario=inventario,
-                fecha=fecha,
-                nombre_paramedico=datos['nombre_paramedico'],
-                email_paramedico=datos['email_paramedico'],
-
+                material=m,
+                cantidad=item['cantidad'],
+                revision=revision)
             )
-    except Exception:
-        return False
-
+        for item in objects:
+            item.save()
     return True
 
 @csrf_exempt
