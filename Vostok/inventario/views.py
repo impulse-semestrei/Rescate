@@ -124,7 +124,7 @@ def delete_inventario(request, id):
 def ver_inventario_material(request, pk):
     inventario = Inventario.objects.get(id=pk)
     registros = InventarioMaterial.objects.filter(inventario=inventario)
-    revision = registros.order_by('-revision__fecha').first().revision.fecha()
+    revision = registros.order_by('-revision__fecha').first().revision
     materiales = registros.filter(revision=revision)
     context = {'inventarios': materiales,
                'nombre_inventario': inventario.nombre,
