@@ -201,9 +201,9 @@ def guardar_inventario(inventario, request):
 
     # try:
     with transaction.atomic():
+        revision.save()
         for item in objects:
             item.save()
-        revision.save()
     # except Exception:
     #     return False
 
