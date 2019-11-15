@@ -31,6 +31,7 @@
                     <th>Eliminar</th>
                     <th>Revisiones</th>
                     <th>Estado ambulancia</th>
+                    <th>Viajes</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,6 +61,12 @@
                                 <button type="button" class=" btn btn-success"><i class="fas fa-ambulance"></i>
                                 </button>
                             </a></td>
+                            <td><a href="{% url "ambulancia:viajes_ambulancia"  id=ambulancia.id %}"
+                                   data-animation="blur" data-overlaycolor="#36404a">
+                                <button type="button" class=" btn btn-warning"><i class="fas fa-route"></i>
+                                </button>
+                            </a></td>
+                        <td></td>
                         </tr>
                     {% endif %}
                 {% endfor %}
