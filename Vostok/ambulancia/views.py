@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Ambulancia
+from .models import Ambulancia, Viaje
 from .forms import CrearAmbulancia
 from inventario.models import Inventario
 from django.db import DatabaseError
@@ -93,3 +93,13 @@ class EditarAmbulancia(UpdateView):
     success_url = '/ambulancia/ver/'
 
 ####### CONTROLLER US45############
+
+####### CONTROLLER US25 ###########
+@login_required
+def viajes_ambulancia(request, id):
+    historial = Viaje.objects.filter(ambulancia_id=1)
+    context = {'historial': historial,
+               }
+    return render(request, '../templates/ambulancia/ver_historial.html', context)
+
+####### CONTROLLER US25 ###########
