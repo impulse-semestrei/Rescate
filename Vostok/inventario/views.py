@@ -187,6 +187,7 @@ def guardar_inventario(inventario, request):
         nombre_paramedico=datos['nombre_paramedico'],
         email_paramedico=datos['email_paramedico'],
     )
+    revision.save()
     print(revision)
     for item in datos['materiales']:
         try:
@@ -202,7 +203,6 @@ def guardar_inventario(inventario, request):
 
     # try:
     with transaction.atomic():
-        revision.save()
         for item in objects:
             item.save()
     # except Exception:
