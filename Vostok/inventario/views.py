@@ -183,7 +183,6 @@ def guardar_inventario(inventario, request):
     objects = []
     fecha = timezone.now()
     revision = Revision(
-        inventario=inventario,
         fecha=fecha,
         nombre_paramedico=datos['nombre_paramedico'],
         email_paramedico=datos['email_paramedico'],
