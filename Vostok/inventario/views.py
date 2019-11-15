@@ -187,6 +187,7 @@ def guardar_inventario(inventario, request):
         nombre_paramedico=datos['nombre_paramedico'],
         email_paramedico=datos['email_paramedico'],
     )
+    print(revision)
     for item in datos['materiales']:
         try:
             m = Material.objects.get(id=item['id'])
