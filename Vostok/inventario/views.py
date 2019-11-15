@@ -91,7 +91,7 @@ def agregar_material_inventario(request, pk):
 ####### CONTROLLER US07############
 @login_required
 def ver_inventario(request):
-    inventarios = Inventario.objects.filter(status=True)
+    inventarios = Inventario.objects.all()
     context = {
                 'inventarios': inventarios,
                 'form': crearInventarioForm(),
@@ -104,10 +104,8 @@ def ver_inventario(request):
 @login_required
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
-    inventario.status = False
-    inventario.fecha_mod = timezone.now()
-    inventario.save()
-    inventarios = Inventario.objects.filter(status=True)
+    inventario.delete()
+    inventarios = Inventario.objects.all()
 
     context = {'inventarios': inventarios,
                'form': crearInventarioForm(),
