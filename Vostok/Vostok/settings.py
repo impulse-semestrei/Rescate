@@ -34,21 +34,32 @@ ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1','localhost', 'rescate1app.com', '157.23
 # Application definition
 
 INSTALLED_APPS = [
+    # Django default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Added apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'rest_framework',
+
+    # Project apps
     'users.apps.UsersConfig',
-    'social_django',
     'material.apps.MaterialConfig',
     'inventario.apps.InventarioConfig',
     'ambulancia.apps.AmbulanciaConfig',
     'revision.apps.RevisionConfig',
     'dashboard.apps.DashboardConfig',
-    'rest_framework',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -103,7 +114,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'Vostok',
             'USER': 'postgres',
-            'PASSWORD': 'postgres',
+            'PASSWORD': 'quirotagoras1595',
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
@@ -156,14 +167,18 @@ if env == 'PROD':
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '359237875627-8lasvg6rcn590k3bh77jtqehufnhpcj4.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'nXkaTaNTjGgLAmCxnSvhtKOl'
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = '/auth/login/google-oauth2/'
 
 LOGIN_REDIRECT_URL = '/index/'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = ''
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
