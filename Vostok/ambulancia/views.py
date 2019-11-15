@@ -97,7 +97,7 @@ class EditarAmbulancia(UpdateView):
 ####### CONTROLLER US25 ###########
 @login_required
 def viajes_ambulancia(request, id):
-    historial = Viaje.objects.filter(ambulancia_id=1)
+    historial = Viaje.objects.filter(ambulancia_id=id)
     context = {'historial': historial,
                }
     return render(request, '../templates/ambulancia/ver_historial.html', context)
