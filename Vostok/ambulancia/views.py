@@ -8,6 +8,10 @@ from django.utils import timezone
 from inventario.models import Inventario
 from django.contrib import messages
 from django.views.generic.edit import UpdateView
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from revision.models import RevisionAmbulancia
+import json
 
 STATUS_CREATED = 'SAVED'
 STATUS_ERROR = 'ERROR'
@@ -93,3 +97,44 @@ class EditarAmbulancia(UpdateView):
     success_url = '/ambulancia/ver/'
 
 ####### CONTROLLER US45############
+
+
+##### CONTROLLER US28 ####
+def serializar_ambulancia(ambulancia):
+    revision = RevisionAmbulancia.objects.filter(ambulancia=ambulancia)\
+                        .order_by('-fecha').first()
+    json = {
+        'gasolina': revision.gasolina,
+        'liquido_frenos': revision.liquido_frenos
+    }
+    return json
+
+
+def guardar_ambulancia(ambulancia, request):
+    datos = json.loads(request.body)
+
+    try:
+        RevisionAmbulancia.objects.create(
+            nombre_paramedico=datos["nombre_paramedico"],
+            email_paramedico=datos["email_paramedico"],
+            fecha=datos["fecha"],
+            ambulancia=ambulancia,
+            gasolina=datos["gasolina"],
+            liquido_frenos=datos["liquido_frenos"],
+        )
+    except Exception:
+        return False
+
+    return True
+
+@csrf_exempt
+def checklist_ambulancia(request, pk):
+    ambulancia = Ambulancia.objects.get(id=pk)
+    if request.method == "GET":
+        return JsonResponse(serializar_ambulancia(ambulancia), safe=False)
+    elif request.method == "POST":
+        if guardar_ambulancia(ambulancia, request):
+            return JsonResponse({"status": "OK"}, safe=False)
+        return JsonResponse({"status": "ERROR"}, safe=False)
+
+##### CONTROLLER US28 ####

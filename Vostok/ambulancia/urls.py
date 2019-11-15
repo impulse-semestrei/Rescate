@@ -10,5 +10,6 @@ urlpatterns = [
     path('ver/', views.ver_ambulancias, name='ver_ambulancias'),
     path('editar/<int:pk>/', views.EditarAmbulancia.as_view(), name="editar_ambulancia"),
     path('eliminar/<int:id>', views.eliminar_ambulancias, name='eliminar_ambulancia'),
+    path('<int:pk>/json/', views.checklist_ambulancia, name='checklist_ambulancia'),
 ]
 ######## CONTROLLER US44, US45 ########
