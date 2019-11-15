@@ -200,13 +200,13 @@ def guardar_inventario(inventario, request):
             revision=revision)
         )
 
-    try:
-        with transaction.atomic():
-            for item in objects:
-                item.save()
-            revision.save()
-    except Exception:
-        return False
+    # try:
+    with transaction.atomic():
+        for item in objects:
+            item.save()
+        revision.save()
+    # except Exception:
+    #     return False
 
     return True
 
