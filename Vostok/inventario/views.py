@@ -122,9 +122,11 @@ def delete_inventario(request, id):
 ####### CONTROLLER US-05############
 @login_required
 def ver_inventario_material(request, pk):
-    InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=pk))
     inventario = Inventario.objects.get(id=pk)
-    context = {'inventarios': InventarioMateriales.all,
+    registros = InventarioMaterial.objects.filter(inventario=inventario)
+    revision = registros.order_by('-revision__fecha').first().revision.fecha()
+    materiales = registros.filter(revision=revision)
+    context = {'inventarios': materiales,
                'nombre_inventario': inventario.nombre,
                'inventario_pk': pk,
                'form': EditarMaterialInventario,
@@ -187,27 +189,21 @@ def guardar_inventario(inventario, request):
         nombre_paramedico=datos['nombre_paramedico'],
         email_paramedico=datos['email_paramedico'],
     )
-    revision.save()
-    print(revision)
-    for item in datos['materiales']:
-        try:
-            m = Material.objects.get(id=item['id'])
-        except ObjectDoesNotExist:
-            return False
-        objects.append(InventarioMaterial(
-            inventario=inventario,
-            material=m,
-            cantidad=item['cantidad'],
-            revision=revision)
-        )
-
-    # try:
     with transaction.atomic():
+        revision.save()
+        for item in datos['materiales']:
+            try:
+                m = Material.objects.get(id=item['id'])
+            except ObjectDoesNotExist:
+                return False
+            objects.append(InventarioMaterial(
+                inventario=inventario,
+                material=m,
+                cantidad=item['cantidad'],
+                revision=revision)
+            )
         for item in objects:
             item.save()
-    # except Exception:
-    #     return False
-
     return True
 
 @csrf_exempt
