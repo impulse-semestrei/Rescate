@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Ambulancia
+from .models import Ambulancia, Viaje
 from .forms import CrearAmbulancia
 from inventario.models import Inventario
 from django.db import DatabaseError
@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from revision.models import RevisionAmbulancia
 import json
 
-STATUS_CREATED = 'SAVED'
+STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
 STATUS_UPDATED = 'UPDATED'
 
@@ -31,14 +31,14 @@ def crear_ambulancia(request):
         }
         if form.is_valid():
             try:
-
-                ambulancia = form.cleaned_data.get('nombre')
-                inventario = form.cleaned_data.get('inventario')
-                Ambulancia.objects.create(nombre=ambulancia, inventario=inventario)
-                context['status'] = STATUS_CREATED
-                context['ambulancia_nombre'] = ambulancia
-
-                return redirect('ambulancia:ver_ambulancias')
+                new_ambulancia = Ambulancia(
+                    nombre=form.cleaned_data.get('nombre'),
+                    inventario=form.cleaned_data.get('inventario'),
+                )
+                new_ambulancia.save()
+                context['status'] = STATUS_SAVED
+                context['ambulancia_name'] = new_ambulancia.nombre
+                return render(request, '../templates/ambulancia/crear_ambulancia.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
                 print('ERROR')
@@ -88,14 +88,11 @@ def eliminar_ambulancias(request, id):
 # -------- CONTROLLER US46 ---------
 
 ####### CONTROLLER US45############
-
-
 class EditarAmbulancia(UpdateView):
     model = Ambulancia
     form_class = CrearAmbulancia
     template_name = 'ambulancia/editar_ambulancia.html'
     success_url = '/ambulancia/ver/'
-
 ####### CONTROLLER US45############
 
 
@@ -138,3 +135,14 @@ def checklist_ambulancia(request, pk):
         return JsonResponse({"status": "ERROR"}, safe=False)
 
 ##### CONTROLLER US28 ####
+
+
+####### CONTROLLER US25 ###########
+@login_required
+def viajes_ambulancia(request, id):
+    historial = Viaje.objects.filter(ambulancia_id=id)
+    context = {'historial': historial,
+               }
+    return render(request, '../templates/ambulancia/ver_historial.html', context)
+
+####### CONTROLLER US25 ###########

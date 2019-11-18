@@ -22,7 +22,6 @@
                 </thead>
                 <tbody>
                 {% for registro in registros %}
-
                     <tr>
 
                         <td>{{ registro.revision.nombre_paramedico }}</td>
@@ -33,9 +32,9 @@
                         </a></td>
 
                     </tr>
-                    </tbody>
-                    </table>
                 {% endfor %}
+                </tbody>
+            </table>
         </div>
 
     {% else %}
