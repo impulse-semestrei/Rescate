@@ -54,28 +54,30 @@
 
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-gear noti-icon"></i>
                                 <span class="pro-user-name ml-1">
-                                    RESCATE 1    <i class="mdi mdi-chevron-down"></i>
+                                    {{ user.username }}
+                                    <i class="mdi mdi-chevron-down"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->
                                 <div class="dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">Welcome!</h6>
+                                    <h6 class="text-overflow m-0">¡Hola!</h6>
                                 </div>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{% url 'users:index' %}" class="dropdown-item notify-item">
                                     <i class="fe-user"></i>
-                                    <span>My Account</span>
+                                    <span>Mi Cuenta</span>
                                 </a>
 
                                 <div class="dropdown-divider"></div>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{% url 'users:logout' %}" class="dropdown-item notify-item">
                                     <i class="fe-log-out"></i>
-                                    <a href="{% url 'logout' %}"><span>Logout</span></a>
+                                    <span>Cerrar Sesión</span>
                                 </a>
 
                             </div>
@@ -159,6 +161,13 @@
                                     <span> Revisiones </span>
                                 </a>
                             </li>
+
+                            <li>
+                                <a href="{% url 'users:ver_usuarios' %}">
+                                    <i class="mdi mdi-account-multiple-outline"></i>
+                                    <span> Usuarios y Permisos </span>
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
@@ -191,7 +200,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6">
-                                   Vostok dashboard app by <a href="">Impulse</a>
+                                   Vostok Dashboard App by <a href="">Impulse</a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-md-right footer-links d-none d-sm-block">

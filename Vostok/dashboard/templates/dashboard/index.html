@@ -4,9 +4,31 @@
 {% load staticfiles %}
 
 {% block content %}
-    <h1>Logged as</h1>
-    <h3>Username: {{ user.username }}</h3>
-    <h3>Email: {{ user.email }}</h3>
+
+    <h1>¡Bienvenido!</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-box">
+                    {% if user.is_authenticated %}
+                        {% if user.is_anon %}
+                            <h2>Gracias por crear tu cuenta.</h2>
+                            <h4>Para empezar a utilizar la aplicación, ponte en contacto con tu administrador.</h4>
+                            <hr>
+                        {% endif %}
+                        <h2>Información de tu cuenta:</h2>
+                        <h4>Nombre de Usuario: {{ user.username }}</h4>
+                        <h4>Nombre: {{ user.first_name }} {{ user.last_name }}</h4>
+                        <h4>Email: {{ user.email }}</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 {% endblock %}
 <!-- Template US-14 -->

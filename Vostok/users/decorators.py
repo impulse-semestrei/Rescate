@@ -9,7 +9,7 @@ def voluntario_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, 
     """
 
     actual_decorator = user_passes_test(
-        lambda u: u.is_active and u.is_voluntario,
+        lambda u: u.is_active and (u.is_voluntario or u.is_administrador or u.is_adminplus),
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
@@ -25,7 +25,7 @@ def administrador_required(function=None, redirect_field_name=REDIRECT_FIELD_NAM
     """
 
     actual_decorator = user_passes_test(
-        lambda u: u.is_active and u.is_administrador,
+        lambda u: u.is_active and (u.is_administrador or u.is_adminplus),
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
