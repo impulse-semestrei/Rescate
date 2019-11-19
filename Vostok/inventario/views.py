@@ -92,7 +92,7 @@ def agregar_material_inventario(request, pk):
 ####### CONTROLLER US07############
 @login_required
 def ver_inventario(request):
-    inventarios = Inventario.objects.all()
+    inventarios = Inventario.objects.all().order_by('id')
     context = {
                 'inventarios': inventarios,
                 'form': crearInventarioForm(),
@@ -121,7 +121,9 @@ def delete_inventario(request, id):
 @login_required
 def ver_inventario_material(request, pk):
     inventario = Inventario.objects.get(id=pk)
+
     registros = InventarioMaterial.objects.filter(inventario=inventario)
+
     revision = registros.order_by('-revision__fecha').first().revision
     materiales = registros.filter(revision=revision)
     context = {'inventarios': materiales,

@@ -55,7 +55,7 @@ def crear_ambulancia(request):
 # -------- CONTROLLER US46 ---------
 @login_required
 def ver_ambulancias(request):
-    ambulancias = Ambulancia.objects.all()
+    ambulancias = Ambulancia.objects.all().order_by('id')
     context = {'Ambulancias': ambulancias,
                'form': CrearAmbulancia(),
                }
@@ -100,7 +100,8 @@ def viajes_ambulancia(request, id):
 
 ####### CONTROLLER US26############
 def ver_control_ambulancias(request):
-    ambulancias = Ambulancia.objects.all()
+    ambulancias = Ambulancia.objects.all().order_by('id')
+
 
     context = {
         'ambulancias': ambulancias,

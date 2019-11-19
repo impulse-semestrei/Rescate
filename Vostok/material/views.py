@@ -50,7 +50,7 @@ def crear_material(request):
 
 @login_required
 def ver_material(request):
-    materiales = Material.objects.filter(status=True)
+    materiales = Material.objects.filter(status=True).order_by('id')
     nombre = Material.objects.all()
     context = {'materiales':materiales,
                'form':CrearMaterial(),
