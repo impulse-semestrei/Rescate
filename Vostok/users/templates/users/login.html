@@ -6,6 +6,7 @@
 <html lang="en">
 {% load static %}
 {% load staticfiles %}
+{% load socialaccount %}
     <head>
         <meta charset="utf-8" />
         <title>Rescate I. Inicia Sesion</title>
@@ -45,7 +46,7 @@
                             <div class="card-body p-5" >
 
                                     <div class="form-group mb-0 text-center" >
-                                              <a class="btn bg-white text-black-50" href="{% url 'social:begin' 'google-oauth2' %}">
+                                              <a class="btn bg-white text-black-50" href="{% provider_login_url 'google' %}">
                                                    <img width="30px" style="margin-right: 20px;" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
                                                     Iniciar Sesion con Google</a>
 

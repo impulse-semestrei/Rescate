@@ -28,5 +28,8 @@ urlpatterns = [
     path('inventario/', include('inventario.urls')),
     path('api/', include(router.urls)),
     path('revision/', include('revision.urls')),
-    path('ambulancia/', include('ambulancia.urls'))
+    path('ambulancia/', include('ambulancia.urls')),
+    path('users/', include('users.urls')),
+    path('accounts/', include('allauth.urls')),
+
 ]
