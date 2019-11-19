@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Ambulancia, Viaje
+from .models import Ambulancia, Viaje, MaterialUsado
 from .forms import CrearAmbulancia
 from inventario.models import Inventario
 from django.db import DatabaseError
@@ -103,3 +103,17 @@ def viajes_ambulancia(request, id):
     return render(request, '../templates/ambulancia/ver_historial.html', context)
 
 ####### CONTROLLER US25 ###########
+
+######## CONTROLLER US22 ########
+def materiales_usados(request, id):
+    material = MaterialUsado.objects.filter(viaje_id=id)
+    viaje = Viaje.objects.get(id=id)
+    ambulancia= viaje.ambulancia
+    print(ambulancia)
+
+    context = {'material': material,
+               'viaje': ambulancia,
+               }
+    return render(request, '../templates/ambulancia/ver_material_usado.html', context)
+
+######## CONTROLLER US22 ########
