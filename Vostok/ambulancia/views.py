@@ -114,15 +114,13 @@ def serializar_ambulancia(ambulancia):
 
 def guardar_ambulancia(ambulancia, request):
     datos = json.loads(request.body)
-
+    print(datos)
     try:
         revision = RevisionAmbulancia(
             nombre_paramedico=datos["nombre_paramedico"],
             email_paramedico=datos["email_paramedico"],
             fecha=timezone.now(),
             ambulancia=ambulancia,
-            gasolina=datos["elementos"]["gasolina"],
-            liquido_frenos=datos["elementos"]["liquido_frenos"],
         )
         print(revision)
         for item in datos["elementos"]:
