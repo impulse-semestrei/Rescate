@@ -147,7 +147,16 @@ def checklist_ambulancia(request, pk):
 
 @csrf_exempt
 def lista_ambulancias(request):
-    pass
+    output = {'ambulancias': []}
+    for ambulancia in Ambulancia.objects.all():
+        output['ambulancias'].append(
+            {
+                'nombre': ambulancia.nombre,
+                'id': ambulancia.id,
+                'idInventario': ambulancia.inventario_id
+            }
+        )
+    return JsonResponse(output)
 
 
 ##### CONTROLLER US28 ####

@@ -16,6 +16,6 @@ class RevisionAmbulancia(models.Model):
     email_paramedico = models.CharField(max_length=100, null=False)
     fecha = models.DateTimeField(null=False, default=timezone.now)
     ambulancia = models.ForeignKey('ambulancia.Ambulancia', on_delete=models.CASCADE)
-    gasolina = models.FloatField()
+    gasolina = models.IntegerField()
     liquido_frenos = models.IntegerField()
 ######## MODEL US-29 ########
