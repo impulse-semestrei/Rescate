@@ -104,7 +104,7 @@ def serializar_ambulancia(ambulancia):
                 'cantidad': revision.gasolina,
             },
             {
-                'nombre': 'liquido frenos',
+                'nombre': 'liquido de frenos',
                 'id': 2,
                 'objetivo': ambulancia.objetivo_liquido_frenos,
                 'cantidad': revision.liquido_frenos,
