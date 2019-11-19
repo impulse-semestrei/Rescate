@@ -2,7 +2,7 @@ from django.test import TestCase
 from inventario.models import Inventario
 from .models import Ambulancia
 from .views import crear_ambulancia
-from .forms import CrearAmbulancia
+from .forms import CrearAmbulancia, CambiarEstado
 from django.urls import reverse
 from django.utils import timezone
 from revision.models import RevisionAmbulancia
@@ -16,7 +16,7 @@ class CrearAmbulanciaTest(TestCase):
     def test_url(self):
 
         response = self.client.get(reverse('ambulancia:crear'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_form(self):
         data = {
@@ -42,7 +42,6 @@ class EditarAmbulancia(TestCase):
 
 ####### TEST US45############
 
-
 #### TESTS US21 ####
 class ChecklistAmbulanciaTestCase(TestCase):
     def setUp(self):
@@ -66,3 +65,23 @@ class ChecklistAmbulanciaTestCase(TestCase):
 
 
 #### TESTS US21 ####
+
+####### TEST US26############
+class ControlAmbulancias(TestCase):
+    def setUp(self):
+        self.inventario = Inventario.objects.create(nombre='almacen')
+        self.ambulancia = Ambulancia.objects.create(nombre='ambulancia10', inventario=self.inventario)
+
+    def test_view(self):
+        response = self.client.get(reverse('ambulancia:ver_control_ambulancias'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_form(self):
+        estado = {
+            'estado': 3
+        }
+        form = CambiarEstado(estado)
+        self.assertTrue(form.is_valid())
+
+####### TEST US26############
+>>>>>>> 1ca17dbdf5ecba34909c3f29056fdadbbc1b909e
