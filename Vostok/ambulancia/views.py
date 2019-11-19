@@ -124,6 +124,7 @@ def guardar_ambulancia(ambulancia, request):
             gasolina=datos["elementos"]["gasolina"],
             liquido_frenos=datos["elementos"]["liquido_frenos"],
         )
+        print(revision)
         for item in datos["elementos"]:
             revision.__dict__[item["nombre"]] = item["cantidad"]
         print(revision)
