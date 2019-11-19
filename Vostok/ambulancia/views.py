@@ -126,6 +126,7 @@ def guardar_ambulancia(ambulancia, request):
         )
         for item in datos["elementos"]:
             revision.__dict__[item["nombre"]] = item["cantidad"]
+        print(revision)
         revision.save()
     except Exception:
         return False
