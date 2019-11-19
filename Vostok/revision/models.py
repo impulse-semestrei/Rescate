@@ -3,7 +3,6 @@ from django.utils import timezone
 
 ######## MODEL US41 ########
 
-
 class Revision(models.Model):
     nombre_paramedico = models.CharField(max_length=100, null=False)
     email_paramedico = models.CharField(max_length=100, null=False)

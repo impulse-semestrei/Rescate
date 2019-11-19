@@ -31,11 +31,11 @@
                     <th>Eliminar</th>
                     <th>Revisiones</th>
                     <th>Estado ambulancia</th>
+                    <th>Viajes</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for ambulancia in Ambulancias %}
-                    {% if ambulancia.status != true %}
                         <tr>
                             <th scope="row">{{ ambulancia.id }}</th>
                             <td>{{ ambulancia.nombre }}</td>
@@ -60,12 +60,16 @@
                                 <button type="button" class=" btn btn-success"><i class="fas fa-ambulance"></i>
                                 </button>
                             </a></td>
+                            <td><a href="{% url "ambulancia:viajes_ambulancia"  id=ambulancia.id %}"
+                                   data-animation="blur" data-overlaycolor="#36404a">
+                                <button type="button" class=" btn btn-warning"><i class="fas fa-route"></i>
+                                </button>
+                            </a></td>
+                        <td></td>
                         </tr>
-                    {% endif %}
                 {% endfor %}
                 {% for ambulancia in Ambulancias %}
                     <!-- US47 -->
-                    {% if ambulancia.status != true %}
                         <div id="delete-modal-{{ ambulacias.id }}" class="modal-demo">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -93,7 +97,6 @@
                         </div>
                         <!-- US08 -->
 
-                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>

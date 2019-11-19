@@ -92,7 +92,7 @@ def agregar_material_inventario(request, pk):
 ####### CONTROLLER US07############
 @login_required
 def ver_inventario(request):
-    inventarios = Inventario.objects.filter(status=True)
+    inventarios = Inventario.objects.all().order_by('id')
     context = {
                 'inventarios': inventarios,
                 'form': crearInventarioForm(),
@@ -105,10 +105,8 @@ def ver_inventario(request):
 @login_required
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
-    inventario.status = False
-    inventario.fecha_mod = timezone.now()
-    inventario.save()
-    inventarios = Inventario.objects.filter(status=True)
+    inventario.delete()
+    inventarios = Inventario.objects.all()
 
     context = {'inventarios': inventarios,
                'form': crearInventarioForm(),
@@ -122,9 +120,13 @@ def delete_inventario(request, id):
 ####### CONTROLLER US-05############
 @login_required
 def ver_inventario_material(request, pk):
-    InventarioMateriales = InventarioMaterial.objects.filter(inventario=Inventario.objects.get(id=pk))
     inventario = Inventario.objects.get(id=pk)
-    context = {'inventarios': InventarioMateriales.all,
+
+    registros = InventarioMaterial.objects.filter(inventario=inventario)
+
+    revision = registros.order_by('-revision__fecha').first().revision
+    materiales = registros.filter(revision=revision)
+    context = {'inventarios': materiales,
                'nombre_inventario': inventario.nombre,
                'inventario_pk': pk,
                'form': EditarMaterialInventario,
@@ -183,31 +185,25 @@ def guardar_inventario(inventario, request):
     objects = []
     fecha = timezone.now()
     revision = Revision(
-        inventario=inventario,
         fecha=fecha,
         nombre_paramedico=datos['nombre_paramedico'],
         email_paramedico=datos['email_paramedico'],
     )
-    for item in datos['materiales']:
-        try:
-            m = Material.objects.get(id=item['id'])
-        except ObjectDoesNotExist:
-            return False
-        objects.append(InventarioMaterial(
-            inventario=inventario,
-            material=m,
-            cantidad=item['cantidad'],
-            revision=revision)
-        )
-
-    try:
-        with transaction.atomic():
-            for item in objects:
-                item.save()
-            revision.save()
-    except Exception:
-        return False
-
+    with transaction.atomic():
+        revision.save()
+        for item in datos['materiales']:
+            try:
+                m = Material.objects.get(id=item['id'])
+            except ObjectDoesNotExist:
+                return False
+            objects.append(InventarioMaterial(
+                inventario=inventario,
+                material=m,
+                cantidad=item['cantidad'],
+                revision=revision)
+            )
+        for item in objects:
+            item.save()
     return True
 
 @csrf_exempt
