@@ -145,6 +145,7 @@ def checklist_ambulancia(request, pk):
 
 @csrf_exempt
 def lista_ambulancias(request):
+    pass
 
 
 ##### CONTROLLER US28 ####
