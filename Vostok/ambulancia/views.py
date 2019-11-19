@@ -99,11 +99,13 @@ def serializar_ambulancia(ambulancia):
         'elementos': [
             {
                 'nombre': 'gasolina',
+                'id': 1,
                 'objetivo': ambulancia.objetivo_gasolina,
                 'cantidad': revision.gasolina,
             },
             {
                 'nombre': 'liquido frenos',
+                'id': 2,
                 'objetivo': ambulancia.objetivo_liquido_frenos,
                 'cantidad': revision.liquido_frenos,
             }
