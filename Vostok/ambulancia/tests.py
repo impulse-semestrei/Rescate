@@ -39,13 +39,14 @@ class EditarAmbulancia(TestCase):
     def test_editarMaterialName(self):
             Ambulancia.objects.create(nombre='Test', inventario=self.inventario)
             self.client.get('ambulancia:editar_ambulancia', )
-
 ####### TEST US45############
+
 
 #### TESTS US21 ####
 class ChecklistAmbulanciaTestCase(TestCase):
     def setUp(self):
-        self.ambulancia = Ambulancia.objects.create(nombre=)
+        inventario = Inventario.objects.create(nombre="Inventario de ambulancia")
+        self.ambulancia = Ambulancia.objects.create(nombre="Ambulancia", inventario=inventario)
         self.revision = RevisionAmbulancia.objects.create(
             nombre_paramedico="paramedico",
             email_paramedico="paramedico@mail.com",
@@ -63,8 +64,10 @@ class ChecklistAmbulanciaTestCase(TestCase):
         }
         self.assertEqual(json.loads(response.content), materiales)
 
-
+    def test_post(self):
+        pass
 #### TESTS US21 ####
+
 
 ####### TEST US26############
 class ControlAmbulancias(TestCase):
@@ -84,4 +87,3 @@ class ControlAmbulancias(TestCase):
         self.assertTrue(form.is_valid())
 
 ####### TEST US26############
->>>>>>> 1ca17dbdf5ecba34909c3f29056fdadbbc1b909e
