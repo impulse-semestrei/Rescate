@@ -9,7 +9,7 @@ from inventario.models import Inventario
 from django.contrib import messages
 from django.views.generic.edit import UpdateView
 
-STATUS_CREATED = 'SAVED'
+STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
 STATUS_UPDATED = 'UPDATED'
 
@@ -27,14 +27,14 @@ def crear_ambulancia(request):
         }
         if form.is_valid():
             try:
-
-                ambulancia = form.cleaned_data.get('nombre')
-                inventario = form.cleaned_data.get('inventario')
-                Ambulancia.objects.create(nombre=ambulancia, inventario=inventario)
-                context['status'] = STATUS_CREATED
-                context['ambulancia_nombre'] = ambulancia
-
-                return redirect('ambulancia:ver_ambulancias')
+                new_ambulancia = Ambulancia(
+                    nombre=form.cleaned_data.get('nombre'),
+                    inventario=form.cleaned_data.get('inventario'),
+                )
+                new_ambulancia.save()
+                context['status'] = STATUS_SAVED
+                context['ambulancia_name'] = new_ambulancia.nombre
+                return render(request, '../templates/ambulancia/crear_ambulancia.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
                 print('ERROR')
