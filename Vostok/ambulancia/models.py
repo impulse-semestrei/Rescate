@@ -23,6 +23,9 @@ class Ambulancia(models.Model):
     estado = models.IntegerField(choices=estados_ambulancias, default=desactivada)
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, unique=True)
 
+    objetivo_gasolina = 100
+    objetivo_liquido_frenos = 50
+
 ####### MODELS US44############
 
 
