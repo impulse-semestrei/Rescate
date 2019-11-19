@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
+from .forms import CrearAmbulancia, CambiarEstado
 from .models import Ambulancia, Viaje
-from .forms import CrearAmbulancia
 from inventario.models import Inventario
 from django.db import DatabaseError
 from django.contrib.auth.decorators import login_required
@@ -55,9 +55,9 @@ def crear_ambulancia(request):
 # -------- CONTROLLER US46 ---------
 @login_required
 def ver_ambulancias(request):
-    ambulancias = Ambulancia.objects.filter(status=True)
+    ambulancias = Ambulancia.objects.all().order_by('id')
     context = {'Ambulancias': ambulancias,
-               'form': CrearAmbulancia
+               'form': CrearAmbulancia(),
                }
     return render(request, '../templates/ambulancia/ver_ambulancia.html', context)
 
@@ -69,15 +69,10 @@ def ver_ambulancias(request):
 @login_required
 def eliminar_ambulancias(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
-    ambulancia.status = False
-    ambulancia.fecha_mod = timezone.now()
-    ambulancia.save()
     pk = ambulancia.inventario
     inventario = Inventario.objects.get(id=pk.id)
-    inventario.status = False
+    inventario.delete()
     # inventario.fechaMod = timezone.now()
-    inventario.save()
-
     return redirect('/ambulancia/ver/')
 
 
@@ -101,5 +96,30 @@ def viajes_ambulancia(request, id):
     context = {'historial': historial,
                }
     return render(request, '../templates/ambulancia/ver_historial.html', context)
+####### CONTROLLER US45############
 
-####### CONTROLLER US25 ###########
+####### CONTROLLER US26############
+def ver_control_ambulancias(request):
+    ambulancias = Ambulancia.objects.all().order_by('id')
+
+
+    context = {
+        'ambulancias': ambulancias,
+        'form': CambiarEstado,
+    }
+    return render(request, '../templates/ambulancia/control_ambulancias.html', context)
+
+def control_ambulancias(request, id):
+    ambulancia = Ambulancia.objects.get(id=id)
+    form = CambiarEstado(request.POST)
+    if form.is_valid():
+        estados = request.POST.get('estado')
+        print(estados)
+        ambulancia.estado= estados
+        ambulancia.save()
+        print(ambulancia.estado)
+        print('llega')
+
+    messages.info(request, 'Se ha cambiado el estado de la ambulancia!')
+    return redirect ('ambulancia:ver_control_ambulancias')
+####### CONTROLLER US26 ###########
