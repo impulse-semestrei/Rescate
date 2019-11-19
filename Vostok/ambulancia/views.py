@@ -103,7 +103,7 @@ def serializar_ambulancia(ambulancia):
                 'cantidad': revision.gasolina,
             },
             {
-                'nombre': 'liquido_frenos',
+                'nombre': 'liquido frenos',
                 'objetivo': ambulancia.objetivo_liquido_frenos,
                 'cantidad': revision.liquido_frenos,
             }
@@ -114,19 +114,20 @@ def serializar_ambulancia(ambulancia):
 
 def guardar_ambulancia(ambulancia, request):
     datos = json.loads(request.body)
-    print(datos)
     try:
-        revision = RevisionAmbulancia(
+        cantidades = {}
+
+        for item in datos["elementos"]:
+            cantidades[item["nombre"]] = item["cantidad"]
+
+        RevisionAmbulancia.objects.create(
             nombre_paramedico=datos["nombre_paramedico"],
             email_paramedico=datos["email_paramedico"],
             fecha=timezone.now(),
             ambulancia=ambulancia,
+            gasolina=cantidades["gasolina"],
+            liquido_frenos=cantidades["liquido de frenos"]
         )
-        print(revision)
-        for item in datos["elementos"]:
-            revision.__dict__[item["nombre"]] = item["cantidad"]
-        print(revision)
-        revision.save()
     except Exception:
         return False
 
@@ -141,6 +142,10 @@ def checklist_ambulancia(request, pk):
         if guardar_ambulancia(ambulancia, request):
             return JsonResponse({"status": "OK"}, safe=False)
         return JsonResponse({"status": "ERROR"}, safe=False)
+
+@csrf_exempt
+def lista_ambulancias(request):
+
 
 ##### CONTROLLER US28 ####
 
