@@ -1,13 +1,15 @@
-from django.conf import settings
-#from django.contrib.auth.views import logout
 from django.urls import path
-from django.urls import include
-from users.views import index
-from users.views import login
+from . import views
+from dashboard.views import index
+
+
+app_name = 'users'
 
 
 urlpatterns = [
-    path('', login),
-    path('auth/google/', include('social_django.urls', namespace='social')),
-    path('index/', index),
+    path('', views.login, name='login'),
+    path('index/', index, name='index'),
+    path('logout/',views.logoutUser,name='logout'),
+    path('ver/', views.ver_usuarios, name='ver_usuarios')
 ]
+

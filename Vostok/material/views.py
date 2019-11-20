@@ -5,8 +5,10 @@ from .models import Material
 from .forms import CrearMaterial
 from django.db import DatabaseError
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.utils import timezone
 from django.views.generic.edit import UpdateView
+from users.decorators import voluntario_required, administrador_required, adminplus_required
 
 STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
@@ -49,8 +51,9 @@ def crear_material(request):
 ######## CONTROLLER US38 ########
 
 @login_required
+@voluntario_required
 def ver_material(request):
-    materiales = Material.objects.filter(status=True)
+    materiales = Material.objects.filter(status=True).order_by('id')
     nombre = Material.objects.all()
     context = {'materiales':materiales,
                'form':CrearMaterial(),

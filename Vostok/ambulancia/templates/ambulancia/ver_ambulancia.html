@@ -36,7 +36,6 @@
                 </thead>
                 <tbody>
                 {% for ambulancia in Ambulancias %}
-                    {% if ambulancia.status != true %}
                         <tr>
                             <th scope="row">{{ ambulancia.id }}</th>
                             <td>{{ ambulancia.nombre }}</td>
@@ -68,11 +67,9 @@
                             </a></td>
                         <td></td>
                         </tr>
-                    {% endif %}
                 {% endfor %}
                 {% for ambulancia in Ambulancias %}
                     <!-- US47 -->
-                    {% if ambulancia.status != true %}
                         <div id="delete-modal-{{ ambulacias.id }}" class="modal-demo">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -100,7 +97,6 @@
                         </div>
                         <!-- US08 -->
 
-                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>
