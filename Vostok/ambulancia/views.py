@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
 from .models import Ambulancia, Viaje, MaterialUsado
 from .forms import CrearAmbulancia
-=======
 from .forms import CrearAmbulancia, CambiarEstado
 from .models import Ambulancia, Viaje
->>>>>>> 1ca17dbdf5ecba34909c3f29056fdadbbc1b909e
 from inventario.models import Inventario
 from django.db import DatabaseError
 from django.contrib.auth.decorators import login_required
@@ -111,7 +108,6 @@ def materiales_usados(request, id):
     material = MaterialUsado.objects.filter(viaje_id=id)
     viaje = Viaje.objects.get(id=id)
     ambulancia= viaje.ambulancia
-    print(ambulancia)
 
     context = {'material': material,
                'viaje': ambulancia,
