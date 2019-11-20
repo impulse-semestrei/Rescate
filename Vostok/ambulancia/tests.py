@@ -87,3 +87,35 @@ class ControlAmbulancias(TestCase):
         self.assertTrue(form.is_valid())
 
 ####### TEST US26############
+
+#### TESTS US28 ####
+
+class ChecklistAmbualnciaTestCase(TestCase):
+    def setUp(self):
+        self.inventario = Inventario.objects.create(nombre="Inventario")
+        self.ambulancia = Ambulancia.objects.create(nombre="Ambulancia", inventario=self.inventario)
+
+    def test_get(self):
+        referencia = {
+            "elementos": [
+                {
+                    "nombre": "gasolina",
+                    "id": 1,
+                    "objetivo": 100,
+                    "cantidad": 100.0
+                },
+                {
+                    "nombre": "liquido de frenos",
+                    "id": 2,
+                    "objetivo": 50,
+                    "cantidad": 50
+                }
+            ]
+        }
+        respuesta = self.client.get(reverse('ambulancia:checklist_ambulancia', args=[self.ambulancia.id]))
+        print("HOLA")
+        print(respuesta.content)
+        self.assertEqual(respuesta.content, referencia)
+
+
+#### TESTS US28 ####
