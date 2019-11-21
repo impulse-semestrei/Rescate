@@ -1,14 +1,14 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from .forms import crearInventarioForm, AgregarMaterialInventario, EditarMaterialInventario
 from .models import Inventario
-from django.db import DatabaseError, transaction
+from django.db import DatabaseError, transaction, IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import InventarioMaterial
 from django.core.exceptions import ObjectDoesNotExist
 from material.models import Material
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from revision.models import Revision
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
@@ -121,11 +121,16 @@ def delete_inventario(request, id):
 @login_required
 def ver_inventario_material(request, pk):
     inventario = Inventario.objects.get(id=pk)
+    try:
+        registros = InventarioMaterial.objects.filter(inventario=inventario)
+        revision = registros.order_by('-revision__fecha').first().revision
+        materiales = registros.filter(revision=revision)
 
-    registros = InventarioMaterial.objects.filter(inventario=inventario)
+    except AttributeError:
+        print("error")
+        materiales= None
 
-    revision = registros.order_by('-revision__fecha').first().revision
-    materiales = registros.filter(revision=revision)
+
     context = {'inventarios': materiales,
                'nombre_inventario': inventario.nombre,
                'inventario_pk': pk,

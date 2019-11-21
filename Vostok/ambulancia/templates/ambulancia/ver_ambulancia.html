@@ -28,10 +28,10 @@
                     <th>Nombre</th>
                     <th>Inventario</th>
                     <th>Editar</th>
-                    <th>Eliminar</th>
                     <th>Revisiones</th>
                     <th>Estado ambulancia</th>
                     <th>Viajes</th>
+                    <th>Eliminar</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,11 +44,6 @@
                                    data-animation="blur" data-overlaycolor="#36404a">
                                 <button type="button" class=" btn btn-success"><i class="fas fa-edit"></i>
                                 </button>
-                            </a></td>
-                            <td><a href="#delete-modal-{{ material.id }}" data-animation="blur"
-                                   data-plugin="custommodal" data-overlaycolor="#36404a">
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#modalConfirmacion"><i class="fas fa-trash"></i></button>
                             </a></td>
                             <td><a href="{% url "revision:revisiones"  id=ambulancia.id %}"
                                    data-animation="blur" data-overlaycolor="#36404a">
@@ -65,7 +60,11 @@
                                 <button type="button" class=" btn btn-warning"><i class="fas fa-route"></i>
                                 </button>
                             </a></td>
-                        <td></td>
+                        <td><a href="#delete-modal-{{ material.id }}" data-animation="blur"
+                                   data-plugin="custommodal" data-overlaycolor="#36404a">
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#modalConfirmacion"><i class="fas fa-trash"></i></button>
+                            </a></td>
                         </tr>
                 {% endfor %}
                 {% for ambulancia in Ambulancias %}
