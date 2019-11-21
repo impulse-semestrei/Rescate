@@ -21,6 +21,19 @@
                         <h4>Nombre de Usuario: {{ user.username }}</h4>
                         <h4>Nombre: {{ user.first_name }} {{ user.last_name }}</h4>
                         <h4>Email: {{ user.email }}</h4>
+                        <h4>Telefono: {{ user.cellphone }}</h4>
+                        <h4>Fecha de nacimiento: {{ user.date_of_birth }}</h4>
+
+                    {% endif %}
+
+                    {% if user.cellphone == NULL %}
+                        <form method="POST">
+                        {% csrf_token %}
+                        {{   form.as_p }}
+                        <button type="submit" name="action" class=" btn btn-success">Guardar</button>
+                        </form>
+                    {% else %}
+
                     {% endif %}
                 </div>
             </div>

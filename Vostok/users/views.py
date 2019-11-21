@@ -37,7 +37,6 @@ def ver_usuarios(request):
 
 #### CONTROLLER US12 ####
 def ver_detalle_usuarios(request,id):
-
     try:
         User = get_user_model()
         usuario = User.objects.get(id=id)

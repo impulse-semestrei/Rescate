@@ -32,9 +32,6 @@
             <thead>
             <tr role="row" align="center">
                 <th scope="col">
-                    ID#
-                </th>
-                <th scope="col">
                     Username
                 </th>
                 <th scope="col">
@@ -45,6 +42,9 @@
                 </th>
                 <th scope="col">
                     Apellido(s)
+                </th>
+                <th scope="col">
+                    Telefono
                 </th>
                 <th scope="col">
                     Rol
@@ -59,11 +59,12 @@
             {% for usuario in usuarios %}
 
                 <tr role="row" class="odd">
-                    <td tabindex="0" class="sorting_1">{{ usuario.id }}</td>
-                    <td>{{ usuario.username }}</td>
+                    <td tabindex="0" class="sorting_1">{{ usuario.username }}</td>
                     <td>{{ usuario.email }}</td>
                     <td>{{ usuario.first_name }}</td>
                     <td>{{ usuario.last_name }}</td>
+                    <td>{{ usuario.cellphone }}</td>
+
                     <td>
                         {% if usuario.is_anon %}
                             Anónimo
