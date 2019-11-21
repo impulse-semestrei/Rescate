@@ -107,7 +107,7 @@ def viajes_ambulancia(request, id):
 def materiales_usados(request, id):
     material = MaterialUsado.objects.filter(viaje_id=id)
     viaje = Viaje.objects.get(id=id)
-    ambulancia= viaje.ambulancia
+    ambulancia = viaje.ambulancia
 
     context = {'material': material,
                'viaje': ambulancia,
