@@ -38,6 +38,6 @@ class Viaje(models.Model):
 class MaterialUsado(models.Model):
     nombre = models.ForeignKey(Material,on_delete=models.CASCADE)#foreign key
     cantidad_usado = models.IntegerField(null=False, validators=[MaxValueValidator(10000), MinValueValidator(0)])
-    viaje = models.ForeignKey(Viaje,on_delete=models.CASCADE)
+    viaje = models.ForeignKey(Viaje, on_delete=models.CASCADE)
 
 ######## MODELS US25########

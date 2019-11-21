@@ -37,7 +37,7 @@
             <thead>
             <tr role="row" align="center">
                 <th scope="col">
-                    Id
+                    Código
                 </th>
                 <th scope="col">
                     Nombre
@@ -61,7 +61,7 @@
             {% for material in materiales %}
 
                 <tr role="row" class="odd">
-                    <td tabindex="0" class="sorting_1">{{ material.id }}</td>
+                    <td tabindex="0" class="sorting_1">{{ material.codigo }}</td>
                     <td>{{ material.nombre }}</td>
                     <td>{{ material.descripcion }}</td>
                     <td>{{ material.cantidad }}</td>
