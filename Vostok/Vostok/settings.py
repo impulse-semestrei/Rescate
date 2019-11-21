@@ -102,7 +102,7 @@ if env == 'PROD':
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'vostok',
             'USER': 'vostok',
-            'PASSWORD': 'postgres',
+            'PASSWORD': 'vostok',
             'HOST': 'localhost',
             'PORT': '',
         }
@@ -114,7 +114,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'Vostok',
             'USER': 'postgres',
-            'PASSWORD': 'quirotagoras1595',
+            'PASSWORD': 'postgres',
 
             'HOST': '127.0.0.1',
             'PORT': '5432',
