@@ -30,7 +30,7 @@
                             <th scope="row">{{ viajes.id }}</th>
                             <td>{{ viajes.fecha_inicio }}</td>
                             <td>{{ viajes.fecha_terminado }}</td>
-                            <td><a data-animation="blur" data-overlaycolor="#36404a">
+                            <td><a href="{% url "ambulancia:materiales_usados" viajes.id %}" data-animation="blur" data-overlaycolor="#36404a">
                                 <button type="button" class="btn btn-info"><i class="fas fa-file-medical"></i>
                                 </button>
                             </a></td>

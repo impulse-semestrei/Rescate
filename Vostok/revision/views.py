@@ -2,13 +2,13 @@ from django.shortcuts import render
 from ambulancia.models import Ambulancia
 from revision.models import Revision, RevisionAmbulancia
 from inventario.models import InventarioMaterial
-from inventario.models import Inventario
 from django.contrib.auth.decorators import login_required
 
 from users.decorators import voluntario_required,administrador_required,adminplus_required
 from django.utils.decorators import method_decorator
 # Create your views here.
-from django.db.models import Sum
+from django.db.models import Sum, F, Func
+
 
 ##### CONTROLLER US09 #####
 

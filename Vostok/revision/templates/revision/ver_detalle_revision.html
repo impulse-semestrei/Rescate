@@ -19,28 +19,38 @@
         <div class="card-box">
         <br>
 
+        <div class="row">
+            <div id="datatable_filter" class="col"><label>Buscar:<input
+                    type="search" class="form-control form-control-sm" placeholder=""
+                    aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
+        </div>
+        <br>
         <div class="table-responsive">
-            <table class="table table-dark mb-0">
+            <table class="table table-dark mb-0" id="Materiales">
                 <thead>
                 <tr>
 
-                    <th>Articulo</th>
-                    <th>Cantidad</th>
+                    <th>Materiales</th>
+                    <th>Disponibles</th>
+                    <th>Necesarios</th>
 
                 </tr>
                 </thead>
                 <tbody>
                 {% for material in materiales %}
 
-                    <tr>
+                    <tr {% if material.cantidad < material.material.cantidad  %} style="background: #c22301; color: white" {% elif material.cantidad > material.material.cantidad %} style="background: dodgerblue; color: white" {% endif %}>
 
                         <td>{{ material.material }}</td>
                         <td>{{ material.cantidad }}</td>
+                        <td>{{ material.material.cantidad }}</td>
 
 
                     </tr>
 
                 {% endfor %}
+                </tbody>
+            </table>
         </div>
     {% else %}
 
@@ -84,10 +94,29 @@
 
 
     {% endif %}
-</tbody>
-</table>
+
 </div>
     </div>
     <!--######## VIEW US421 ########-->
+    <script>
+        function Filter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("Materiales");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
 
+    </script>
 {% endblock %}

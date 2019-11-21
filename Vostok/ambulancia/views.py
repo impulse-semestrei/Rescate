@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from .models import Ambulancia, Viaje, MaterialUsado
+from .forms import CrearAmbulancia
 from .forms import CrearAmbulancia, CambiarEstado
 from .models import Ambulancia, Viaje
 from inventario.models import Inventario
@@ -101,6 +103,22 @@ def viajes_ambulancia(request, id):
     return render(request, '../templates/ambulancia/ver_historial.html', context)
 ####### CONTROLLER US45############
 
+
+####### CONTROLLER US25 ###########
+
+######## CONTROLLER US22 ########
+def materiales_usados(request, id):
+    material = MaterialUsado.objects.filter(viaje_id=id)
+    viaje = Viaje.objects.get(id=id)
+    ambulancia = viaje.ambulancia
+
+    context = {'material': material,
+               'viaje': ambulancia,
+               }
+    return render(request, '../templates/ambulancia/ver_material_usado.html', context)
+
+######## CONTROLLER US22 ########
+
 ####### CONTROLLER US26############
 @voluntario_required
 def ver_control_ambulancias(request):
@@ -128,3 +146,4 @@ def control_ambulancias(request, id):
     messages.info(request, 'Se ha cambiado el estado de la ambulancia!')
     return redirect ('ambulancia:ver_control_ambulancias')
 ####### CONTROLLER US26 ###########
+
