@@ -119,7 +119,7 @@ def guardar_ambulancia(ambulancia, request):
     try:
         cantidades = {}
 
-        for item in datos["elementos"]:
+        for item in datos["materiales"]:
             cantidades[item["nombre"]] = item["cantidad"]
 
         RevisionAmbulancia.objects.create(
