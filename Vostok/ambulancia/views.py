@@ -96,7 +96,7 @@ def serializar_ambulancia(ambulancia):
     revision = RevisionAmbulancia.objects.filter(ambulancia=ambulancia)\
                         .order_by('-fecha').first()
     json = {
-        'elementos': [
+        'materiales': [
             {
                 'nombre': 'gasolina',
                 'id': 1,
