@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="card-box">
-                            <form method="post" novalidate>
+                            <form method="POST">
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <div class="row">

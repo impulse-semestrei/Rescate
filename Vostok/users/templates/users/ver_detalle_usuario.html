@@ -41,7 +41,7 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{  form.as_p }}
-                    <button type="submit" name="action" class=" btn btn-success">Guardar</button>
+                    <button type="submit" name="action" class=" btn btn-success" onsubmit=alert()>Guardar</button>
                 </form>
 
         </div>

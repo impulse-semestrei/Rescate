@@ -5,8 +5,9 @@ from django.contrib.auth import get_user_model
 
 class CustomForm(forms.ModelForm):
 
-    cellphone = forms.CharField(label='Celular')
-    date_of_birth = forms.DateField(label='Fecha de Nacimiento', widget=forms.SelectDateWidget)
+    cellphone = forms.CharField(label='Celular', required=True, widget= forms.TextInput
+                           (attrs={'placeholder':'10 dígitos: xxx xxx xxxx'}))
+    date_of_birth = forms.DateField(label='Fecha de Nacimiento', widget=forms.SelectDateWidget(years=range(1900, 2025)), required=True)
 
     class Meta:
         User = get_user_model()

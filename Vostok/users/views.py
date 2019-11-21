@@ -36,6 +36,7 @@ def ver_usuarios(request):
     return render(request, '../templates/users/ver_usuarios.html', context)
 
 #### CONTROLLER US12 ####
+@adminplus_required
 def ver_detalle_usuarios(request,id):
     try:
         User = get_user_model()
@@ -47,12 +48,11 @@ def ver_detalle_usuarios(request,id):
 
             if form.is_valid():
 
-                usuario.date_of_birth = form.cleaned_data.get('date_of_birth')
-                usuario.cellphone = form.cleaned_data.get('cellphone')
                 usuario.is_anon = form.cleaned_data.get('is_anon')
                 usuario.is_voluntario = form.cleaned_data.get('is_voluntario')
                 usuario.is_administrador = form.cleaned_data.get('is_administrador')
                 usuario.is_adminplus = form.cleaned_data.get('is_adminplus')
+                usuario.turno = form.cleaned_data.get('turno')
                 usuario.save()
                 return HttpResponseRedirect('/users/ver/')
 

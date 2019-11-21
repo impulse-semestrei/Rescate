@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 
 def index(request):
     if request.user.is_authenticated:
+        success=False
         try:
             User = get_user_model()
             usuario = User.objects.get(id=request.user.id)
@@ -15,15 +16,17 @@ def index(request):
             if request.method == 'POST':
                 form = CustomForm(request.POST)
                 if form.is_valid():
+                    success = True
+                    context={'success':success}
                     usuario.date_of_birth = form.cleaned_data.get('date_of_birth')
                     usuario.cellphone = form.cleaned_data.get('cellphone')
                     usuario.save()
-                    return HttpResponseRedirect('/users/ver/')
+                    return HttpResponseRedirect('/index',context)
 
             else:
                 form = CustomForm()
 
-            context = {'usuario': usuario, 'form': form}
+            context = {'usuario': usuario, 'form': form,'success': success}
             return render(request, '../templates/dashboard/index.html',context)
 
         except:

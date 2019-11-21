@@ -26,6 +26,6 @@ class CustomUserUpdateForm(forms.ModelForm):
     class Meta:
         User = get_user_model()
         model = User
-        fields = ('is_anon', 'is_voluntario', 'is_administrador', 'is_adminplus')
+        fields = ('is_anon', 'is_voluntario', 'is_administrador', 'is_adminplus','turno')
 
 ### FORM US12 ###
