@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from .models import Ambulancia, Viaje, MaterialUsado
+from .forms import CrearAmbulancia
 from .forms import CrearAmbulancia, CambiarEstado
 from .models import Ambulancia, Viaje
 from inventario.models import Inventario
@@ -13,6 +15,9 @@ from django.views.decorators.csrf import csrf_exempt
 from revision.models import RevisionAmbulancia
 import json
 
+from users.decorators import voluntario_required,administrador_required,adminplus_required
+from django.utils.decorators import method_decorator
+
 STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
 STATUS_UPDATED = 'UPDATED'
@@ -22,7 +27,7 @@ STATUS_UPDATED = 'UPDATED'
 ####### CONTROLLER US44############
 
 
-@login_required
+@administrador_required
 def crear_ambulancia(request):
     if request.method == 'POST':
         form = CrearAmbulancia(request.POST)
@@ -57,7 +62,7 @@ def crear_ambulancia(request):
 
 
 # -------- CONTROLLER US46 ---------
-@login_required
+@voluntario_required
 def ver_ambulancias(request):
     ambulancias = Ambulancia.objects.all().order_by('id')
     context = {'Ambulancias': ambulancias,
@@ -70,7 +75,7 @@ def ver_ambulancias(request):
 
 
 # -------- CONTROLLER US47 ---------
-@login_required
+@administrador_required
 def eliminar_ambulancias(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     pk = ambulancia.inventario
@@ -83,6 +88,7 @@ def eliminar_ambulancias(request, id):
 # -------- CONTROLLER US46 ---------
 
 ####### CONTROLLER US45############
+@method_decorator(administrador_required, name='dispatch')
 class EditarAmbulancia(UpdateView):
     model = Ambulancia
     form_class = CrearAmbulancia
@@ -164,7 +170,7 @@ def lista_ambulancias(request):
 
 
 ####### CONTROLLER US25 ###########
-@login_required
+@voluntario_required
 def viajes_ambulancia(request, id):
     historial = Viaje.objects.filter(ambulancia_id=id)
     context = {'historial': historial,
@@ -172,7 +178,25 @@ def viajes_ambulancia(request, id):
     return render(request, '../templates/ambulancia/ver_historial.html', context)
 ####### CONTROLLER US45############
 
+
+####### CONTROLLER US25 ###########
+
+######## CONTROLLER US22 ########
+@voluntario_required
+def materiales_usados(request, id):
+    material = MaterialUsado.objects.filter(viaje_id=id)
+    viaje = Viaje.objects.get(id=id)
+    ambulancia = viaje.ambulancia
+
+    context = {'material': material,
+               'viaje': ambulancia,
+               }
+    return render(request, '../templates/ambulancia/ver_material_usado.html', context)
+
+######## CONTROLLER US22 ########
+
 ####### CONTROLLER US26############
+@voluntario_required
 def ver_control_ambulancias(request):
     ambulancias = Ambulancia.objects.all().order_by('id')
 
@@ -183,6 +207,7 @@ def ver_control_ambulancias(request):
     }
     return render(request, '../templates/ambulancia/control_ambulancias.html', context)
 
+@administrador_required
 def control_ambulancias(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     form = CambiarEstado(request.POST)
@@ -197,3 +222,4 @@ def control_ambulancias(request, id):
     messages.info(request, 'Se ha cambiado el estado de la ambulancia!')
     return redirect ('ambulancia:ver_control_ambulancias')
 ####### CONTROLLER US26 ###########
+

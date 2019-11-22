@@ -126,11 +126,18 @@
                         <ul class="metismenu" id="side-menu">
 
                             <li class="menu-title">Menú</li>
-
+                            {% if user.is_anon %}
                             <li>
                                 <a href="/index/">
                                     <i class="mdi mdi-view-dashboard"></i>
-                                    <span> Dashboard </span>
+                                    <span> Mi Cuenta </span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="/index/">
+                                    <i class="mdi mdi-view-dashboard"></i>
+                                    <span> Mi Cuenta </span>
                                 </a>
                             </li>
 
@@ -154,7 +161,16 @@
                                     <span> Ambulancias </span>
                                 </a>
                             </li>
-
+                            {% endif %}
+                            {% if user.is_administrador %}
+                            <li>
+                                <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
+                                    <i class="mdi mdi-clipboard-check-outline"></i>
+                                    <span> Control de Ambulancias </span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% if user.is_adminplus %}
                             <li>
                                 <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
                                     <i class="mdi mdi-clipboard-check-outline"></i>
@@ -168,6 +184,7 @@
                                     <span> Usuarios y Permisos </span>
                                 </a>
                             </li>
+                            {% endif %}
                         </ul>
 
                     </div>
@@ -201,12 +218,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                    Vostok Dashboard App by <a href="">Impulse</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-md-right footer-links d-none d-sm-block">
-                                        <a href="javascript:void(0);">Soporte</a>
-                                        <a href="javascript:void(0);">Contacto</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
