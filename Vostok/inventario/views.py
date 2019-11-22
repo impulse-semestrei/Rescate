@@ -193,6 +193,7 @@ def guardar_inventario(inventario, request):
         fecha=fecha,
         nombre_paramedico=datos['nombre_paramedico'],
         email_paramedico=datos['email_paramedico'],
+        observaciones=datos['observaciones']
     )
     with transaction.atomic():
         revision.save()
