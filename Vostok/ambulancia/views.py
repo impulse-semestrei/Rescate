@@ -107,6 +107,7 @@ def viajes_ambulancia(request, id):
 ####### CONTROLLER US25 ###########
 
 ######## CONTROLLER US22 ########
+@voluntario_required
 def materiales_usados(request, id):
     material = MaterialUsado.objects.filter(viaje_id=id)
     viaje = Viaje.objects.get(id=id)
