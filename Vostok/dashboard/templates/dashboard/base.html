@@ -126,11 +126,18 @@
                         <ul class="metismenu" id="side-menu">
 
                             <li class="menu-title">Menú</li>
-
+                            {% if user.is_anon %}
                             <li>
                                 <a href="/index/">
                                     <i class="mdi mdi-view-dashboard"></i>
-                                    <span> Dashboard </span>
+                                    <span> Mi Cuenta </span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="/index/">
+                                    <i class="mdi mdi-view-dashboard"></i>
+                                    <span> Mi Cuenta </span>
                                 </a>
                             </li>
 
@@ -161,6 +168,9 @@
                                     <span> Control de Ambulancias </span>
                                 </a>
                             </li>
+                            {% endif %}
+                            {% if user.is_adminplus %}
+
 
                             <li>
                                 <a href="{% url 'users:ver_usuarios' %}">
@@ -168,6 +178,7 @@
                                     <span> Usuarios y Permisos </span>
                                 </a>
                             </li>
+                            {% endif %}
                         </ul>
 
                     </div>

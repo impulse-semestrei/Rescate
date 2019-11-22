@@ -272,6 +272,7 @@ Vostok/material/migrations/
 Vostok/inventario/migrations/
 Vostok/revision/migrations/
 Vostok/ambulancia/migrations/
+Vostok/users/migrations/
 
 Vostok/.idea/Vostok.iml
 Vostok/.idea/misc.xml

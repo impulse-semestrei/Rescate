@@ -3,6 +3,9 @@ from ambulancia.models import Ambulancia
 from revision.models import Revision, RevisionAmbulancia
 from inventario.models import InventarioMaterial
 from django.contrib.auth.decorators import login_required
+
+from users.decorators import voluntario_required,administrador_required,adminplus_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 from django.db.models import Sum, F, Func
 
@@ -10,7 +13,7 @@ from django.db.models import Sum, F, Func
 ##### CONTROLLER US09 #####
 
 
-@login_required
+@administrador_required
 def ver_revisiones(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     inventario = ambulancia.inventario
@@ -20,7 +23,7 @@ def ver_revisiones(request, id):
 ##### CONTROLLER US09 #####
 
 
-@login_required
+@administrador_required
 #### CONTROLLER US42 ######
 def ver_detalle_revsion(request, id, id_revision):
 
@@ -36,7 +39,7 @@ def ver_detalle_revsion(request, id, id_revision):
 
 #### CONTROLLER US29 ######
 
-@login_required
+@administrador_required
 def ver_revisiones_ambulancia(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     revisiones = RevisionAmbulancia.objects.filter(ambulancia=ambulancia)
@@ -45,7 +48,7 @@ def ver_revisiones_ambulancia(request, id):
 #### CONTROLLER US29 ######
 
 #### CONTROLLER US30 ######
-@login_required
+@administrador_required
 def ver_detalle_ambulancia(request, id, id_revision):
     revision = Revision.objects.get(id=id_revision)
     ambulancia = Ambulancia.objects.get(id=id)
