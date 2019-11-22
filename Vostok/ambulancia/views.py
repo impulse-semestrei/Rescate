@@ -128,7 +128,8 @@ def guardar_ambulancia(ambulancia, request):
             fecha=timezone.now(),
             ambulancia=ambulancia,
             gasolina=cantidades["gasolina"],
-            liquido_frenos=cantidades["liquido de frenos"]
+            liquido_frenos=cantidades["liquido de frenos"],
+            observaciones=datos["observaciones"]
         )
     except Exception:
         return False
