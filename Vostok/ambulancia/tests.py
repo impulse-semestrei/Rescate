@@ -4,6 +4,9 @@ from .models import Ambulancia, Viaje
 from .views import crear_ambulancia
 from .forms import CrearAmbulancia, CambiarEstado
 from django.urls import reverse
+from django.utils import timezone
+from revision.models import RevisionAmbulancia
+import json
 from revision.models import Revision
 
 ####### TEST US44############
@@ -37,7 +40,6 @@ class EditarAmbulancia(TestCase):
     def test_editarMaterialName(self):
             Ambulancia.objects.create(nombre='Test', inventario=self.inventario)
             self.client.get('ambulancia:editar_ambulancia', )
-
 ####### TEST US45############
 
 
@@ -53,6 +55,7 @@ class VerMaterialUsadoTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 ######## TESTS US22 ########
+
 
 ####### TEST US26############
 class ControlAmbulancias(TestCase):
@@ -73,3 +76,74 @@ class ControlAmbulancias(TestCase):
 
 ####### TEST US26############
 
+
+#### TESTS US28 ####
+class ChecklistAmbulanciaTestCase(TestCase):
+    def setUp(self):
+        inventario = Inventario.objects.create(nombre="Inventario de ambulancia")
+        self.ambulancia = Ambulancia.objects.create(nombre="Ambulancia", inventario=inventario)
+        self.revision = RevisionAmbulancia.objects.create(
+            nombre_paramedico="paramedico",
+            email_paramedico="paramedico@mail.com",
+            fecha=timezone.now(),
+            ambulancia=self.ambulancia,
+            gasolina=80,
+            liquido_frenos=200
+        )
+
+    def test_get(self):
+        referencia = {
+            "elementos": [
+                {
+                    "nombre": "gasolina",
+                    "id": 1,
+                    "objetivo": 100,
+                    "cantidad": 80
+                },
+                {
+                    "nombre": "liquido de frenos",
+                    "id": 2,
+                    "objetivo": 50,
+                    "cantidad": 200
+                }
+            ]
+        }
+        respuesta = self.client.get(reverse('ambulancia:checklist_ambulancia', args=[self.ambulancia.id]))
+        self.assertEqual(json.loads(respuesta.content), referencia)
+
+
+
+class ListaAmbulanciasTestCase(TestCase):
+    def setUp(self):
+        inventario1 = Inventario.objects.create(nombre="Inventario de ambulancia 1")
+        self.ambulancia1 = Ambulancia.objects.create(nombre="Ambulancia 1", inventario=inventario1)
+        inventario2 = Inventario.objects.create(nombre="Inventario de ambulancia 2")
+        self.ambulancia2 = Ambulancia.objects.create(nombre="Ambulancia 2", inventario=inventario2)
+        inventario3 = Inventario.objects.create(nombre="Inventario de ambulancia 3")
+        self.ambulancia3 = Ambulancia.objects.create(nombre="Ambulancia 3", inventario=inventario3)
+
+    def test_get(self):
+        referencia = {
+            "ambulancias": [
+                {
+                    "nombre": "Ambulancia",
+                    "id": 1,
+                    "idInventario": 1
+                },
+                {
+                    "nombre": "Ambulancia 2",
+                    "id": 2,
+                    "idInventario": 2
+                },
+                {
+                    "nombre": "Ambulancia 3",
+                    "id": 3,
+                    "idInventario": 3
+                }
+            ]
+        }
+        respuesta = self.client.get(reverse('ambulancia:lista_ambulancias'))
+        self.assertEqual(json.loads(respuesta), referencia)
+
+
+#### TESTS US28 ####

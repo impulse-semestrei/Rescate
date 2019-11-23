@@ -50,7 +50,7 @@ def ver_revisiones_ambulancia(request, id):
 #### CONTROLLER US30 ######
 @administrador_required
 def ver_detalle_ambulancia(request, id, id_revision):
-    revision = Revision.objects.get(id=id_revision)
+    revision = RevisionAmbulancia.objects.get(id=id_revision)
     ambulancia = Ambulancia.objects.get(id=id)
     context = {
         'revision': revision,
