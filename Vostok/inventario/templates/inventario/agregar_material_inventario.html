@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="card-box">
-                            <form method="post" novalidate>
+                            <form method="POST">
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <div class="row">
@@ -40,7 +40,7 @@
                                                 data-target="#modalCancel">Cancelar
                                         </button>
                                     </div>
-                                    <div class="col-md-2 offset-md-8">
+                                    <div class="col-md-2">
                                         <button class="btn btn-success waves-effect waves-light" type="submit">Guardar
                                         </button>
                                     </div>

@@ -8,7 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 from django.views.generic.edit import UpdateView
-from users.decorators import voluntario_required, administrador_required, adminplus_required
+
+from users.decorators import voluntario_required,administrador_required,adminplus_required
+from django.utils.decorators import method_decorator
 
 STATUS_SAVED = 'SAVED'
 STATUS_ERROR = 'ERROR'
@@ -16,7 +18,7 @@ STATUS_ERROR = 'ERROR'
 
 ######## CONTROLLER US36 ########
 
-@login_required
+@administrador_required
 def crear_material(request):
     if request.method == 'POST':
         form = CrearMaterial(request.POST)
@@ -50,7 +52,6 @@ def crear_material(request):
 
 ######## CONTROLLER US38 ########
 
-@login_required
 @voluntario_required
 def ver_material(request):
     materiales = Material.objects.filter(status=True).order_by('id')
@@ -65,7 +66,7 @@ def ver_material(request):
 ######## CONTROLLER US38 ########
 
 ######## CONTROLLER US39 ########
-@login_required
+@administrador_required
 def delete_material(request, id):
     material = Material.objects.get(id=id)
     material.status = False
@@ -83,6 +84,7 @@ def delete_material(request, id):
 
 
 # ------------- CONTROLLER US34 --------------
+@method_decorator(administrador_required, name='dispatch')
 class EditarMaterial(UpdateView):
     model = Material
     form_class = CrearMaterial

@@ -14,6 +14,9 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import UpdateView
 
+from users.decorators import voluntario_required,administrador_required,adminplus_required
+from django.utils.decorators import method_decorator
+
 STATUS_CREATED = 'CREATED'
 STATUS_ERROR = 'ERROR'
 STATUS_UPDATED = 'UPDATED'
@@ -22,7 +25,7 @@ STATUS_UPDATED = 'UPDATED'
 # Create your views here.
 ####### CONTROLLER US04############
 
-@login_required
+@administrador_required
 def crearInventarioView(request):
     form = crearInventarioForm(request.POST)
     if form.is_valid():
@@ -51,7 +54,7 @@ def crearInventarioView(request):
 
 ######## CONTROLLER US1 ########
 
-@login_required
+@administrador_required
 def agregar_material_inventario(request, pk):
     inventario = Inventario.objects.get(id=pk)
     context = {
@@ -90,7 +93,7 @@ def agregar_material_inventario(request, pk):
 ######## CONTROLLER US1 ########
 
 ####### CONTROLLER US07############
-@login_required
+@voluntario_required
 def ver_inventario(request):
     inventarios = Inventario.objects.all().order_by('id')
     context = {
@@ -102,7 +105,7 @@ def ver_inventario(request):
 
 
 ###### CONTROLLER US06 #######
-@login_required
+@administrador_required
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.delete()
@@ -118,7 +121,7 @@ def delete_inventario(request, id):
 
 
 ####### CONTROLLER US-05############
-@login_required
+@voluntario_required
 def ver_inventario_material(request, pk):
     inventario = Inventario.objects.get(id=pk)
     try:
@@ -142,7 +145,7 @@ def ver_inventario_material(request, pk):
 
 
 ###### CONTROLLER US03 ########
-@login_required
+@administrador_required
 def eliminar_material_inventario(request, inventario_id, material_id):
     material = InventarioMaterial.objects.get(id=material_id)
     material.delete()
@@ -158,6 +161,7 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 
 
 # ###### CONTROLLER US08 ########
+@method_decorator(administrador_required, name='dispatch')
 class EditarInventario(UpdateView):
     model = Inventario
     form_class = crearInventarioForm
@@ -193,6 +197,7 @@ def guardar_inventario(inventario, request):
         fecha=fecha,
         nombre_paramedico=datos['nombre_paramedico'],
         email_paramedico=datos['email_paramedico'],
+        observaciones=datos['observaciones']
     )
     with transaction.atomic():
         revision.save()
@@ -225,7 +230,7 @@ def checklist(request, pk):
 
 ###### CONTROLLER US02 ########
 
-@login_required
+@administrador_required
 def editar_material(request, inventario_id, material_id):
     material = InventarioMaterial.objects.get(inventario__id=inventario_id, material__id=material_id)
     form = EditarMaterialInventario(request.POST)
@@ -243,7 +248,7 @@ def editar_material(request, inventario_id, material_id):
 
 
 ####### CONTROLLER US07############
-@login_required
+@administrador_required
 def editar_inventario_view(request, id):
     inventario = Inventario.objects.get(id=id)
     form = crearInventarioForm({'nombre': inventario.nombre})

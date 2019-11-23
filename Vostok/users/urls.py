@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.login, name='login'),
     path('index/', index, name='index'),
     path('logout/',views.logoutUser,name='logout'),
-    path('ver/', views.ver_usuarios, name='ver_usuarios')
+    path('users/ver/', views.ver_usuarios, name='ver_usuarios'),
+    path('users/ver/<int:id>', views.ver_detalle_usuarios, name="detalle_usuario")
 ]
 
