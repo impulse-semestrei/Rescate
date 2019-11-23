@@ -54,7 +54,7 @@
                     <th scope="col">Material</th>
                     <th scope="col">Cantidad</th>
                     {% if user.is_administrador or user.is_adminplus %}
-                    <th scope="col">Editar Cantidad</th>
+{#                    <th scope="col">Editar Cantidad</th>#}
                     <th scope="col">Eliminar</th>
                     {% endif %}
 
@@ -69,10 +69,10 @@
                         <td>{{ material.cantidad }}</td>
 
                         {% if user.is_administrador or user.is_adminplus %}
-                        <td><a href="#editar-modal-{{ material.material }}" class="dropdown-item"
-                               data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a">
-                            <button class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        </a></td>
+{#                        <td><a href="#editar-modal-{{ material.material }}" class="dropdown-item"#}
+{#                               data-animation="blur" data-plugin="custommodal" data-overlaycolor="#36404a">#}
+{#                            <button class="btn btn-success"><i class="fas fa-edit"></i></button>#}
+{#                        </a></td>#}
                         <td>
                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                     data-target="#modalConfirmacion"><i class="fas fa-trash"></i></button>

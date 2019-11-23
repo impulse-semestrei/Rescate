@@ -94,83 +94,76 @@ materiales.append(Material.objects.create(nombre="Pato orinal", descripcion="", 
 materiales.append(Material.objects.create(nombre="Cómodo", descripcion="", cantidad=1))
 
 # Materiales de botiquín
-'''
-materiales.append(Material.objects.create(nombre="Termómetro oral", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Termómetro rectal", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Termómetro digital", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Glucómetro", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Pulsoxímetro", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Cloruro de etilo", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Cinta blanca", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Cinta micropor", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Salbutamol aerosol", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Ligadura", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Caja de punzos", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Electrolitos orales", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Cánulas orofaríngeas", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Cánulas nasofaríngeas", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Conector para oxigeno", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Alcohol", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Jabón quirúrgico", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Cloruro de benzalconio", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Yodopolividina", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Masc.Neonato", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Masc. Pediátrico", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Masc. Adulto", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Puntas nasales pediátrico", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="puntas nasales adulto", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Collarin adulto", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="collarin pediátrico", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Pulsoximetro", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Desfibrilidor automático", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Parche DEA", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Aspirador", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Mascarilla simple neonato", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Mascarilla simple pediátrico", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Mascarilla simple adulto", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Bolsa válvula mascarilla neonato 250 ml", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Bolsa válvula mascarilla lactante 500 ml", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Bolsa válvula mascarilla pediátrica 750 ml", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Bolsa válvula mascarilla adulto 1000 ml", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Esfigmomanómetro pediátrico", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Esfigmomanómetro adulto", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Equipo herramientas de mano", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Equipo básico de sañalización", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Neumático de refacción", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Llave de cruz", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Gato", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Juego de cables pasa-corriente", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Extintor", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Lámpara portátil de emergencia", descripcion="", cantidad=1))
-materiales.append(Material.objects.create(nombre="Mapa", descripcion="", cantidad=1))
-'''
+#
+# materiales.append(Material.objects.create(nombre="Termómetro oral", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Termómetro rectal", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Termómetro digital", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Glucómetro", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Pulsoxímetro", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Cloruro de etilo", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Cinta blanca", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Cinta micropor", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Salbutamol aerosol", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Ligadura", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Caja de punzos", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Electrolitos orales", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Cánulas orofaríngeas", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Cánulas nasofaríngeas", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Conector para oxigeno", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Alcohol", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Jabón quirúrgico", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Cloruro de benzalconio", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Yodopolividina", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Masc.Neonato", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Masc. Pediátrico", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Masc. Adulto", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Puntas nasales pediátrico", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="puntas nasales adulto", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Collarin adulto", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="collarin pediátrico", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Pulsoximetro", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Desfibrilidor automático", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Parche DEA", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Aspirador", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Mascarilla simple neonato", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Mascarilla simple pediátrico", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Mascarilla simple adulto", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Bolsa válvula mascarilla neonato 250 ml", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Bolsa válvula mascarilla lactante 500 ml", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Bolsa válvula mascarilla pediátrica 750 ml", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Bolsa válvula mascarilla adulto 1000 ml", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Esfigmomanómetro pediátrico", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Esfigmomanómetro adulto", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Equipo herramientas de mano", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Equipo básico de sañalización", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Neumático de refacción", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Llave de cruz", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Gato", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Juego de cables pasa-corriente", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Extintor", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Lámpara portátil de emergencia", descripcion="", cantidad=1))
+# materiales.append(Material.objects.create(nombre="Mapa", descripcion="", cantidad=1))
+
 fecha = timezone.now()
 
-# Inventario de ambulancia
-inventario_ambulancia = Inventario.objects.create(nombre="Inventario de ambulancia")
+nombres = ['Azul 1', 'Azul 2', 'Azul 3', 'Azul 4']
 
-# Almacén
-almacen = Inventario.objects.create(nombre="Almacén")
-
-revision = Revision.objects.create(fecha=fecha)
-
-# Añadir todos los materiales a la ambulancia
-for material in materiales:
-    InventarioMaterial.objects.create(
-        inventario=inventario_ambulancia,
-        material=material,
-        cantidad=material.cantidad,
-        revision=revision
+for nombre in nombres:
+    inventario = Inventario.objects.create(nombre="inventario "+nombre)
+    ambulancia = Ambulancia.objects.create(nombre=nombre, inventario=inventario, estado=Ambulancia.activa)
+    revision = Revision.objects.create(fecha=fecha)
+    revision_ambulancia = RevisionAmbulancia.objects.create(
+        fecha=fecha,
+        ambulancia=ambulancia,
+        gasolina=90,
+        liquido_frenos=40
     )
+    for material in materiales:
+        InventarioMaterial.objects.create(
+            inventario=inventario,
+            material=material,
+            cantidad=material.cantidad,
+            revision=revision
+        )
 
-# Añadir todos los materiales al almacén
-for material in materiales:
-    InventarioMaterial.objects.create(
-        inventario=almacen,
-        material=material,
-        cantidad=material.cantidad,
-        revision=revision
-    )
 
-ambulancia = Ambulancia.objects.create(nombre="Ambulancia", inventario=inventario_ambulancia)
-RevisionAmbulancia.objects.create(ambulancia=ambulancia, fecha=timezone.now(), gasolina=100, liquido_frenos=50)
