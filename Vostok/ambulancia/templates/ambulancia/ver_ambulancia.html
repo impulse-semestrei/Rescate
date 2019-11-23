@@ -29,7 +29,6 @@
             <table class="table table-hover table-dark" id="Ambulancias">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Inventario</th>
                 {% if user.is_administrador or user.is_adminplus %}
@@ -50,7 +49,6 @@
                 <tbody>
                 {% for ambulancia in Ambulancias %}
                         <tr>
-                            <th scope="row">{{ ambulancia.id }}</th>
                             <td>{{ ambulancia.nombre }}</td>
                             <td>{{ ambulancia.inventario.nombre }}</td>
                         {% if user.is_administrador or user.is_adminplus %}
@@ -70,7 +68,7 @@
                         {% if user.is_administrador or user.is_adminplus %}
                             <td><a href="{% url "revision:revisiones_ambulancia"  id=ambulancia.id %}"
                                    data-animation="blur" data-overlaycolor="#36404a">
-                                <button type="button" class=" btn btn-success"><i class="fas fa-ambulance"></i>
+                                <button type="button" class=" btn btn-info"><i class="fas fa-ambulance"></i>
                                 </button>
                             </a></td>
                         {% endif %}
