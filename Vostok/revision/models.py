@@ -17,3 +17,4 @@ class RevisionAmbulancia(models.Model):
     fecha = models.DateTimeField(null=False, default=timezone.now)
     ambulancia = models.ForeignKey('ambulancia.Ambulancia', on_delete=models.CASCADE)
 ######## MODEL US-29 ########
+
