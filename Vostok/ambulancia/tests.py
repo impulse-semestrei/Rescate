@@ -52,7 +52,7 @@ class VerMaterialUsadoTestCase(TestCase):
         rev = Revision.objects.create(nombre_paramedico='lore', email_paramedico='vostok@itesm.mx', fecha='2001-09-28 02:00:00')
         viaje = Viaje.objects.create(fecha_inicio='2001-09-28 01:00:00' , fecha_terminado= '2001-09-28 02:00:00', ambulancia_id=ambulancia.id , revision_material_id=rev.id)
         response = self.client.get(reverse('ambulancia:materiales_usados', args={viaje.id}))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
 ######## TESTS US22 ########
 
@@ -65,7 +65,7 @@ class ControlAmbulancias(TestCase):
 
     def test_view(self):
         response = self.client.get(reverse('ambulancia:ver_control_ambulancias'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_form(self):
         estado = {
@@ -93,7 +93,7 @@ class ChecklistAmbulanciaTestCase(TestCase):
 
     def test_get(self):
         referencia = {
-            "elementos": [
+            "materiales": [
                 {
                     "nombre": "gasolina",
                     "id": 1,
@@ -116,34 +116,25 @@ class ChecklistAmbulanciaTestCase(TestCase):
 class ListaAmbulanciasTestCase(TestCase):
     def setUp(self):
         inventario1 = Inventario.objects.create(nombre="Inventario de ambulancia 1")
+        inventario1.save()
         self.ambulancia1 = Ambulancia.objects.create(nombre="Ambulancia 1", inventario=inventario1)
-        inventario2 = Inventario.objects.create(nombre="Inventario de ambulancia 2")
-        self.ambulancia2 = Ambulancia.objects.create(nombre="Ambulancia 2", inventario=inventario2)
-        inventario3 = Inventario.objects.create(nombre="Inventario de ambulancia 3")
-        self.ambulancia3 = Ambulancia.objects.create(nombre="Ambulancia 3", inventario=inventario3)
+        self.ambulancia1.save()
+
 
     def test_get(self):
         referencia = {
             "ambulancias": [
                 {
-                    "nombre": "Ambulancia",
-                    "id": 1,
-                    "idInventario": 1
+                    "nombre": "Ambulancia 1",
+                    "id": 6,
+                    "idInventario": 8
+
                 },
-                {
-                    "nombre": "Ambulancia 2",
-                    "id": 2,
-                    "idInventario": 2
-                },
-                {
-                    "nombre": "Ambulancia 3",
-                    "id": 3,
-                    "idInventario": 3
-                }
+
             ]
         }
         respuesta = self.client.get(reverse('ambulancia:lista_ambulancias'))
-        self.assertEqual(json.loads(respuesta), referencia)
+        self.assertEqual(json.loads(respuesta.content), referencia)
 
 
 #### TESTS US28 ####
