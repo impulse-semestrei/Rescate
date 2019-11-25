@@ -11,7 +11,8 @@
         <div class="table-responsive">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Ambulancia: {{ ambulancia.nombre }}</li>
-                <li class="list-group-item">Responsable: {{ revision.nombre_paramedico }}</li>
+                <li class="list-group-item">Responsable: {{ revision.usuario.first_name }} {{ revision.usuario.last_name }}</li>
+                <li class="list-group-item">Guardia: {{ revision.usuario.turno }}</li>
                 <li class="list-group-item">Fecha: {{ revision.fecha }}</li>
                 <li class="list-group-item">Observaciones: <p>{{ revision.observaciones }}</p></li>
             </ul>

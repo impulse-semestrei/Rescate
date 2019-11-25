@@ -13,6 +13,8 @@ from django.views.generic.edit import UpdateView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from revision.models import RevisionAmbulancia
+from users.models import CustomUser
+from django.core.exceptions import ObjectDoesNotExist
 import json
 
 from users.decorators import voluntario_required,administrador_required,adminplus_required
@@ -123,14 +125,17 @@ def serializar_ambulancia(ambulancia):
 def guardar_ambulancia(ambulancia, request):
     datos = json.loads(request.body)
     try:
-        cantidades = {}
+        usuario = CustomUser.objects.get(email=datos["email_paramedico"])
+    except ObjectDoesNotExist:
+        return False
 
+    try:
+        cantidades = {}
         for item in datos["materiales"]:
             cantidades[item["nombre"]] = item["cantidad"]
 
         RevisionAmbulancia.objects.create(
-            nombre_paramedico=datos["nombre_paramedico"],
-            email_paramedico=datos["email_paramedico"],
+            usuario=usuario,
             fecha=timezone.now(),
             ambulancia=ambulancia,
             gasolina=cantidades["gasolina"],

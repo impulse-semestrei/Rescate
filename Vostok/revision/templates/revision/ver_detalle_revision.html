@@ -10,8 +10,9 @@
     {% if  materiales %}
         <h4>Ambulancia: {{ ambulancia.nombre }}</h4>
         <h4>Fecha de revision: {{ revision.fecha }}</h4>
-        <h4>Paramedico Encargado: {{ revision.nombre_paramedico }}</h4>
-        <h4>Correo: {{ revision.email_paramedico }}</h4>
+        <h4>Paramédico Encargado: {{ revision.usuario.first_name }} {{ revision.usuario.last_name }}</h4>
+        <h4>Correo: {{ revision.usuario.email }}</h4>
+        <h4>Guardia: {{ revision.usuario.turno }}</h4>
         <h4>Observaciones:</h4>
         <p>{{ revision.observaciones }}</p>
 

@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+from users.models import CustomUser
+
 from .forms import crearInventarioForm, AgregarMaterialInventario, EditarMaterialInventario
 from .models import Inventario
 from django.db import DatabaseError, transaction, IntegrityError
@@ -193,10 +195,14 @@ def guardar_inventario(inventario, request):
     datos = json.loads(request.body)
     objects = []
     fecha = timezone.now()
+    try:
+        usuario = CustomUser.objects.get(email=datos["email_paramedico"])
+    except ObjectDoesNotExist:
+        return False
+
     revision = Revision(
         fecha=fecha,
-        nombre_paramedico=datos['nombre_paramedico'],
-        email_paramedico=datos['email_paramedico'],
+        usuario=usuario,
         observaciones=datos['observaciones']
     )
     with transaction.atomic():

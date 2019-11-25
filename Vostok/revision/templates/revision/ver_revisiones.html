@@ -21,18 +21,17 @@
             <table class="table table-dark mb-0">
                 <thead>
                 <tr>
-
-                    <th>Paramédico</th>
                     <th>Fecha de Revision</th>
-
+                    <th>Paramédico</th>
+                    <th>Guardia</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for registro in registros %}
                     <tr>
-
-                        <td>{{ registro.revision.nombre_paramedico }}</td>
                         <td>{{ registro.revision.fecha }}</td>
+                        <td>{{ registro.revision.usuario.first_name }} {{ registro.revision.usuario.last_name }}</td>
+                        <th>{{ registro.revision.usuario.turno }}</th>
                         <td><a href="{{ registro.revision.id }}">
                             <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Ver detalle
                             </button>

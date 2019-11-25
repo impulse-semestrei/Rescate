@@ -15,8 +15,9 @@
                 <thead>
                 <tr>
 
-                    <th>Nombre</th>
                     <th>Fecha de Revision</th>
+                    <th>Encargado</th>
+                    <th>Guardia</th>
 
                 </tr>
                 </thead>
@@ -25,9 +26,9 @@
                 {% for revision in revisiones %}
 
                     <tr>
-
-                        <td>{{ ambulancia.nombre }}</td>
                         <td>{{ revision.fecha }}</td>
+                        <td>{{ revision.usuario.first_name }}{{ revision.usuario.last_name }}</td>
+                        <td>{{ revision.usuario.turno }}</td>
                         <td><a href="{% url 'revision:detalle_ambulancia' id=ambulancia.id id_revision=revision.id %}">
                             <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Ver detalle
                             </button>
