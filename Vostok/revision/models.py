@@ -18,5 +18,10 @@ class RevisionAmbulancia(models.Model):
     ambulancia = models.ForeignKey('ambulancia.Ambulancia', on_delete=models.CASCADE)
     gasolina = models.IntegerField()
     liquido_frenos = models.IntegerField()
+    aceite_motor = models.IntegerField()
+    aceite_direccion = models.IntegerField()
+    anticongelante = models.IntegerField()
+    kilometraje = models.IntegerField()
+    liquido_limpiaparabrisas = models.IntegerField()
     observaciones = models.TextField(max_length=250)
 ######## MODEL US-29 ########

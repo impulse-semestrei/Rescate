@@ -106,16 +106,46 @@ def serializar_ambulancia(ambulancia):
     json = {
         'materiales': [
             {
-                'nombre': 'gasolina',
+                'nombre': 'Gasolina',
                 'id': 1,
                 'objetivo': ambulancia.objetivo_gasolina,
                 'cantidad': revision.gasolina,
             },
             {
-                'nombre': 'liquido de frenos',
+                'nombre': 'Kilometraje',
                 'id': 2,
+                'objetivo': ambulancia.objetivo_kilometraje,
+                'cantidad': revision.kilometraje,
+            },
+            {
+                'nombre': 'Líquido de frenos',
+                'id': 3,
                 'objetivo': ambulancia.objetivo_liquido_frenos,
                 'cantidad': revision.liquido_frenos,
+            },
+            {
+                'nombre': 'Aceite de motor',
+                'id': 4,
+                'objetivo': ambulancia.objetivo_aceite_motor,
+                'cantidad': revision.aceite_motor,
+            },
+            {
+                'nombre': 'Aceite de dirección',
+                'id': 5,
+                'objetivo': ambulancia.objetivo_aceite_direccion,
+                'cantidad': revision.aceite_direccion,
+            },
+            {
+                'nombre': 'Anticongelante',
+                'id': 6,
+                'objetivo': ambulancia.objetivo_anticongelante,
+                'cantidad': revision.anticongelante,
+            },
+            {
+                'nombre': 'Líquido limpiaparabrisas',
+                'id': 7,
+                'objetivo': ambulancia.objetivo_liquido_limpiaparabrisas,
+                'cantidad': revision.liquido_limpiaparabrisas,
             }
         ]
     }
@@ -138,8 +168,13 @@ def guardar_ambulancia(ambulancia, request):
             usuario=usuario,
             fecha=timezone.now(),
             ambulancia=ambulancia,
-            gasolina=cantidades["gasolina"],
-            liquido_frenos=cantidades["liquido de frenos"],
+            gasolina=cantidades["Gasolina"],
+            kilometraje=cantidades["Kilometraje"],
+            liquido_frenos=cantidades["Líquido de frenos"],
+            aceite_motor=cantidades["Aceite de motor"],
+            aceite_direccion=cantidades["Aceite de dirección"],
+            anticongelante=cantidades["Anticongelante"],
+            liquido_limpiaparabrisas=cantidades["Líquido limpiaparabrisas"],
             observaciones=datos["observaciones"]
         )
     except Exception:

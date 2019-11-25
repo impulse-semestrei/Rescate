@@ -24,7 +24,12 @@ class Ambulancia(models.Model):
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, unique=True)
 
     objetivo_gasolina = 100
-    objetivo_liquido_frenos = 50
+    objetivo_liquido_frenos = 100
+    objetivo_aceite_motor = 100
+    objetivo_aceite_direccion = 100
+    objetivo_anticongelante = 100
+    objetivo_kilometraje = 0
+    objetivo_liquido_limpiaparabrisas = 100
 
 ####### MODELS US44############
 
