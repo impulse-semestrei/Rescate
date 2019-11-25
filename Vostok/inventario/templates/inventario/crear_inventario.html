@@ -1,0 +1,78 @@
+<!--  ######VIEW US38###### -->
+{% extends 'dashboard/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 offset-lg-2">
+                <div class="row">
+                    <div class="col mb-6">
+                        <h1>Crear Inventario</h1>
+                         <a href="{% url 'inventario:ver_inventario' %}">
+                        <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel"><i
+                                class="fas fa-arrow-left"></i></button></a>
+                        <br><br>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card-box">
+                                        {% if user.is_authenticated %}
+                                            <!-- comprueba si la sesión del usuario está iniciada -->
+
+                                            {% if form.errors %}
+                                                {% for field in form %}
+                                                    {% for error in field.errors %}
+                                                        <ul class="messages">
+                                                            <li>{{ error|escape }}</li>
+                                                        </ul>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                                {% for error in form.non_field_errors %}
+                                                    <ul class="messages">
+                                                        <li>{{ error|escape }}</li>
+                                                    </ul>
+                                                {% endfor %}
+                                            {% endif %}
+                                            <div class="input-field ">
+                                                <label class="active">Nombre de inventario:</label>
+                                                <input class="form-control" name="nombre" maxlength="100" required=""
+                                                       id="nombre">
+
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <a href="{% url 'inventario:ver_inventario' %}"
+                                                           class="btn btn-danger">Regresar</a>
+                                                    </div>
+                                                    <div class="col-md-2 offset-md-7">
+                                                        <button type="submit" class="btn btn-success">Guardar</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </form>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+
+
+                                        {% else %}
+                                            <h1>Not authenticated</h1> <!-- si la sesión no está iniciada te muestra -->
+
+
+                                        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+<!--  ########VIEW US38####### -->

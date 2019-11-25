@@ -1,0 +1,193 @@
+<!-- ######## VIEW US1 ######## -->
+
+
+{% extends 'dashboard/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <div class="row">
+        <div class="col text-center m-3">
+            <h1>Agregar material a {{ nombre_inventario }}</h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 offset-lg-2">
+                <div class="row">
+                    <div class="col mb-3">
+                        <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card-box">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <button class="btn btn-danger" type="button" data-toggle="modal"
+                                                data-target="#modalCancel">Cancelar
+                                        </button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success waves-effect waves-light" type="submit">Guardar
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if status == "CREATED" %}
+            <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p>Se han agregado {{ cantidad }} unidades de {{ nombre_material }}
+                                a {{ nombre_inventario }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'inventario:material_inventario' id_inventario %}"><button class="btn btn-success">De acuerdo</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $("#modalSaved").modal({
+                    backdrop: "static",
+                    keyboard: false
+                });
+            </script>
+        {% elif status == "UPDATED" %}
+            <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p>Se han agregado {{ cantidad }} unidades de {{ nombre_material }}
+                                a {{ nombre_inventario }} </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'inventario:material_inventario' id_inventario %}">
+                                <button class="btn btn-success">De acuerdo</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $("#modalSaved").modal({
+                    backdrop: "static",
+                    keyboard: false
+                });
+            </script>
+        {% endif %}
+
+        <div class="modal" id="modalCancel" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Si sales ahora no se guardará el material nuevo</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'inventario:material_inventario' id_inventario %}">
+                            <button class="btn btn-danger">Salir sin guardar</button>
+                        </a>
+                        <a href="{% url 'inventario:material_inventario' id_inventario %}">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Continuar editando
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="suggestions">
+
+    </div>
+    <script>
+        // the number of matches that, when exceeded, makes the scrollbar appear
+        let MATCHES_LIMIT = 3;
+        // the height to which the suggestions div gets fixed when there is a scrollbar
+        let SUGGESTIONS_HEIGHT = "140px";
+        // get the materials from the backend
+        let materials = [
+            {% for material in lista_materiales %}
+                "{{ material.nombre }}",
+            {% endfor %}
+        ];
+        // get the text input for the material name
+        let input = document.getElementById("id_material");
+        // avoid browser from showing the default autocomplete
+        input.setAttribute("autocomplete", "off");
+        // create a div to contain the suggestions
+        let suggestions = document.createElement("div");
+        // this will make the div have a scroll when its defined height is exceeded
+        // defined height is not specified now, since it would make the div visible
+        // as an empty space below the input when it isn't necessary
+        suggestions.style.overflowY = "auto";
+        // function for clearing the suggestions
+        clear = (element) => {
+            while (element.hasChildNodes()) {
+                element.removeChild(element.firstChild)
+            }
+        };
+        // add the suggestions to the parent of the input so that they appear below
+        // the text input
+        input.parentElement.appendChild(suggestions);
+        input.onkeyup = () => {
+            // the quantity of materials that match the text introduced by the user
+            let matches = 0;
+            // clear whatever was inside suggestions
+            clear(suggestions);
+            // if the user has written something
+            if (input.value.length > 0) {
+                materials
+                // get material names that match what is in the input
+                    .filter((material) => material.toUpperCase().includes(input.value.toUpperCase()))
+                    .forEach((material) => {
+                        // create a new suggestion
+                        let suggestion = document.createElement("div");
+                        // this makes it look like a button with borders and makes it
+                        // have the same width as the input
+                        suggestion.className = "btn btn-outline-primary btn-block m-0";
+                        suggestion.innerText = material;
+                        // when a suggestion is clicked, the text in the input gets updated,
+                        // the suggestions are erased and their height is reset
+                        suggestion.onclick = () => {
+                            input.value = material;
+                            clear(suggestions);
+                            // this is needed since the height gets fixed to a specific value
+                            // when the matches number exceeds a limit
+                            suggestions.style.height = "auto";
+                        };
+                        suggestions.appendChild(suggestion);
+                        matches++;
+                    });
+            }
+            if (matches > MATCHES_LIMIT) {
+                // fix the height of the suggestions div for the automatic scrollbar to appear
+                suggestions.style.height = SUGGESTIONS_HEIGHT;
+            } else {
+                suggestions.style.height = "auto";
+            }
+        }
+    </script>
+
+
+{% endblock %}
+
+<!-- ######## VIEW US1 ######## -->

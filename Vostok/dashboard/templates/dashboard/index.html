@@ -1,0 +1,79 @@
+<!-- Template US-14 -->
+{% extends 'dashboard/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+     <script type="text/javascript">
+                        $('#myForm').on('sumbit',function(e){
+                            $('#modalSaved').modal('show');
+                            e.preventDefault();
+                        });
+     </script>
+
+    <h1>¡Bienvenido!</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-box">
+                    {% if user.is_authenticated %}
+                        {% if user.is_anon %}
+                            <h2>Gracias por crear tu cuenta.</h2>
+                            <h4>Para empezar a utilizar la aplicación, ponte en contacto con tu administrador.</h4>
+                            <hr>
+                        {% endif %}
+                        <h2>Información de tu cuenta:</h2>
+                        <h4>Nombre de Usuario: {{ user.username }}</h4>
+                        <h4>Nombre: {{ user.first_name }} {{ user.last_name }}</h4>
+                        <h4>Email: {{ user.email }}</h4>
+                        <h4>Teléfono: {{ user.cellphone }}</h4>
+                        <h4>Fecha de nacimiento: {{ user.date_of_birth }}</h4>
+
+                    {% endif %}
+
+                    {% if user.cellphone == NULL %}
+                        <hr>
+                        <h4>Mientras tanto, por favor proporciona esta información:</h4>
+                        <form method="POST" onsubmit="openModal()" >
+                            {% csrf_token %}
+                            {{   form.as_p }}
+                        <button type="submit" name="action" class=" btn btn-success">Guardar</button>
+                        </form>
+                    {% else %}
+                        <hr>
+                        <hr>
+                        <h3>Editar Información Personal:</h3>
+                        <form method="POST" onsubmit="openModal()" id="myForm">
+                        {% csrf_token %}
+                        {{   form.as_p }}
+                        <button type="submit" name="action"  class="btn btn-success">Guardar</button>
+                        </form>
+                    {% endif %}
+
+
+                          <div class="modal"  id="modalSaved" tabindex="-1" role="dialog">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-body">
+                                    <p>Se ha creado la ambulancia</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <a href="/index" class="btn btn-success">Aceptar</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+<!-- Template US-14 -->8

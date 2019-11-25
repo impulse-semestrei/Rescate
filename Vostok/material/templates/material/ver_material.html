@@ -1,0 +1,160 @@
+<!--######VIEW US38 #######-->
+{% extends 'dashboard/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div>
+            <h1><i class="zmdi zmdi-shape"> </i>Materiales </h1></div>
+        <div class="row">
+            <div class="col-10">
+
+                <div id="datatable_filter" class="dataTables_filter"><label>Buscar:<input
+                        type="search" class="form-control form-control-sm" placeholder=""
+                        aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
+
+            </div>
+
+            {% if user.is_administrador or user.is_adminplus %}
+            <div class="col">
+                <br>
+                <a href="{% url 'material:crear' %}">
+                    <button type="button"
+                            class="btn btn-bordred-success waves-effect  width-md waves-light"><i
+                            class="fas fa-plus"></i> Agregar Material
+                    </button>
+                </a>
+            </div>
+            {% endif %}
+
+        </div>
+        <br>
+        <table class="table table-hover table-dark" id="Materiales">
+            <tbody>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+
+            <thead>
+            <tr role="row" align="center">
+                <th scope="col">
+                    Código
+                </th>
+                <th scope="col">
+                    Nombre
+                </th>
+                <th scope="col">
+                    Descripción
+                </th>
+                <th scope="col">
+                    Cantidad
+                </th>
+                {% if user.is_administrador or user.is_adminplus %}
+                <th scope="col">
+                    Editar
+                </th>
+                <th scope="col">
+                    Eliminar
+                </th>
+        {% endif %}
+            </thead>
+
+
+            <tbody align="center">
+            {% for material in materiales %}
+
+                <tr role="row" class="odd">
+                    <td tabindex="0" class="sorting_1">{{ material.codigo }}</td>
+                    <td>{{ material.nombre }}</td>
+                    <td>{{ material.descripcion }}</td>
+                    <td>{{ material.cantidad }}</td>
+                    {% if user.is_administrador or user.is_adminplus %}
+                    <td><a
+                            href="{% url 'material:editar_material' material.id %}">
+                        <button class="btn btn-success"><i class="fas fa-edit"></i>
+                        </button>
+                    </a></td>
+                    <td><a href="#delete-modal-{{ material.id }}"
+                           data-animation="blur"
+                           data-plugin="custommodal"
+                           data-overlaycolor="#36404a">
+                        <button type="button" class="btn btn-danger"
+                                data-toggle="modal"
+                                data-target="#modalConfirmacion"><i
+                                class="fas fa-trash"></i></button>
+                    </a></td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+    <!-- ##########View US39##### -->
+    {% for material in materiales %}
+
+        <div id="delete-modal-{{ material.id }}" class="modal-demo">
+            <button type="button" class="close" onclick="Custombox.modal.close();">
+                <span>×</span><span class="sr-only">Close</span>
+            </button>
+            <h4 class="custom-modal-title">Eliminar el material
+                <span>{{ material.nombre }}</span>?</h4>
+            <div class="custom-modal-text">
+                Quieres eliminar el material {{ material.nombre }} permanentemente?
+                <form action="#" data-parsley-validate="" novalidate="">
+                    <div class="form-group text-right mb-0">
+                        <button class="btn btn-danger waves-effect waves-light mr-1"
+                                type="submit">
+                            <a href="{% url 'material:delete_material' material.id %}">Eliminar</a>
+                        </button>
+                        <button type="reset"
+                                class="btn btn-secondary waves-effect waves-light"
+                                onclick="Custombox.modal.close();">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- US39 -->
+
+
+
+
+    {% endfor %}
+
+
+    </tbody>
+    </table>
+    </div> <!-- container-fluid -->
+    <script>
+        function Filter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("Materiales");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+
+{% endblock %}
+
+<!--######VIEW US38 #######-->
+

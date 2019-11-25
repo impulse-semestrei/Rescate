@@ -1,0 +1,11 @@
+drop table revision_revision;
+drop table inventario_inventariomaterial;
+drop table material_material;
+drop table ambulancia_ambulancia;
+drop table inventario_inventario;
+
+delete from django_migrations where app='revision_revision';
+delete from django_migrations where app='inventario_inventariomaterial';
+delete from django_migrations where app='material_material';
+delete from django_migrations where app='ambulancia_ambulancia';
+delete from django_migrations where app='inventario_inventario';
