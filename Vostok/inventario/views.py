@@ -70,19 +70,22 @@ def agregar_material_inventario(request, pk):
                 material = form.cleaned_data.get('material')
                 cantidad = form.cleaned_data.get('cantidad')
                 context['nombre_material'] = material
-                context['cantidad'] = cantidad
+                #context['cantidad'] = cantidad
+                print('deberia funcionar')
                 try:
                     with transaction.atomic():
                         inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
                         inventario_material.cantidad += cantidad
                         inventario_material.save()
                         context['status'] = STATUS_UPDATED
+                        print('no suma')
                 except ObjectDoesNotExist:
                     InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad)
                     context['status'] = STATUS_CREATED
                 return render(request, '../templates/inventario/agregar_material_inventario.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
+                print('Error')
                 return render(request, '../templates/inventario/agregar_material_inventario.html', context)
     else:
         form = AgregarMaterialInventario()
