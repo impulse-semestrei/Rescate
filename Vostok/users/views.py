@@ -43,23 +43,35 @@ def ver_detalle_usuarios(request,id):
         usuario = User.objects.get(id=id)
 
         if request.method == 'POST':
+            if request.POST.get('turno') != "0":
+                usuario.turno = request.POST.get('turno')
 
-            form = CustomUserUpdateForm(request.POST)
+            if request.POST.get('rol') != "0":
+                if request.POST.get('rol') == "1":
+                    usuario.is_anon = True
+                    usuario.is_voluntario = False
+                    usuario.is_administrador = False
+                    usuario.is_adminplus = False
+                if request.POST.get('rol') == "2":
+                    usuario.is_anon = False
+                    usuario.is_voluntario = True
+                    usuario.is_administrador = False
+                    usuario.is_adminplus = False
+                if request.POST.get('rol') == "3":
+                    usuario.is_anon = False
+                    usuario.is_voluntario = False
+                    usuario.is_administrador = True
+                    usuario.is_adminplus = False
+                if request.POST.get('rol') == "4":
+                    usuario.is_anon = False
+                    usuario.is_voluntario = False
+                    usuario.is_administrador = False
+                    usuario.is_adminplus = True
 
-            if form.is_valid():
+            usuario.save()
+            return HttpResponseRedirect('/users/ver/')
 
-                usuario.is_anon = form.cleaned_data.get('is_anon')
-                usuario.is_voluntario = form.cleaned_data.get('is_voluntario')
-                usuario.is_administrador = form.cleaned_data.get('is_administrador')
-                usuario.is_adminplus = form.cleaned_data.get('is_adminplus')
-                usuario.turno = form.cleaned_data.get('turno')
-                usuario.save()
-                return HttpResponseRedirect('/users/ver/')
-
-        else:
-            form = CustomUserUpdateForm()
-
-        context = {'usuario': usuario, 'form': form}
+        context = {'usuario': usuario}
         return render(request,'../templates/users/ver_detalle_usuario.html',context)
     except :
         return render(request,'../templates/data_base_error.html') #cambiar esto a pantalla de error

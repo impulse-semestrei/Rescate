@@ -161,7 +161,8 @@
                                     <span> Ambulancias </span>
                                 </a>
                             </li>
-
+                            {% endif %}
+                            {% if user.is_administrador %}
                             <li>
                                 <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
                                     <i class="mdi mdi-clipboard-check-outline"></i>
@@ -170,7 +171,12 @@
                             </li>
                             {% endif %}
                             {% if user.is_adminplus %}
-
+                            <li>
+                                <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
+                                    <i class="mdi mdi-clipboard-check-outline"></i>
+                                    <span> Control de Ambulancias </span>
+                                </a>
+                            </li>
 
                             <li>
                                 <a href="{% url 'users:ver_usuarios' %}">
@@ -212,12 +218,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                    Vostok Dashboard App by <a href="">Impulse</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-md-right footer-links d-none d-sm-block">
-                                        <a href="javascript:void(0);">Soporte</a>
-                                        <a href="javascript:void(0);">Contacto</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
