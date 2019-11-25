@@ -26,8 +26,8 @@ class Inventario(models.Model):
 class InventarioMaterial(models.Model):
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE)
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
-    cantidad = models.IntegerField(null=False)
-    revision = models.ForeignKey(Revision, on_delete=models.CASCADE)
+    cantidad = models.IntegerField(null=True)
+    revision = models.ForeignKey(Revision, on_delete=models.CASCADE, null=True)
 
 
 #### MODEL US21 ####

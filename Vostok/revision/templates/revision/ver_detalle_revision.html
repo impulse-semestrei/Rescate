@@ -8,12 +8,14 @@
 
 
     {% if  materiales %}
-        <h4>Ambulancia: {{ ambulancia.nombre }}</h4>
-        <h4>Fecha de revision: {{ revision.fecha }}</h4>
-        <h4>Paramedico Encargado: {{ revision.nombre_paramedico }}</h4>
-        <h4>Correo: {{ revision.email_paramedico }}</h4>
-        <h4>Observaciones:</h4>
-        <p>{{ revision.observaciones }}</p>
+        <div class="table-responsive">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Ambulancia: {{ ambulancia.nombre }}</li>
+                <li class="list-group-item">Responsable: {{ revision.nombre_paramedico }}</li>
+                <li class="list-group-item">Fecha de revision: {{ revision.fecha }}</li>
+                <li class="list-group-item">Observaciones: <p>{{ revision.observaciones }}</p></li>
+            </ul>
+        </div>
 
         <p align="right"><a href="{% url "revision:revisiones" id=ambulancia.id %}">
             <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Regresar a revisiones</button>
