@@ -4,7 +4,7 @@ from .forms import CrearAmbulancia
 from .forms import CrearAmbulancia, CambiarEstado
 from .models import Ambulancia, Viaje
 from inventario.models import Inventario
-from django.db import DatabaseError
+from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from inventario.models import Inventario
@@ -159,26 +159,32 @@ def guardar_ambulancia(ambulancia, request):
     except ObjectDoesNotExist:
         return False
 
-    try:
-        cantidades = {}
-        for item in datos["materiales"]:
-            cantidades[item["nombre"]] = item["cantidad"]
 
-        RevisionAmbulancia.objects.create(
-            usuario=usuario,
-            fecha=timezone.now(),
-            ambulancia=ambulancia,
-            gasolina=cantidades["Gasolina"],
-            kilometraje=cantidades["Kilometraje"],
-            liquido_frenos=cantidades["Líquido de frenos"],
-            aceite_motor=cantidades["Aceite de motor"],
-            aceite_direccion=cantidades["Aceite de dirección"],
-            anticongelante=cantidades["Anticongelante"],
-            liquido_limpiaparabrisas=cantidades["Líquido limpiaparabrisas"],
-            observaciones=datos["observaciones"]
-        )
-    except Exception:
-        return False
+    cantidades = {}
+    listo = True
+    for item in datos["materiales"]:
+        cantidades[item["nombre"]] = item["cantidad"]
+        if item["cantidad"] < item["objetivo"]:
+            listo = False
+    with transaction.atomic():
+        try:
+            RevisionAmbulancia.objects.create(
+                usuario=usuario,
+                fecha=timezone.now(),
+                ambulancia=ambulancia,
+                gasolina=cantidades["Gasolina"],
+                kilometraje=cantidades["Kilometraje"],
+                liquido_frenos=cantidades["Líquido de frenos"],
+                aceite_motor=cantidades["Aceite de motor"],
+                aceite_direccion=cantidades["Aceite de dirección"],
+                anticongelante=cantidades["Anticongelante"],
+                liquido_limpiaparabrisas=cantidades["Líquido limpiaparabrisas"],
+                observaciones=datos["observaciones"]
+            )
+            ambulancia.ambulancia_lista = listo
+            ambulancia.save()
+        except Exception:
+            return False
 
     return True
 
@@ -200,7 +206,9 @@ def lista_ambulancias(request):
             {
                 'nombre': ambulancia.nombre,
                 'id': ambulancia.id,
-                'idInventario': ambulancia.inventario_id
+                'idInventario': ambulancia.inventario_id,
+                'inventario_listo': ambulancia.inventario_listo,
+                'ambulancia_lista': ambulancia.ambulancia_lista,
             }
         )
     return JsonResponse(output)

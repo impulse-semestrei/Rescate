@@ -23,6 +23,9 @@ class Ambulancia(models.Model):
     estado = models.IntegerField(choices=estados_ambulancias, default=desactivada)
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, unique=True)
 
+    ambulancia_lista = models.BooleanField(default=False)
+    inventario_listo = models.BooleanField(default=False)
+
     objetivo_gasolina = 100
     objetivo_liquido_frenos = 100
     objetivo_aceite_motor = 100

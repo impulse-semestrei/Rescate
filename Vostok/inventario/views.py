@@ -1,3 +1,4 @@
+from ambulancia.models import Ambulancia
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from users.models import CustomUser
 
@@ -205,13 +206,23 @@ def guardar_inventario(inventario, request):
         usuario=usuario,
         observaciones=datos['observaciones']
     )
+
+    try:
+        ambulancia = Ambulancia.objects.get(inventario=inventario)
+    except ObjectDoesNotExist:
+        return False
+
     with transaction.atomic():
+        listo = True
         revision.save()
         for item in datos['materiales']:
             try:
                 m = Material.objects.get(id=item['id'])
             except ObjectDoesNotExist:
                 return False
+            if item['cantidad'] < item['objetivo']:
+                listo = False
+
             objects.append(InventarioMaterial(
                 inventario=inventario,
                 material=m,
@@ -220,6 +231,8 @@ def guardar_inventario(inventario, request):
             )
         for item in objects:
             item.save()
+        ambulancia.inventario_listo = listo
+        ambulancia.save()
     return True
 
 @csrf_exempt
