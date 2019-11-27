@@ -207,8 +207,8 @@ def lista_ambulancias(request):
                 'nombre': ambulancia.nombre,
                 'id': ambulancia.id,
                 'idInventario': ambulancia.inventario_id,
-                'inventario_listo': ambulancia.inventario_listo,
-                'ambulancia_lista': ambulancia.ambulancia_lista,
+                'inventarioListo': ambulancia.inventario_listo,
+                'ambulanciaLista': ambulancia.ambulancia_lista,
             }
         )
     return JsonResponse(output)
