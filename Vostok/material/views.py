@@ -29,6 +29,7 @@ def crear_material(request):
         if form.is_valid():
             try:
                 new_material = Material(
+                    codigo=form.cleaned_data.get('codigo'),
                     nombre=form.cleaned_data.get('nombre'),
                     descripcion=form.cleaned_data.get('descripcion'),
                     cantidad=form.cleaned_data.get('cantidad'),
