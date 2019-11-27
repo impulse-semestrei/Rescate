@@ -23,7 +23,7 @@ from django.utils.decorators import method_decorator
 STATUS_CREATED = 'CREATED'
 STATUS_ERROR = 'ERROR'
 STATUS_UPDATED = 'UPDATED'
-
+STATUS_SAVED = 'SAVED'
 
 # Create your views here.
 ####### CONTROLLER US04############
@@ -41,9 +41,10 @@ def crearInventarioView(request):
             context = {
                 'inventarios': inventarios,
                 'form': crearInventarioForm(),
+                'status': STATUS_SAVED,
             }
-            messages.info(request, 'Se ha creado el inventario')
-            return render(request, '../templates/inventario/ver_inventario.html', context)
+            #messages.info(request, 'Se ha creado el inventario')
+            return render(request, '../templates/inventario/crear_inventario.html', context)
 
         except DatabaseError:
             messages.info(request, 'Ya existe un inventario con ese nombre.')
@@ -73,7 +74,8 @@ def agregar_material_inventario(request, pk):
                 material = form.cleaned_data.get('material')
                 cantidad = form.cleaned_data.get('cantidad')
                 context['nombre_material'] = material
-                context['cantidad'] = cantidad
+                #context['cantidad'] = cantidad
+
                 try:
                     with transaction.atomic():
                         inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)

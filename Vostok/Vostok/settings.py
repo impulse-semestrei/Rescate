@@ -29,7 +29,7 @@ SECRET_KEY = '#r4o936d!1pex@c(nte^x$bg7&d+b6d+k3kb#1!v^@=+34&sfk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1','localhost', 'rescate1app.com', '157.230.156.154']
+ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1','localhost', 'rescate1app.com', '157.230.156.154', '206.189.161.48', 'rescate1test.com']
 
 # Application definition
 

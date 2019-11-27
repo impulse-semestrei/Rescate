@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
+from inventario.models import InventarioMaterial
 from .models import Material
 from .forms import CrearMaterial
 from django.db import DatabaseError
@@ -28,6 +29,7 @@ def crear_material(request):
         if form.is_valid():
             try:
                 new_material = Material(
+                    codigo=form.cleaned_data.get('codigo'),
                     nombre=form.cleaned_data.get('nombre'),
                     descripcion=form.cleaned_data.get('descripcion'),
                     cantidad=form.cleaned_data.get('cantidad'),
@@ -68,12 +70,11 @@ def ver_material(request):
 ######## CONTROLLER US39 ########
 @administrador_required
 def delete_material(request, id):
-    material = Material.objects.get(id=id)
-    material.status = False
-    material.fecha_mod = timezone.now()
-    material.save()
+    InventarioMaterial.objects.filter(material_id=id).delete()
 
-    materiales = Material.objects.filter(status=True)
+    Material.objects.get(id=id).delete()
+
+    materiales = Material.objects.all()
     context = {
         'materiales': materiales,
         'form': CrearMaterial(),

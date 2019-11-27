@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block content %}
     <div class="container-fluid">
-        <h1>Ambulancias</h1>
+        <h1>Unidad</h1>
         {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -30,7 +30,7 @@
                 <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Inventario</th>
+                    <th>Equipo</th>
                 {% if user.is_administrador or user.is_adminplus %}
                     <th>Editar</th>
                 {% endif %}
@@ -38,7 +38,7 @@
                     <th>Revisiones</th>
                 {% endif %}
                 {% if user.is_administrador or user.is_adminplus %}
-                    <th>Estado ambulancia</th>
+                    <th>Estado de Unidad</th>
                 {% endif %}
                     <th>Viajes</th>
                     {% if user.is_administrador or user.is_adminplus %}
@@ -100,7 +100,7 @@
 
                                     <div class="modal-body">
                                         <p>¿Estas seguro que quieres eliminar la
-                                            ambulancia {{ ambulancia.nombre }}?</p>
+                                            unidad {{ ambulancia.nombre }}?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger"
