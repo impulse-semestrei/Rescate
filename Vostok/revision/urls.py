@@ -11,5 +11,5 @@ urlpatterns = [
     ###### URLS US42 #####
     path('<int:id>/revisiones_ambulancia/', ver_revisiones_ambulancia, name='revisiones_ambulancia'), ###### URLS US29 #####
     path('<int:id>/estado_ambulancia/<int:id_revision>/', ver_detalle_ambulancia, name='detalle_ambulancia'), ###### URLS US30 #####
-    path('reportes/<int:id>', Reportes),###### URLS US58 #####
+    path('reportes/', Reportes),###### URLS US58 #####
 ]
