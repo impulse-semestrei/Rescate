@@ -78,9 +78,10 @@ def ver_ambulancias(request):
 @administrador_required
 def eliminar_ambulancias(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
-    pk = ambulancia.inventario
-    inventario = Inventario.objects.get(id=pk.id)
-    inventario.delete()
+    ambulancia.delete()
+    #pk = ambulancia.inventario
+    #inventario = Inventario.objects.get(id=pk.id)
+    #inventario.delete()
     # inventario.fechaMod = timezone.now()
     return redirect('/ambulancia/ver/')
 

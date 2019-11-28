@@ -1,20 +1,25 @@
 <!--  ######VIEW US38###### -->
 {% extends 'dashboard/base.html' %}
-
 {% load staticfiles %}
-
 {% block content %}
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 offset-lg-2">
                 <div class="row">
                     <div class="col mb-6">
-                        <h1>Crear Inventario</h1>
-                         <a href="{% url 'inventario:ver_inventario' %}">
-                        <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel"><i
-                                class="fas fa-arrow-left"></i></button></a>
+                        <h1>Crear Equipo</h1>
+                            <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel"><i
+                                    class="fas fa-arrow-left"></i></button>
                         <br><br>
                         <form method="post">
                             {% csrf_token %}
@@ -45,33 +50,65 @@
 
                                                 <br>
                                                 <div class="row">
-                                                    <div class="col-md-2">
-                                                        <a href="{% url 'inventario:ver_inventario' %}"
-                                                           class="btn btn-danger">Regresar</a>
-                                                    </div>
+                                                    <button class="btn btn-danger" type="button" data-toggle="modal"
+                                                data-target="#modalCancel">Cancelar
+                                                    </button>
                                                     <div class="col-md-2 offset-md-7">
                                                         <button type="submit" class="btn btn-success">Guardar</button>
                                                     </div>
                                                 </div>
 
                                             </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </form>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </div>
-
-
-                                        {% else %}
-                                            <h1>Not authenticated</h1> <!-- si la sesión no está iniciada te muestra -->
 
 
                                         {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+          {% if status == "SAVED" %}
+            <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p>Se ha creado un equipo nuevo</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/inventario/ver/" class="btn btn-success">De acuerdo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $("#modalSaved").modal({
+                    backdrop: "static",
+                    keyboard: false
+                });
+            </script>
+        {% endif %}
+
+      <div class="modal" id="modalCancel" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Si sales ahora no se guardará el equipo nuevo</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/inventario/ver/" class="btn btn-danger">Salir sin guardar</a>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Continuar editando</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+      </div>
 
 {% endblock %}
 
