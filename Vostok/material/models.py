@@ -13,7 +13,7 @@ class Material(models.Model):
     cantidad = models.IntegerField(null=False, validators=[MaxValueValidator(10000), MinValueValidator(0)])
     status = models.BooleanField(default=True, null=False)
     fecha_mod = models.DateTimeField(default=timezone.now, null=False)
-    medida = models.CharField(max_length=100, default="Cantidad")
+    medida = models.CharField(max_length=100, default='Cantidad', null=False)
 
     def __str__(self):
         return self.nombre
