@@ -188,8 +188,8 @@ def serializar_inventario(inventario):
             "id": registro.material.id,
             "nombre": registro.material.nombre,
             "cantidad": registro.cantidad,
-            "objetivo": registro.material.cantidad ,
-
+            "objetivo": registro.material.cantidad,
+            "medida": registro.material.medida,
         })
     return output
 

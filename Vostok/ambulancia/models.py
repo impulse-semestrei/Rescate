@@ -10,14 +10,9 @@ class Ambulancia(models.Model):
 
     desactivada = 0
     activa = 1
-    preparada  = 2
-    en_viaje = 3
     estados_ambulancias = [
         (desactivada, 'Desactivada'),
         (activa, 'Activa'),
-        (preparada, 'Preparada'),
-        (en_viaje, 'En viaje')
-
     ]
     nombre = models.CharField(max_length=255, null=False, unique=True)
     estado = models.IntegerField(choices=estados_ambulancias, default=desactivada)

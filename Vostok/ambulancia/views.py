@@ -15,6 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from revision.models import RevisionAmbulancia
 from users.models import CustomUser
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Max
 import json
 
 from users.decorators import voluntario_required,administrador_required,adminplus_required
@@ -111,42 +112,49 @@ def serializar_ambulancia(ambulancia):
                 'id': 1,
                 'objetivo': ambulancia.objetivo_gasolina,
                 'cantidad': revision.gasolina,
+                'medida': 'Porcentaje',
             },
             {
                 'nombre': 'Kilometraje',
                 'id': 2,
                 'objetivo': ambulancia.objetivo_kilometraje,
                 'cantidad': revision.kilometraje,
+                'medida': 'Porcentaje',
             },
             {
                 'nombre': 'Líquido de frenos',
                 'id': 3,
                 'objetivo': ambulancia.objetivo_liquido_frenos,
                 'cantidad': revision.liquido_frenos,
+                'medida': 'Porcentaje',
             },
             {
                 'nombre': 'Aceite de motor',
                 'id': 4,
                 'objetivo': ambulancia.objetivo_aceite_motor,
                 'cantidad': revision.aceite_motor,
+                'medida': 'Porcentaje',
             },
             {
                 'nombre': 'Aceite de dirección',
                 'id': 5,
                 'objetivo': ambulancia.objetivo_aceite_direccion,
                 'cantidad': revision.aceite_direccion,
+                'medida': 'Porcentaje',
             },
             {
                 'nombre': 'Anticongelante',
                 'id': 6,
                 'objetivo': ambulancia.objetivo_anticongelante,
                 'cantidad': revision.anticongelante,
+                'medida': 'Porcentaje',
             },
             {
                 'nombre': 'Líquido limpiaparabrisas',
                 'id': 7,
                 'objetivo': ambulancia.objetivo_liquido_limpiaparabrisas,
                 'cantidad': revision.liquido_limpiaparabrisas,
+                'medida': 'Porcentaje',
             }
         ]
     }
@@ -201,8 +209,18 @@ def checklist_ambulancia(request, pk):
 
 @csrf_exempt
 def lista_ambulancias(request):
+    activas = Ambulancia.objects.filter(estado=Ambulancia.activa)
+    listas = activas.filter(ambulancia_lista=True, inventario_listo=True)
+    if activas.count() == listas.count():
+        antigua = listas\
+            .annotate(fecha=Max('inventario__inventariomaterial__revision__fecha'))\
+            .order_by('fecha')\
+            .first()
+        antigua.ambulancia_lista = False
+        antigua.inventario_listo = False
+        antigua.save()
     output = {'ambulancias': []}
-    for ambulancia in Ambulancia.objects.all():
+    for ambulancia in activas:
         output['ambulancias'].append(
             {
                 'nombre': ambulancia.nombre,
