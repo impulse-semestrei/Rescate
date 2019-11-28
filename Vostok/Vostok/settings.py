@@ -16,6 +16,7 @@ import json
 file = open("../../configuration.json", "r")
 config = json.loads(file.read())
 env = config["environment"]
+key = config["secretkey"]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#r4o936d!1pex@c(nte^x$bg7&d+b6d+k3kb#1!v^@=+34&sfk'
+SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
