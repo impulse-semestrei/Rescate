@@ -6,7 +6,7 @@
 
     <h2>Reportes de Inventarios</h2>
 
-    {% if  revisionReciente %}
+    {% if  revisionRecientes %}
         <br>
         <div class="row">
         </div>
@@ -17,22 +17,33 @@
             <table class="table table-dark mb-0">
                 <thead>
                 <tr>
-
-                    <th>Paramédico</th>
-                    <th>Fecha de Revision</th>
+                    <th>Ambulancia</th>
+                    <th>Material</th>
+                    <th>Faltante</th>
+                    <th>Sobrante</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                {% for  revisionReciente in revisionRecientes %}
+
                     <tr>
-
-
-                        <td>revisionReciente</td>
+                {% for  material in revisionRecientes %}
+                    {% if material.cantidad < material.material.cantidad  %}
+                        <td></td>
+                        <td>{{ material.material.nombre }}</td>
+                        <td>{{ material.material.cantidad|substract:revisionReciente.cantidad }}</td>
+                        <td>-</td>
+                    {% elif material.cantidad > material.material.cantidad %}
+                        <td></td>
+                        <td>{{  material.material.nombre }}</td>
+                        <td>-</td>
+                        <td>{{ material.material.cantidad|substract:revisionReciente.cantidad }}</td>
 
                     </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
+
             </table>
         </div>
 

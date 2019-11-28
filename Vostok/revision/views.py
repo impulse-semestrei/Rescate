@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from django.template.defaultfilters import register
+
 from ambulancia.models import Ambulancia
 from revision.models import Revision, RevisionAmbulancia
 
 from inventario.models import InventarioMaterial, Inventario
 from django.contrib.auth.decorators import login_required
-
+from django import template
 from users.decorators import voluntario_required,administrador_required,adminplus_required
 from django.utils.decorators import method_decorator
 # Create your views here.
@@ -63,14 +65,21 @@ def ver_detalle_ambulancia(request, id, id_revision):
 
 def Reportes(request):
     ambulancias = Ambulancia.objects.all()
+    materiales = []
     for ambulancia in ambulancias.iterator():
-        x=0
         unidad = Ambulancia.objects.get(id=ambulancia.id)
         inventario = unidad.inventario
         materialesInventario = InventarioMaterial.objects.filter(inventario=inventario).distinct('revision').order_by('-revision__id').first()
         revision = materialesInventario.revision
-        materiales[x] = InventarioMaterial.objects.filter(revision=revision)
-        print(materiales)
-    context ={'revisionReciente': materiales}
+        materiales.append(InventarioMaterial.objects.filter(revision=revision))
+
+    for i in materiales:
+        value=i.get().id
+        print(value)
+    context ={'revisionRecientes': materiales}
     return render(request,'../templates/revision/reportes.html', context)
-#### CONTROLLER US58 ######
+
+@register.filter(name = 'substract')
+def subtract(value, arg):
+
+    return abs(value - arg)
