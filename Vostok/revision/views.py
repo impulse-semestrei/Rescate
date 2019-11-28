@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from ambulancia.models import Ambulancia
-from db_script import materiales
 from revision.models import Revision, RevisionAmbulancia
+
 from inventario.models import InventarioMaterial, Inventario
 from django.contrib.auth.decorators import login_required
 
@@ -59,7 +59,7 @@ def ver_detalle_ambulancia(request, id, id_revision):
     }
     return render(request, '../templates/revision/ver_detalle_ambulancia.html', context)
 
-#### CONTROLLER US58 ######
+#### CONTROLLER US30 ######
 
 def Reportes(request):
     ambulancias = Ambulancia.objects.all()
