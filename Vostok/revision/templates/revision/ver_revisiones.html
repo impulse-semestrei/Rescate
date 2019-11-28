@@ -9,7 +9,12 @@
     <!--######## VIEW US41 ########-->
 
 
-    <h2>Historial de revisiones de inventarios</h2>
+    <h2>Historial de revisiones de equipos</h2>
+    <a href="{% url "ambulancia:ver_ambulancias" %}">
+                <button class="btn btn-dark" type="button" data-toggle="modal"
+                        data-target="#modalCancel"><i
+                        class="fas fa-arrow-left"></i></button>
+            </a>
                 <div class="col-10">
 
                 <div id="datatable_filter" class="dataTables_filter"><label>Buscar:<input
@@ -36,7 +41,7 @@
                 <tr>
 
                     <th>Paramédico</th>
-                    <th>Fecha de Revision</th>
+                    <th>Fecha de Revisión</th>
 
                 </tr>
                 </thead>
