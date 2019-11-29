@@ -72,11 +72,27 @@ def Reportes(request):
         materialesInventario = InventarioMaterial.objects.filter(inventario=inventario).distinct('revision').order_by('-revision__id').first()
         revision = materialesInventario.revision
         materiales.append(InventarioMaterial.objects.filter(revision=revision))
-
+    objetos=[{}]
+    info=[{}]
     for i in materiales:
-        value=i.get().id
-        print(value)
-    context ={'revisionRecientes': materiales}
+        # materiales=i.filter()
+        # cantidades = i.filter().cantidad
+        # targets = i.filter().material.cantidad
+        # ambulancias = i.filter().inventario.ambulancia
+        # materialInfo = {
+        #     'material' : materiales,
+        #     'cantidad' : cantidades,
+        #     'target' : targets,
+        #     'ambulancia': ambulancias
+        #
+        # }
+
+        info.append(i)
+
+
+    context={'info':info}
+
+
     return render(request,'../templates/revision/reportes.html', context)
 
 @register.filter(name = 'substract')

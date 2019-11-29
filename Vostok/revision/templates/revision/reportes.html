@@ -6,7 +6,7 @@
 
     <h2>Reportes de Inventarios</h2>
 
-    {% if  revisionRecientes %}
+    {% if  info %}
         <br>
         <div class="row">
         </div>
@@ -26,29 +26,39 @@
                 </thead>
                 <tbody>
 
+
+                {% for  material in info %}
+                    {% for x in material %}
+                        {% if x.cantidad == x.material.cantidad %}
                     <tr>
-                {% for  material in revisionRecientes %}
-                    {% if material.cantidad < material.material.cantidad  %}
-                        <td></td>
-                        <td>{{ material.material.nombre }}</td>
-                        <td>{{ material.material.cantidad|substract:revisionReciente.cantidad }}</td>
-                        <td>-</td>
-                    {% elif material.cantidad > material.material.cantidad %}
-                        <td></td>
-                        <td>{{  material.material.nombre }}</td>
-                        <td>-</td>
-                        <td>{{ material.material.cantidad|substract:revisionReciente.cantidad }}</td>
+                            <td>{{ x.inventario.nombre }}</td>
+                            <td>{{ x.material.nombre }}</td>
+                            <td>{{ x.material.cantidad|substract:x.cantidad  }}</td>
+                            <td>0<td>
 
                     </tr>
-                    {% endif %}
+                        {% endif %}
+                        {% if x.cantidad > x.material.cantidad %}
+                             <tr>
+                            <td>{{ x.inventario }}</td>
+                            <td>{{ x.material.nombre }}</td>
+                            <td> 0 </td>
+                            <td>{{ x.cantidad|substract:x.material.cantidad}}<td>
+
+                    </tr>
+
+                        {% endif %}
+
                 {% endfor %}
+                {% endfor %}
+
                 </tbody>
 
             </table>
         </div>
 
-    {% else %}
 
+{% else %}
         <div class="account-pages mt-5 mb-5">
             <div class="container">
                 <div class="row justify-content-center">
