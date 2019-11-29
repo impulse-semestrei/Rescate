@@ -4,14 +4,19 @@
     <!--######## VIEW US29 ########-->
 
 
-    <h2>Historial de revisiones del estado de la ambulancia</h2>
+    <h2>Historial de revisiones del estado de Unidad</h2>
+       <div id="datatable_filter" class="dataTables_filter"><label>Buscar:<input
+                        type="search" class="form-control form-control-sm" placeholder=""
+                        aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
+
+            </div>
 
     {% if  revisiones %}
         <div class="card-box">
         <br>
 
         <div class="table-responsive">
-            <table class="table table-dark mb-0">
+            <table class="table table-dark mb-0" id="Revisiones">
                 <thead>
                 <tr>
 
@@ -85,6 +90,28 @@
 </table>
 </div>
     </div>
+
     <!--######## VIEW US29 ########-->
+        <script>
+        function Filter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("Revisiones");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
 
 {% endblock %}
