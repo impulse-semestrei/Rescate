@@ -1,6 +1,6 @@
 from ambulancia.models import Ambulancia
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
-from users.models import CustomUser
+from django.contrib.auth import get_user_model
 
 from .forms import crearInventarioForm, AgregarMaterialInventario, EditarMaterialInventario
 from .models import Inventario
@@ -199,7 +199,7 @@ def guardar_inventario(inventario, request):
     objects = []
     fecha = timezone.now()
     try:
-        usuario = CustomUser.objects.get(email=datos["email_paramedico"])
+        usuario = get_user_model().objects.get(email=datos["email_paramedico"])
     except ObjectDoesNotExist:
         return False
 

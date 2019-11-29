@@ -13,9 +13,11 @@ from django.views.generic.edit import UpdateView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from revision.models import RevisionAmbulancia
-from users.models import CustomUser
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Max
+from django.contrib.auth import get_user_model
+
+
 from django.urls import reverse
 import json
 
@@ -120,7 +122,7 @@ def serializar_ambulancia(ambulancia):
                 'id': 2,
                 'objetivo': ambulancia.objetivo_kilometraje,
                 'cantidad': revision.kilometraje,
-                'medida': 'Porcentaje',
+                'medida': 'Kilómetros',
             },
             {
                 'nombre': 'Líquido de frenos',
@@ -165,7 +167,7 @@ def serializar_ambulancia(ambulancia):
 def guardar_ambulancia(ambulancia, request):
     datos = json.loads(request.body)
     try:
-        usuario = CustomUser.objects.get(email=datos["email_paramedico"])
+        usuario = get_user_model().objects.get(email=datos["email_paramedico"])
     except ObjectDoesNotExist:
         return False
 
