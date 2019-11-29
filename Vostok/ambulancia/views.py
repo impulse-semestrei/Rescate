@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Ambulancia, Viaje, MaterialUsado
 from .forms import CrearAmbulancia
 from .forms import CrearAmbulancia, CambiarEstado
-from .models import Ambulancia, Viaje
+from .models import Ambulancia, Viaje, Activables
 from inventario.models import Inventario
 from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
@@ -16,6 +16,7 @@ from revision.models import RevisionAmbulancia
 from users.models import CustomUser
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Max
+from django.urls import reverse
 import json
 
 from users.decorators import voluntario_required,administrador_required,adminplus_required
@@ -210,9 +211,9 @@ def checklist_ambulancia(request, pk):
 @csrf_exempt
 def lista_ambulancias(request):
     activas = Ambulancia.objects.filter(estado=Ambulancia.activa)
-    listas = activas.filter(ambulancia_lista=True, inventario_listo=True)
-    if activas.count() == listas.count():
-        antigua = listas\
+    revisadas = activas.filter(ambulancia_lista=True, inventario_listo=True)
+    if activas.count() - revisadas.count() < Activables.objects.order_by('-fecha').first().cantidad:
+        antigua = revisadas\
             .annotate(fecha=Max('inventario__inventariomaterial__revision__fecha'))\
             .order_by('fecha')\
             .first()
@@ -231,8 +232,6 @@ def lista_ambulancias(request):
             }
         )
     return JsonResponse(output)
-
-
 ##### CONTROLLER US28 ####
 
 
@@ -265,13 +264,18 @@ def materiales_usados(request, id):
 ####### CONTROLLER US26############
 @voluntario_required
 def ver_control_ambulancias(request):
-    ambulancias = Ambulancia.objects.all().order_by('id')
-
-
     context = {
-        'ambulancias': ambulancias,
+        'ambulancias': Ambulancia.objects.all().order_by('id'),
         'form': CambiarEstado,
     }
+    if request.method == 'POST' and request.user.is_administrador:
+        # post request
+        try:
+            Activables.objects.create(cantidad=request.POST['activables'], fecha=timezone.now())
+            context['estado'] = 'guardado'
+        except DatabaseError:
+            context['estado'] = 'error'
+    context['activables'] = Activables.objects.order_by('-fecha').first().cantidad
     return render(request, '../templates/ambulancia/control_ambulancias.html', context)
 
 @administrador_required

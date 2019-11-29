@@ -46,3 +46,9 @@ class MaterialUsado(models.Model):
     viaje = models.ForeignKey(Viaje, on_delete=models.CASCADE)
 
 ######## MODELS US25########
+
+#### MODELS US28 ####
+class Activables(models.Model):
+    cantidad = models.IntegerField(null=False)
+    fecha = models.DateTimeField(null=False, default=timezone.now())
+#### MODELS US28 ####

@@ -13,7 +13,7 @@
                 <li class="list-group-item">Ambulancia: {{ ambulancia.nombre }}</li>
                 <li class="list-group-item">Responsable: {{ revision.usuario.first_name }} {{ revision.usuario.last_name }}</li>
                 <li class="list-group-item">Email del responsable: {{ revision.usuario.email }}</li>
-                <li class="list-group-item">Guardia: {{ revision.usuario.turno }}</li>
+                <li class="list-group-item">Guardia: {{ revision.usuario.get_turno_display }}</li>
                 <li class="list-group-item">Fecha de revisión: {{ revision.fecha }}</li>
                 <li class="list-group-item">Observaciones: <p>{{ revision.observaciones }}</p></li>
             </ul>
