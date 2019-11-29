@@ -4,7 +4,12 @@
     <!--######## VIEW US42 ########-->
 
 
-    <h1>Informacion de materiales en revision</h1>
+    <h1>Información de materiales en revisión</h1>
+    <a href="{% url "revision:revisiones" id=ambulancia.id %}">
+                <button class="btn btn-dark" type="button" data-toggle="modal"
+                        data-target="#modalCancel"><i
+                        class="fas fa-arrow-left"></i></button>
+            </a>
 
 
     {% if  materiales %}
@@ -17,9 +22,6 @@
             </ul>
         </div>
 
-        <p align="right"><a href="{% url "revision:revisiones" id=ambulancia.id %}">
-            <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Regresar a revisiones</button>
-        </a></p>
         <div class="card-box">
         <br>
 

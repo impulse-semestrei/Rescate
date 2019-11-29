@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from ambulancia.models import Ambulancia
 from revision.models import Revision, RevisionAmbulancia
+
 from inventario.models import InventarioMaterial, Inventario
 from django.contrib.auth.decorators import login_required
 
@@ -58,15 +59,18 @@ def ver_detalle_ambulancia(request, id, id_revision):
     }
     return render(request, '../templates/revision/ver_detalle_ambulancia.html', context)
 
-#### CONTROLLER US58 ######
+#### CONTROLLER US30 ######
 
-def Reportes(request, id):
-    ambulancia = Ambulancia.objects.get(id=id)
-    inventario = ambulancia.inventario
-    materialesInventario = InventarioMaterial.objects.filter(inventario=inventario).distinct('revision').order_by('-revision__id').first()
-    revision = materialesInventario.revision
-    materiales = InventarioMaterial.objects.filter(revision=revision)
-
+def Reportes(request):
+    ambulancias = Ambulancia.objects.all()
+    for ambulancia in ambulancias.iterator():
+        x=0
+        unidad = Ambulancia.objects.get(id=ambulancia.id)
+        inventario = unidad.inventario
+        materialesInventario = InventarioMaterial.objects.filter(inventario=inventario).distinct('revision').order_by('-revision__id').first()
+        revision = materialesInventario.revision
+        materiales[x] = InventarioMaterial.objects.filter(revision=revision)
+        print(materiales)
     context ={'revisionReciente': materiales}
     return render(request,'../templates/revision/reportes.html', context)
 #### CONTROLLER US58 ######
