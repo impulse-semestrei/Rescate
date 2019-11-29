@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from .models import Material
 
@@ -8,6 +9,9 @@ class CrearMaterial(ModelForm):
     """
     Forma para crear material
     """
+    codigo = forms.CharField(label='Código')
+    descripcion = forms.CharField(label='Descripción')
+
     class Meta:
         model = Material
         fields = ['codigo','nombre', 'descripcion','cantidad']
