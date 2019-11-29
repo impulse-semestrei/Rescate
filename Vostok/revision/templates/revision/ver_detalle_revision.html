@@ -16,11 +16,17 @@
         <div class="table-responsive">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Ambulancia: {{ ambulancia.nombre }}</li>
-                <li class="list-group-item">Responsable: {{ revision.nombre_paramedico }}</li>
-                <li class="list-group-item">Fecha de revision: {{ revision.fecha }}</li>
+                <li class="list-group-item">Responsable: {{ revision.usuario.first_name }} {{ revision.usuario.last_name }}</li>
+                <li class="list-group-item">Email del responsable: {{ revision.usuario.email }}</li>
+                <li class="list-group-item">Guardia: {{ revision.usuario.get_turno_display }}</li>
+                <li class="list-group-item">Fecha de revisión: {{ revision.fecha }}</li>
                 <li class="list-group-item">Observaciones: <p>{{ revision.observaciones }}</p></li>
             </ul>
         </div>
+
+        <p align="right"><a href="{% url "revision:revisiones" id=ambulancia.id %}">
+            <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Regresar a revisiones</button>
+        </a></p>
 
         <div class="card-box">
         <br>
