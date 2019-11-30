@@ -162,41 +162,23 @@ Head
                                 <span> Unidad </span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{% url 'revision:reportes_materiales' %}">
-                                <i class="mdi mdi-record"></i>
-                                <span> Reportes </span>
-                            </a>
-                        </li>
                     {% endif %}
                     {% if user.is_administrador %}
                         <li>
                             <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
                                 <i class="mdi mdi-clipboard-check-outline"></i>
-                                <span> Control de Ambulancias </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'revision:reportes_materiales' %}">
-                                <i class="mdi mdi-record"></i>
-                                <span> Reportes </span>
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% if user.is_adminplus %}
-                        <li>
-                            <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
-                                <i class="mdi mdi-clipboard-check-outline"></i>
-                                <span> Control de Ambulancias </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'revision:reportes_materiales' %}">
-                                <i class="mdi mdi-record"></i>
-                                <span> Reportes </span>
+                                <span> Control de Unidades </span>
                             </a>
                         </li>
 
+                    {% endif %}
+                    {% if user.is_adminplus %}
+                        <li>
+                            <a href="{% url 'revision:reportes_materiales' %}">
+                                <i class="mdi mdi-record"></i>
+                                <span> Reportes </span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{% url 'users:ver_usuarios' %}">
                                 <i class="mdi mdi-account-multiple-outline"></i>

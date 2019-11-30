@@ -166,14 +166,21 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 
 
 # ###### CONTROLLER US08 ########
-@method_decorator(administrador_required, name='dispatch')
-class EditarInventario(UpdateView):
-    model = Inventario
-    form_class = crearInventarioForm
-    template_name = 'inventario/editar_inventario.html'
-    success_url = '/inventario/ver/'
-
+@administrador_required
+def editar_inventario(request, pk):
+    estado = 'get'
+    inventario = Inventario.objects.get(id=pk)
+    form = crearInventarioForm(request.POST or None, instance=inventario)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        estado = 'guardado'
+    context = {
+        'form': form,
+        'estado': estado
+    }
+    return render(request, '../templates/inventario/editar_inventario.html', context)
 ###### CONTROLLER US08 ########
+
 
 ##### CONTROLLER US21 ####
 def serializar_inventario(inventario):
@@ -266,19 +273,3 @@ def editar_material(request, inventario_id, material_id):
     return redirect('inventario:material_inventario', pk=inventario_id)
 
 ###### CONTROLLER US02 ########
-
-
-####### CONTROLLER US07############
-@administrador_required
-def editar_inventario_view(request, id):
-    inventario = Inventario.objects.get(id=id)
-    form = crearInventarioForm({'nombre': inventario.nombre})
-    context = {
-        'inventario': inventario,
-        'form': form,
-    }
-    return render(request, '../templates/inventario/editar_inventario.html', context)
-
-
-####### CONTROLLER US07############
-

@@ -95,13 +95,22 @@ def eliminar_ambulancias(request, id):
 # -------- CONTROLLER US46 ---------
 
 ####### CONTROLLER US45############
-@method_decorator(administrador_required, name='dispatch')
-class EditarAmbulancia(UpdateView):
-    model = Ambulancia
-    form_class = CrearAmbulancia
-    template_name = 'ambulancia/editar_ambulancia.html'
-    success_url = '/ambulancia/ver/'
+@administrador_required
+def editar_ambulancia(request, pk):
+    estado = 'get'
+    ambulancia = Ambulancia.objects.get(id=pk)
+    form = CrearAmbulancia(request.POST or None, instance=ambulancia)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        estado = 'guardado'
+    context = {
+        'form': form,
+        'estado': estado
+    }
+    return render(request, '../templates/ambulancia/editar_ambulancia.html', context)
+
 ####### CONTROLLER US45############
+
 
 
 ##### CONTROLLER US28 ####
