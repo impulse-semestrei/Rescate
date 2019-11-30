@@ -11,7 +11,8 @@
         <div class="table-responsive">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Ambulancia: {{ ambulancia.nombre }}</li>
-                <li class="list-group-item">Responsable: {{ revision.nombre_paramedico }}</li>
+                <li class="list-group-item">Responsable: {{ revision.usuario.first_name }} {{ revision.usuario.last_name }}</li>
+                <li class="list-group-item">Guardia: {{ revision.usuario.get_turno_display }}</li>
                 <li class="list-group-item">Fecha: {{ revision.fecha }}</li>
                 <li class="list-group-item">Observaciones: <p>{{ revision.observaciones }}</p></li>
             </ul>
@@ -36,6 +37,31 @@
                         <td>Líquido de frenos</td>
                         <td>{{ ambulancia.objetivo_liquido_frenos}}</td>
                         <td>{{ revision.liquido_frenos }}</td>
+                    </tr>
+                    <tr>
+                        <td>Aceite de motor</td>
+                        <td>{{ ambulancia.objetivo_aceite_motor }}</td>
+                        <td>{{ revision.aceite_motor }}</td>
+                    </tr>
+                    <tr>
+                        <td>Aceite de dirección</td>
+                        <td>{{ ambulancia.objetivo_aceite_direccion }}</td>
+                        <td>{{ revision.aceite_direccion }}</td>
+                    </tr>
+                    <tr>
+                        <td>Anticongelante</td>
+                        <td>{{ ambulancia.objetivo_anticongelante }}</td>
+                        <td>{{ revision.anticongelante }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kilometraje</td>
+                        <td>{{ ambulancia.objetivo_kilometraje }}</td>
+                        <td>{{ revision.kilometraje }}</td>
+                    </tr>
+                    <tr>
+                        <td>Líquido limpiaparabrisas</td>
+                        <td>{{ ambulancia.objetivo_liquido_limpiaparabrisas }}</td>
+                        <td>{{ revision.liquido_limpiaparabrisas }}</td>
                     </tr>
                 </tbody>
             </table>

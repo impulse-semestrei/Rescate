@@ -4,9 +4,9 @@
     <!--######## VIEW US29 ########-->
 
 
-    <h2>Historial de revisiones del estado de la ambulancia</h2>
+    <h2>Historial de revisiones del estado de Unidad</h2>
        <div id="datatable_filter" class="dataTables_filter"><label>Buscar:<input
-                        type="search" class="form-control form-control-sm" placeholder=""
+                        type="search" class="form-control form-control-sm" placeholder="Buscar Detalle..."
                         aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
 
             </div>
@@ -20,8 +20,9 @@
                 <thead>
                 <tr>
 
-                    <th>Nombre</th>
                     <th>Fecha de Revision</th>
+                    <th>Encargado</th>
+                    <th>Guardia</th>
 
                 </tr>
                 </thead>
@@ -30,9 +31,9 @@
                 {% for revision in revisiones %}
 
                     <tr>
-
-                        <td>{{ ambulancia.nombre }}</td>
                         <td>{{ revision.fecha }}</td>
+                        <td>{{ revision.usuario.first_name }}{{ revision.usuario.last_name }}</td>
+                        <td>{{ revision.usuario.get_turno_display }}</td>
                         <td><a href="{% url 'revision:detalle_ambulancia' id=ambulancia.id id_revision=revision.id %}">
                             <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Ver detalle
                             </button>

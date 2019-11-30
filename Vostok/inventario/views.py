@@ -1,4 +1,7 @@
+from ambulancia.models import Ambulancia
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+from django.contrib.auth import get_user_model
+
 from .forms import crearInventarioForm, AgregarMaterialInventario, EditarMaterialInventario
 from .models import Inventario
 from django.db import DatabaseError, transaction, IntegrityError
@@ -163,14 +166,21 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 
 
 # ###### CONTROLLER US08 ########
-@method_decorator(administrador_required, name='dispatch')
-class EditarInventario(UpdateView):
-    model = Inventario
-    form_class = crearInventarioForm
-    template_name = 'inventario/editar_inventario.html'
-    success_url = '/inventario/ver/'
-
+@administrador_required
+def editar_inventario(request, pk):
+    estado = 'get'
+    inventario = Inventario.objects.get(id=pk)
+    form = crearInventarioForm(request.POST or None, instance=inventario)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        estado = 'guardado'
+    context = {
+        'form': form,
+        'estado': estado
+    }
+    return render(request, '../templates/inventario/editar_inventario.html', context)
 ###### CONTROLLER US08 ########
+
 
 ##### CONTROLLER US21 ####
 def serializar_inventario(inventario):
@@ -185,8 +195,8 @@ def serializar_inventario(inventario):
             "id": registro.material.id,
             "nombre": registro.material.nombre,
             "cantidad": registro.cantidad,
-            "objetivo": registro.material.cantidad ,
-
+            "objetivo": registro.material.cantidad,
+            "medida": registro.material.medida,
         })
     return output
 
@@ -195,19 +205,33 @@ def guardar_inventario(inventario, request):
     datos = json.loads(request.body)
     objects = []
     fecha = timezone.now()
+    try:
+        usuario = get_user_model().objects.get(email=datos["email_paramedico"])
+    except ObjectDoesNotExist:
+        return False
+
     revision = Revision(
         fecha=fecha,
-        nombre_paramedico=datos['nombre_paramedico'],
-        email_paramedico=datos['email_paramedico'],
+        usuario=usuario,
         observaciones=datos['observaciones']
     )
+
+    try:
+        ambulancia = Ambulancia.objects.get(inventario=inventario)
+    except ObjectDoesNotExist:
+        return False
+
     with transaction.atomic():
+        listo = True
         revision.save()
         for item in datos['materiales']:
             try:
                 m = Material.objects.get(id=item['id'])
             except ObjectDoesNotExist:
                 return False
+            if item['cantidad'] < item['objetivo']:
+                listo = False
+
             objects.append(InventarioMaterial(
                 inventario=inventario,
                 material=m,
@@ -216,6 +240,8 @@ def guardar_inventario(inventario, request):
             )
         for item in objects:
             item.save()
+        ambulancia.inventario_listo = listo
+        ambulancia.save()
     return True
 
 @csrf_exempt
@@ -247,19 +273,3 @@ def editar_material(request, inventario_id, material_id):
     return redirect('inventario:material_inventario', pk=inventario_id)
 
 ###### CONTROLLER US02 ########
-
-
-####### CONTROLLER US07############
-@administrador_required
-def editar_inventario_view(request, id):
-    inventario = Inventario.objects.get(id=id)
-    form = crearInventarioForm({'nombre': inventario.nombre})
-    context = {
-        'inventario': inventario,
-        'form': form,
-    }
-    return render(request, '../templates/inventario/editar_inventario.html', context)
-
-
-####### CONTROLLER US07############
-

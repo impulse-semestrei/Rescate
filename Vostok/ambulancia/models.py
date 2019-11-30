@@ -10,21 +10,24 @@ class Ambulancia(models.Model):
 
     desactivada = 0
     activa = 1
-    preparada  = 2
-    en_viaje = 3
     estados_ambulancias = [
         (desactivada, 'Desactivada'),
         (activa, 'Activa'),
-        (preparada, 'Preparada'),
-        (en_viaje, 'En viaje')
-
     ]
     nombre = models.CharField(max_length=255, null=False, unique=True)
     estado = models.IntegerField(choices=estados_ambulancias, default=desactivada)
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, unique=True)
 
+    ambulancia_lista = models.BooleanField(default=False)
+    inventario_listo = models.BooleanField(default=False)
+
     objetivo_gasolina = 100
-    objetivo_liquido_frenos = 50
+    objetivo_liquido_frenos = 100
+    objetivo_aceite_motor = 100
+    objetivo_aceite_direccion = 100
+    objetivo_anticongelante = 100
+    objetivo_kilometraje = 0
+    objetivo_liquido_limpiaparabrisas = 100
 
 ####### MODELS US44############
 
@@ -43,3 +46,9 @@ class MaterialUsado(models.Model):
     viaje = models.ForeignKey(Viaje, on_delete=models.CASCADE)
 
 ######## MODELS US25########
+
+#### MODELS US28 ####
+class Activables(models.Model):
+    cantidad = models.IntegerField(null=False)
+    fecha = models.DateTimeField(null=False, default=timezone.now())
+#### MODELS US28 ####

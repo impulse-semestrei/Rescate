@@ -1,6 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% load staticfiles %}
 {% block content %}
+
     <!--######## VIEW US41 ########-->
 
 
@@ -25,13 +26,12 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for  material, ambulancia in info %}
 
-
-                {% for  material in info %}
                     {% for x in material %}
-                        {% if x.cantidad == x.material.cantidad %}
+                        {% if x.cantidad <  x.material.cantidad %}
                     <tr>
-                            <td>{{ x.inventario.nombre }}</td>
+                            <td>{{ambulancia.nombre}}</td>
                             <td>{{ x.material.nombre }}</td>
                             <td>{{ x.material.cantidad|substract:x.cantidad  }}</td>
                             <td>0<td>
@@ -39,8 +39,8 @@
                     </tr>
                         {% endif %}
                         {% if x.cantidad > x.material.cantidad %}
-                             <tr>
-                            <td>{{ x.inventario }}</td>
+                            <tr>
+                            <td>{{ambulancia.nombre                                                                                                                                                                                                                                                                }}</td>
                             <td>{{ x.material.nombre }}</td>
                             <td> 0 </td>
                             <td>{{ x.cantidad|substract:x.material.cantidad}}<td>

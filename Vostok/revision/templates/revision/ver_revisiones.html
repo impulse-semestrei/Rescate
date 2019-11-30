@@ -9,11 +9,16 @@
     <!--######## VIEW US41 ########-->
 
 
-    <h2>Historial de revisiones de inventarios</h2>
+    <h2>Historial de revisiones de equipos</h2>
+    <a href="{% url "ambulancia:ver_ambulancias" %}">
+                <button class="btn btn-dark" type="button" data-toggle="modal"
+                        data-target="#modalCancel"><i
+                        class="fas fa-arrow-left"></i></button>
+            </a>
                 <div class="col-10">
 
                 <div id="datatable_filter" class="dataTables_filter"><label>Buscar:<input
-                        type="search" class="form-control form-control-sm" placeholder=""
+                        type="search" class="form-control form-control-sm" placeholder="Buscar Fecha..."
                         aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
 
             </div>
@@ -34,19 +39,18 @@
             <table class="table table-dark mb-0" id="Revisiones">
                 <thead>
                 <tr>
-
-                    <th>Paramédico</th>
                     <th>Fecha de Revision</th>
-
+                    <th>Paramédico</th>
+                    <th>Guardia</th>
                 </tr>
                 </thead>
 
             <br>
                 {% for registro in registros %}
                     <tr>
-
-                        <td>{{ registro.revision.nombre_paramedico }}</td>
                         <td>{{ registro.revision.fecha }}</td>
+                        <td>{{ registro.revision.usuario.first_name }} {{ registro.revision.usuario.last_name }}</td>
+                        <th>{{ registro.revision.usuario.get_turno_display }}</th>
                         <td><a href="{{ registro.revision.id }}">
                             <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Ver detalle
                             </button>
@@ -110,7 +114,7 @@
             table = document.getElementById("Revisiones");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
+                td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
