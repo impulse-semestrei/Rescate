@@ -1,10 +1,75 @@
 {% extends 'dashboard/base.html' %}
 {% load staticfiles %}
 {% block content %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
     <!--######## VIEW US26 ########-->
 
 
-    <h2>Control de ambulancias</h2>
+    <h2>Control de Unidades</h2>
+
+    {% if activables %}
+        <div class="card-box">
+            <form method="POST" action="{% url 'ambulancia:ver_control_ambulancias' %}">
+                {% csrf_token %}
+                <label class="" for="activables">Número de unidades que pueden usarse a la vez:</label>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input name="activables" class="form-control" id="activables" type="text" value="{{ activables }}">
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn btn-success" type="submit">Cambiar unidades disponibles</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+    {% if estado == 'guardado' %}
+        <div class="modal" id="modalSaved" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>El número de unidades que pueden usarse al mismo tiempo ahora es {{ activables }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'ambulancia:ver_control_ambulancias' %}" class="btn btn-success">De acuerdo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $("#modalSaved").modal({
+                backdrop: "static",
+                keyboard: false
+            });
+        </script>
+    {% elif estado == 'error' %}
+        <div class="modal" id="modalError" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Ha habido un error en la base de datos</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'ambulancia:ver_control_ambulancias' %}" class="btn btn-success">De acuerdo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $("#modalError").modal({
+                backdrop: "static",
+                keyboard: false
+            });
+        </script>
+    {% endif %}
 
     {% if  ambulancias %}
         <div class="card-box">
