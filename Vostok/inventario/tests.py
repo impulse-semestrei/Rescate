@@ -10,6 +10,7 @@ from .forms import AgregarMaterialInventario
 import json
 from .forms import AgregarMaterialInventario, EditarMaterialInventario
 from revision.models import Revision
+from users.models import CustomUser
 
 # Create your tests here.
 
@@ -41,7 +42,8 @@ class AgregarMaterialInventarioTestCase(TestCase):
         self.assertTrue(form.is_valid())
         material = form.cleaned_data['material']
         cantidad = form.cleaned_data['cantidad']
-        revision = Revision.objects.create(fecha=timezone.now())
+        usuario = CustomUser.objects.create(is_anon=False, is_adminplus=True)
+        revision = Revision.objects.create(usuario=usuario, fecha=timezone.now(), observaciones='Observacion')
         InventarioMaterial.objects.create(inventario=self.inventario, material=material, cantidad=cantidad, revision=revision)
         self.assertEqual(self.inventario.materiales.count(), 1)
         self.assertEqual(self.inventario.materiales.first().nombre, self.material.nombre)
@@ -132,9 +134,10 @@ class VerMaterialTestCase(TestCase):
 ######## TEST US-03 ########
 class EliminarMaterialInventarioTestCase(TestCase):
     def test_eliminarMaterial(self):
-        revision = Revision.objects.create(fecha=timezone.now())
+        usuario = CustomUser.objects.create(is_anon=False, is_adminplus=True)
+        revision = Revision.objects.create(usuario=usuario,fecha=timezone.now(), observaciones='Observacion')
         inventario = Inventario.objects.create(nombre="almacen")
-        material = Material.objects.create(nombre='curita', descripcion='proteccion de herida', cantidad=4)
+        material = Material.objects.create(codigo='codigo1', nombre='curita', descripcion='proteccion de herida', cantidad=4)
         mat_inv = InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=4, revision=revision)
         mat_inv.delete()
         self.assertFalse(InventarioMaterial.objects.filter(material=mat_inv.material))
@@ -144,19 +147,23 @@ class EliminarMaterialInventarioTestCase(TestCase):
 #### TESTS US21 ####
 class ChecklistTestCase(TestCase):
     def setUp(self):
-        revision = Revision.objects.create(fecha=timezone.now())
+        usuario = CustomUser.objects.create(is_anon=False, is_adminplus=True)
+        revision = Revision.objects.create(usuario=usuario, fecha=timezone.now(), observaciones='Observacion')
         self.inventario = Inventario.objects.create(nombre="inventario")
         self.material1 = Material.objects.create(
+            codigo='codigo1',
             nombre="material1",
             descripcion="material1",
             cantidad=1
         )
         self.material2 = Material.objects.create(
+            codigo='codigo2',
             nombre="material2",
             descripcion="material2",
             cantidad=2
         )
         InventarioMaterial.objects.create(
+
             inventario=self.inventario,
             material=self.material1,
             cantidad=1,
@@ -177,13 +184,15 @@ class ChecklistTestCase(TestCase):
                                 "id": self.material1.id,
                                 "nombre": self.material1.nombre,
                                 "cantidad": 1,
-                                "objetivo": 1
+                                "objetivo": 1,
+                                "medida": "Cantidad"
                             },
                             {
                                 "id": self.material2.id,
                                 "nombre": self.material2.nombre,
                                 "cantidad": 2,
-                                "objetivo": 2
+                                "objetivo": 2,
+                                "medida": "Cantidad"
                             }
                         ]
                     }
@@ -195,9 +204,10 @@ class ChecklistTestCase(TestCase):
 
 class EditarMaterialInventarioTest(TestCase):
     def setUp(self):
-        revision = Revision.objects.create(fecha=timezone.now())
+        usuario = CustomUser.objects.create(is_anon=False, is_adminplus=True)
+        revision = Revision.objects.create(usuario=usuario, fecha=timezone.now(), observaciones='Observacion')
         self.inventario = Inventario.objects.create(nombre="almacen")
-        self.material = Material.objects.create(nombre='curita', descripcion='proteccion de herida', cantidad=1)
+        self.material = Material.objects.create(codigo='codigo1', nombre='curita', descripcion='proteccion de herida', cantidad=1)
         self.MatInv = InventarioMaterial.objects.create(
             inventario=self.inventario,
             material=self.material,
