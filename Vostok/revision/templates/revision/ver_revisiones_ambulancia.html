@@ -5,6 +5,11 @@
 
 
     <h2>Historial de revisiones del estado de Unidad</h2>
+  <a href="{% url "ambulancia:ver_ambulancias" %}">
+                <button class="btn btn-dark" type="button" data-toggle="modal"
+                        data-target="#modalCancel"><i
+                        class="fas fa-arrow-left"></i></button>
+            </a>
        <div id="datatable_filter" class="dataTables_filter"><label>Buscar:<input
                         type="search" class="form-control form-control-sm" placeholder="Buscar Detalle..."
                         aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
