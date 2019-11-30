@@ -1,6 +1,6 @@
 from inventario.models import Inventario, InventarioMaterial
 from material.models import Material
-from ambulancia.models import Ambulancia
+from ambulancia.models import Ambulancia, Activables
 from revision.models import Revision, RevisionAmbulancia
 from django.utils import timezone
 from django.contrib.auth import get_user_model
@@ -10,6 +10,7 @@ Ambulancia.objects.all().delete()
 Inventario.objects.all().delete()
 Material.objects.all().delete()
 Revision.objects.all().delete()
+Activables.objects.all().delete()
 
 materiales = []
 # Materiales de ambulancia
@@ -49,3 +50,4 @@ for nombre in nombres:
 ambulancia_desactivada = Ambulancia.objects.get(nombre=nombres[len(nombres) - 1])
 ambulancia_desactivada.estado = Ambulancia.desactivada
 ambulancia_desactivada.save()
+Activables.objects.create(cantidad=2)
