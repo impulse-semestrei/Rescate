@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'rest_framework',
 
+
+
     # Project apps
     'users.apps.UsersConfig',
     'material.apps.MaterialConfig',
