@@ -286,7 +286,10 @@ def ver_control_ambulancias(request):
             context['estado'] = 'guardado'
         except DatabaseError:
             context['estado'] = 'error'
-    context['activables'] = Activables.objects.order_by('-fecha').first().cantidad
+    try:
+        context['activables'] = Activables.objects.order_by('-fecha').first().cantidad
+    except AttributeError:
+        context['activables'] = 0
     return render(request, '../templates/ambulancia/control_ambulancias.html', context)
 
 @administrador_required
