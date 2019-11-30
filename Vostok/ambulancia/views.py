@@ -223,7 +223,11 @@ def checklist_ambulancia(request, pk):
 def lista_ambulancias(request):
     activas = Ambulancia.objects.filter(estado=Ambulancia.activa)
     revisadas = activas.filter(ambulancia_lista=True, inventario_listo=True)
-    if activas.count() - revisadas.count() < Activables.objects.order_by('-fecha').first().cantidad:
+    try:
+        num_activables = Activables.objects.order_by('-fecha').first().cantidad
+    except AttributeError:
+        num_activables = 0
+    if activas.count() - revisadas.count() < num_activables:
         antigua = revisadas\
             .annotate(fecha=Max('inventario__inventariomaterial__revision__fecha'))\
             .order_by('fecha')\
