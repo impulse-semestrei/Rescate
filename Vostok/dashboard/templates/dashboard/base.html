@@ -163,7 +163,7 @@ Head
                             </a>
                         </li>
                     {% endif %}
-                    {% if user.is_administrador %}
+                    {% if user.is_administrador or user.is_adminplus%}
                         <li>
                             <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
                                 <i class="mdi mdi-clipboard-check-outline"></i>

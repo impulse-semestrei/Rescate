@@ -1,6 +1,6 @@
 from inventario.models import Inventario, InventarioMaterial
 from material.models import Material
-from ambulancia.models import Ambulancia
+from ambulancia.models import Ambulancia, Activables
 from revision.models import Revision, RevisionAmbulancia
 from django.utils import timezone
 
@@ -9,6 +9,7 @@ Ambulancia.objects.all().delete()
 Inventario.objects.all().delete()
 Material.objects.all().delete()
 Revision.objects.all().delete()
+Activables.objects.all().delete()
 
 materiales = []
 # Materiales de ambulancia
@@ -165,5 +166,4 @@ for nombre in nombres:
             cantidad=material.cantidad,
             revision=revision
         )
-
-
+Activables.objects.create(cantidad=2)
