@@ -19,7 +19,7 @@
                 {% if user.is_administrador or user.is_adminplus %}
                 <a href="{% url 'inventario:crear_inventario' %}">
                     <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light"><i
-                            class="fas fa-plus"></i> Agregar Inventario
+                            class="fas fa-plus"></i> Agregar Equipo
                     </button>
                 </a>
                 {% endif %}
@@ -37,7 +37,6 @@
             <table class="table table-hover table-dark" id="Inventario">
                 <thead>
                 <tr align="center">
-                    <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Ver Detalle</th>
                     {% if user.is_administrador or user.is_adminplus %}
@@ -51,9 +50,6 @@
                 {% for Inventario in inventarios %}
 
                     <tr align="center">
-                        <th scope="row"><a style="color:#98a6ad"
-                                           href="/inventario/{{ Inventario.id }}/ver/material_inventario">{{ Inventario.id }}</a>
-                        </th>
                         <td><a style="color:#98a6ad"
                                href="/inventario/{{ Inventario.id }}/ver/material_inventario">{{ Inventario.nombre }}</a>
                         </td>

@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 
 class CustomForm(forms.ModelForm):
 
-    cellphone = forms.CharField(label='Celular', required=True, widget= forms.TextInput
+    cellphone = forms.CharField(label='Celular', max_length=10, required=True, widget= forms.TextInput
                            (attrs={'placeholder':'10 dígitos: xxx xxx xxxx'}))
     date_of_birth = forms.DateField(label='Fecha de Nacimiento', widget=forms.SelectDateWidget(years=range(1900, 2025)), required=True)
 

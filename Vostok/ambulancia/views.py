@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Ambulancia, Viaje, MaterialUsado
 from .forms import CrearAmbulancia
 from .forms import CrearAmbulancia, CambiarEstado
-from .models import Ambulancia, Viaje
+from .models import Ambulancia, Viaje, Activables
 from inventario.models import Inventario
-from django.db import DatabaseError
+from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from inventario.models import Inventario
@@ -13,6 +13,12 @@ from django.views.generic.edit import UpdateView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from revision.models import RevisionAmbulancia
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Max
+from django.contrib.auth import get_user_model
+
+
+from django.urls import reverse
 import json
 
 from users.decorators import voluntario_required,administrador_required,adminplus_required
@@ -105,16 +111,53 @@ def serializar_ambulancia(ambulancia):
     json = {
         'materiales': [
             {
-                'nombre': 'gasolina',
+                'nombre': 'Gasolina',
                 'id': 1,
                 'objetivo': ambulancia.objetivo_gasolina,
                 'cantidad': revision.gasolina,
+                'medida': 'Porcentaje',
             },
             {
-                'nombre': 'liquido de frenos',
+                'nombre': 'Kilometraje',
                 'id': 2,
+                'objetivo': ambulancia.objetivo_kilometraje,
+                'cantidad': revision.kilometraje,
+                'medida': 'Kilómetros',
+            },
+            {
+                'nombre': 'Líquido de frenos',
+                'id': 3,
                 'objetivo': ambulancia.objetivo_liquido_frenos,
                 'cantidad': revision.liquido_frenos,
+                'medida': 'Porcentaje',
+            },
+            {
+                'nombre': 'Aceite de motor',
+                'id': 4,
+                'objetivo': ambulancia.objetivo_aceite_motor,
+                'cantidad': revision.aceite_motor,
+                'medida': 'Porcentaje',
+            },
+            {
+                'nombre': 'Aceite de dirección',
+                'id': 5,
+                'objetivo': ambulancia.objetivo_aceite_direccion,
+                'cantidad': revision.aceite_direccion,
+                'medida': 'Porcentaje',
+            },
+            {
+                'nombre': 'Anticongelante',
+                'id': 6,
+                'objetivo': ambulancia.objetivo_anticongelante,
+                'cantidad': revision.anticongelante,
+                'medida': 'Porcentaje',
+            },
+            {
+                'nombre': 'Líquido limpiaparabrisas',
+                'id': 7,
+                'objetivo': ambulancia.objetivo_liquido_limpiaparabrisas,
+                'cantidad': revision.liquido_limpiaparabrisas,
+                'medida': 'Porcentaje',
             }
         ]
     }
@@ -124,22 +167,36 @@ def serializar_ambulancia(ambulancia):
 def guardar_ambulancia(ambulancia, request):
     datos = json.loads(request.body)
     try:
-        cantidades = {}
-
-        for item in datos["materiales"]:
-            cantidades[item["nombre"]] = item["cantidad"]
-
-        RevisionAmbulancia.objects.create(
-            nombre_paramedico=datos["nombre_paramedico"],
-            email_paramedico=datos["email_paramedico"],
-            fecha=timezone.now(),
-            ambulancia=ambulancia,
-            gasolina=cantidades["gasolina"],
-            liquido_frenos=cantidades["liquido de frenos"],
-            observaciones=datos["observaciones"]
-        )
-    except Exception:
+        usuario = get_user_model().objects.get(email=datos["email_paramedico"])
+    except ObjectDoesNotExist:
         return False
+
+
+    cantidades = {}
+    listo = True
+    for item in datos["materiales"]:
+        cantidades[item["nombre"]] = item["cantidad"]
+        if item["cantidad"] < item["objetivo"]:
+            listo = False
+    with transaction.atomic():
+        try:
+            RevisionAmbulancia.objects.create(
+                usuario=usuario,
+                fecha=timezone.now(),
+                ambulancia=ambulancia,
+                gasolina=cantidades["Gasolina"],
+                kilometraje=cantidades["Kilometraje"],
+                liquido_frenos=cantidades["Líquido de frenos"],
+                aceite_motor=cantidades["Aceite de motor"],
+                aceite_direccion=cantidades["Aceite de dirección"],
+                anticongelante=cantidades["Anticongelante"],
+                liquido_limpiaparabrisas=cantidades["Líquido limpiaparabrisas"],
+                observaciones=datos["observaciones"]
+            )
+            ambulancia.ambulancia_lista = listo
+            ambulancia.save()
+        except Exception:
+            return False
 
     return True
 
@@ -155,18 +212,28 @@ def checklist_ambulancia(request, pk):
 
 @csrf_exempt
 def lista_ambulancias(request):
+    activas = Ambulancia.objects.filter(estado=Ambulancia.activa)
+    revisadas = activas.filter(ambulancia_lista=True, inventario_listo=True)
+    if activas.count() - revisadas.count() < Activables.objects.order_by('-fecha').first().cantidad:
+        antigua = revisadas\
+            .annotate(fecha=Max('inventario__inventariomaterial__revision__fecha'))\
+            .order_by('fecha')\
+            .first()
+        antigua.ambulancia_lista = False
+        antigua.inventario_listo = False
+        antigua.save()
     output = {'ambulancias': []}
-    for ambulancia in Ambulancia.objects.all():
+    for ambulancia in activas:
         output['ambulancias'].append(
             {
                 'nombre': ambulancia.nombre,
                 'id': ambulancia.id,
-                'idInventario': ambulancia.inventario_id
+                'idInventario': ambulancia.inventario_id,
+                'inventarioListo': ambulancia.inventario_listo,
+                'ambulanciaLista': ambulancia.ambulancia_lista,
             }
         )
     return JsonResponse(output)
-
-
 ##### CONTROLLER US28 ####
 
 
@@ -199,13 +266,18 @@ def materiales_usados(request, id):
 ####### CONTROLLER US26############
 @voluntario_required
 def ver_control_ambulancias(request):
-    ambulancias = Ambulancia.objects.all().order_by('id')
-
-
     context = {
-        'ambulancias': ambulancias,
+        'ambulancias': Ambulancia.objects.all().order_by('id'),
         'form': CambiarEstado,
     }
+    if request.method == 'POST' and request.user.is_administrador:
+        # post request
+        try:
+            Activables.objects.create(cantidad=request.POST['activables'], fecha=timezone.now())
+            context['estado'] = 'guardado'
+        except DatabaseError:
+            context['estado'] = 'error'
+    context['activables'] = Activables.objects.order_by('-fecha').first().cantidad
     return render(request, '../templates/ambulancia/control_ambulancias.html', context)
 
 @administrador_required

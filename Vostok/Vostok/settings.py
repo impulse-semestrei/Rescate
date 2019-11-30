@@ -16,6 +16,7 @@ import json
 file = open("../../configuration.json", "r")
 config = json.loads(file.read())
 env = config["environment"]
+key = config["API_KEY"]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,12 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#r4o936d!1pex@c(nte^x$bg7&d+b6d+k3kb#1!v^@=+34&sfk'
+SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1','localhost', 'rescate1app.com', '157.230.156.154']
+ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1','localhost', 'rescate1app.com', '157.230.156.154', '206.189.161.48', 'rescate1test.com']
 
 # Application definition
 
@@ -116,7 +117,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'Vostok',
             'USER': 'postgres',
-            'PASSWORD': 'PauloSolis1',
+            'PASSWORD': 'postgres',
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
