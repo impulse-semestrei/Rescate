@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.template.defaultfilters import register
-
 from ambulancia.models import Ambulancia
 from revision.models import Revision, RevisionAmbulancia
 
@@ -66,34 +65,30 @@ def ver_detalle_ambulancia(request, id, id_revision):
 def Reportes(request):
     ambulancias = Ambulancia.objects.all()
     materiales = []
+    unidad = []
     for ambulancia in ambulancias.iterator():
-        unidad = Ambulancia.objects.get(id=ambulancia.id)
-        inventario = unidad.inventario
+        ambu = Ambulancia.objects.get(id=ambulancia.id)
+        unidad.append(Ambulancia.objects.get(id=ambulancia.id))
+        inventario = ambu.inventario
         materialesInventario = InventarioMaterial.objects.filter(inventario=inventario).distinct('revision').order_by('-revision__id').first()
         revision = materialesInventario.revision
         materiales.append(InventarioMaterial.objects.filter(revision=revision))
     objetos=[{}]
     info=[{}]
     for i in materiales:
-        # materiales=i.filter()
-        # cantidades = i.filter().cantidad
-        # targets = i.filter().material.cantidad
-        # ambulancias = i.filter().inventario.ambulancia
-        # materialInfo = {
-        #     'material' : materiales,
-        #     'cantidad' : cantidades,
-        #     'target' : targets,
-        #     'ambulancia': ambulancias
-        #
-        # }
-
         info.append(i)
 
+    for i in unidad:
+        objetos.append(i)
 
-    context={'info':info}
+    fusion = zip(info, objetos)
+    print(fusion)
+
+    context={'info':fusion}
 
 
     return render(request,'../templates/revision/reportes.html', context)
+
 
 @register.filter(name = 'substract')
 def subtract(value, arg):

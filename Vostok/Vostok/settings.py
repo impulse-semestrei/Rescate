@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'rest_framework',
 
+
+
     # Project apps
     'users.apps.UsersConfig',
     'material.apps.MaterialConfig',
@@ -114,7 +116,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'Vostok',
             'USER': 'postgres',
-            'PASSWORD': 'quirotagoras1595',
+            'PASSWORD': 'PauloSolis1',
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
