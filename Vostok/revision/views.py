@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.template.defaultfilters import register
 from ambulancia.models import Ambulancia
 from revision.models import Revision, RevisionAmbulancia
-
 from inventario.models import InventarioMaterial, Inventario
 from django.contrib.auth.decorators import login_required
 from django import template
