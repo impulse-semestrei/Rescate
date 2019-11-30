@@ -85,11 +85,17 @@ def delete_material(request, id):
 
 
 # ------------- CONTROLLER US34 --------------
-@method_decorator(administrador_required, name='dispatch')
-class EditarMaterial(UpdateView):
-    model = Material
-    form_class = CrearMaterial
-    template_name = 'material/editar_material.html'
-    success_url = '/material/ver/'
-
+@administrador_required
+def editar_material(request, pk):
+    estado = 'get'
+    material = Material.objects.get(id=pk)
+    form = CrearMaterial(request.POST or None, instance=material)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        estado = 'guardado'
+    context = {
+        'form': form,
+        'estado': estado
+    }
+    return render(request, '../templates/material/editar_material.html', context)
 # ------------- CONTROLLER US34 --------------
