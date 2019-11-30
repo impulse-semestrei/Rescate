@@ -223,7 +223,11 @@ def checklist_ambulancia(request, pk):
 def lista_ambulancias(request):
     activas = Ambulancia.objects.filter(estado=Ambulancia.activa)
     revisadas = activas.filter(ambulancia_lista=True, inventario_listo=True)
-    if activas.count() - revisadas.count() < Activables.objects.order_by('-fecha').first().cantidad:
+    try:
+        num_activables = Activables.objects.order_by('-fecha').first().cantidad
+    except AttributeError:
+        num_activables = 0
+    if activas.count() - revisadas.count() < num_activables:
         antigua = revisadas\
             .annotate(fecha=Max('inventario__inventariomaterial__revision__fecha'))\
             .order_by('fecha')\
@@ -279,14 +283,17 @@ def ver_control_ambulancias(request):
         'ambulancias': Ambulancia.objects.all().order_by('id'),
         'form': CambiarEstado,
     }
-    if request.method == 'POST' and request.user.is_administrador:
+    if request.method == 'POST' and (request.user.is_administrador or request.user.is_adminplus):
         # post request
         try:
             Activables.objects.create(cantidad=request.POST['activables'], fecha=timezone.now())
             context['estado'] = 'guardado'
         except DatabaseError:
             context['estado'] = 'error'
-    context['activables'] = Activables.objects.order_by('-fecha').first().cantidad
+    try:
+        context['activables'] = Activables.objects.order_by('-fecha').first().cantidad
+    except AttributeError:
+        context['activables'] = 0
     return render(request, '../templates/ambulancia/control_ambulancias.html', context)
 
 @administrador_required

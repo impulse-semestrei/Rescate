@@ -4,254 +4,262 @@
 {% load static %}
 {% load staticfiles %}
 
+<!--==========================
+Head
+============================-->
+<head>
+    <meta charset="utf-8"/>
+    <title>Vostok Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'dashboard/images/favicon.ico' %}">
+    <link href="{% static 'website/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Plugin css -->
+    <link href="{% static 'dashboard/libs/fullcalendar/fullcalendar.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'dashboard/libs/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet"/>
+    <link href="{% static 'dashboard/libs/switchery/switchery.min.css' %}" rel="stylesheet" type="text/css"/>
+
+    <link href="{% static 'dashboard/libs/multiselect/multi-select.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'dashboard/libs/select2/select2.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'dashboard/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'dashboard/libs/switchery/switchery.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'dashboard/libs/bootstrap-timepicker/bootstrap-timepicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dashboard/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dashboard/libs/bootstrap-datepicker/bootstrap-datepicker.css' %}" rel="stylesheet">
+    <link href="{% static 'dashboard/libs/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
+
+    <link href="{% static 'dashboard/libs/custombox/custombox.min.css' %}" rel="stylesheet">
+
+    <!-- App css -->
+    <link href="{% static 'dashboard//css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'dashboard/css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'dashboard/css/app.min.css' %}" rel="stylesheet" type="text/css"/>
+
+    <link href="{% static 'dashboard/css/custom.css' %}" rel="stylesheet" type="text/css"/>
+
+
+</head>
+
+<body>
+<div id="wrapper">
     <!--==========================
-    Head
+    Header - Top Bar
     ============================-->
-    <head>
-        <meta charset="utf-8" />
-        <title>Vostok Dashboard</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static 'dashboard/images/favicon.ico' %}">
-        <link href="{% static 'website/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    <header id="header">
+        <div class="navbar-custom navbar-custom-dark">
+            <ul class="list-unstyled topnav-menu float-right mb-0">
 
-        <!-- Plugin css -->
-        <link href="{% static 'dashboard/libs/fullcalendar/fullcalendar.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'dashboard/libs/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet" />
-        <link href="{% static 'dashboard/libs/switchery/switchery.min.css' %}" rel="stylesheet" type="text/css" />
-
-        <link href="{% static 'dashboard/libs/multiselect/multi-select.css' %}"  rel="stylesheet" type="text/css" />
-        <link href="{% static 'dashboard/libs/select2/select2.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'dashboard/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet" />
-        <link href="{% static 'dashboard/libs/switchery/switchery.min.css' %}" rel="stylesheet" />
-        <link href="{% static 'dashboard/libs/bootstrap-timepicker/bootstrap-timepicker.min.css' %}" rel="stylesheet">
-        <link href="{% static 'dashboard/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
-        <link href="{% static 'dashboard/libs/bootstrap-datepicker/bootstrap-datepicker.css' %}" rel="stylesheet">
-        <link href="{% static 'dashboard/libs/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
-
-        <link href="{% static 'dashboard/libs/custombox/custombox.min.css' %}" rel="stylesheet">
-
-        <!-- App css -->
-        <link href="{% static 'dashboard//css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'dashboard/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'dashboard/css/app.min.css' %}" rel="stylesheet" type="text/css" />
-
-        <link href="{% static 'dashboard/css/custom.css' %}" rel="stylesheet" type="text/css" />
-
-
-    </head>
-
-    <body>
-        <div id="wrapper">
-            <!--==========================
-            Header - Top Bar
-            ============================-->
-            <header id="header">
-                <div class="navbar-custom navbar-custom-dark">
-                    <ul class="list-unstyled topnav-menu float-right mb-0">
-
-                        <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <i class="dripicons-gear noti-icon"></i>
-                                <span class="pro-user-name ml-1">
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#"
+                       role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="dripicons-gear noti-icon"></i>
+                        <span class="pro-user-name ml-1">
                                     {{ user.username }}
                                     <i class="mdi mdi-chevron-down"></i>
                                 </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                <!-- item-->
-                                <div class="dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">¡Hola!</h6>
-                                </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">¡Hola!</h6>
+                        </div>
 
-                                <!-- item-->
-                                <a href="{% url 'users:index' %}" class="dropdown-item notify-item">
-                                    <i class="fe-user"></i>
-                                    <span>Mi Cuenta</span>
-                                </a>
+                        <!-- item-->
+                        <a href="{% url 'users:index' %}" class="dropdown-item notify-item">
+                            <i class="fe-user"></i>
+                            <span>Mi Cuenta</span>
+                        </a>
 
-                                <div class="dropdown-divider"></div>
+                        <div class="dropdown-divider"></div>
 
-                                <!-- item-->
-                                <a href="{% url 'users:logout' %}" class="dropdown-item notify-item">
-                                    <i class="fe-log-out"></i>
-                                    <span>Cerrar Sesión</span>
-                                </a>
+                        <!-- item-->
+                        <a href="{% url 'users:logout' %}" class="dropdown-item notify-item">
+                            <i class="fe-log-out"></i>
+                            <span>Cerrar Sesión</span>
+                        </a>
 
-                            </div>
-                        </li>
+                    </div>
+                </li>
 
-                    </ul>
+            </ul>
 
-                    <!-- LOGO -->
-                    <div class="logo-box">
-                        <a href="#" class="logo text-center">
+            <!-- LOGO -->
+            <div class="logo-box">
+                <a href="#" class="logo text-center">
                             <span class="logo-lg">
                                 <!-- <img src="{% static 'dashboard/images/logo-light.png' %}" alt="" height="16"> -->
                                 <span class="logo-lg-text-light"></span>
                             </span>
-                            <span class="logo-sm">
+                    <span class="logo-sm">
                                 <span class="logo-sm-text-dark"></span>
-                                <!-- <img src="{% static 'dashboard/images/logo-sm.png' %}" alt="" height="24"> -->
+                        <!-- <img src="{% static 'dashboard/images/logo-sm.png' %}" alt="" height="24"> -->
                             </span>
-                        </a>
-                    </div>
+                </a>
+            </div>
 
-                    <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+            <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                <li>
+                    <button class="button-menu-mobile disable-btn waves-effect">
+                        <i class="fe-menu"></i>
+                    </button>
+                </li>
+
+                <li>
+                    <h4 class="page-title-main"></h4>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+
+    <!--==========================
+    Left-Side Bar
+    ============================-->
+    <div class="left-side-menu">
+        <div class="slimscroll-menu">
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+
+                <ul class="metismenu" id="side-menu">
+
+                    <li class="menu-title">Menú</li>
+                    {% if user.is_anon %}
                         <li>
-                            <button class="button-menu-mobile disable-btn waves-effect">
-                                <i class="fe-menu"></i>
-                            </button>
+                            <a href="/index/">
+                                <i class="mdi mdi-view-dashboard"></i>
+                                <span> Mi Cuenta </span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/index/">
+                                <i class="mdi mdi-view-dashboard"></i>
+                                <span> Mi Cuenta </span>
+                            </a>
                         </li>
 
                         <li>
-                            <h4 class="page-title-main"></h4>
+                            <a href="{% url 'material:ver_material' %}">
+                                <i class="mdi mdi-medical-bag"></i>
+                                <span> Materiales </span>
+                            </a>
                         </li>
 
-                    </ul>
-                </div>
-            </header>
+                        <li>
+                            <a href="{% url 'inventario:ver_inventario' %}">
+                                <i class="mdi mdi-database"></i>
+                                <span> Equipo </span>
+                            </a>
+                        </li>
 
-            <!--==========================
-            Left-Side Bar
-            ============================-->
-            <div class="left-side-menu">
-                <div class="slimscroll-menu">
+                        <li>
+                            <a href="{% url 'ambulancia:ver_ambulancias' %}">
+                                <i class="mdi mdi-ambulance"></i>
+                                <span> Unidad </span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if user.is_administrador or user.is_adminplus%}
+                        <li>
+                            <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
+                                <i class="mdi mdi-clipboard-check-outline"></i>
+                                <span> Control de Unidades </span>
+                            </a>
+                        </li>
 
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-
-                        <ul class="metismenu" id="side-menu">
-
-                            <li class="menu-title">Menú</li>
-                            {% if user.is_anon %}
-                            <li>
-                                <a href="/index/">
-                                    <i class="mdi mdi-view-dashboard"></i>
-                                    <span> Mi Cuenta </span>
-                                </a>
-                            </li>
-                            {% else %}
-                            <li>
-                                <a href="/index/">
-                                    <i class="mdi mdi-view-dashboard"></i>
-                                    <span> Mi Cuenta </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{% url 'material:ver_material' %}">
-                                    <i class="mdi mdi-medical-bag"></i>
-                                    <span> Materiales </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{% url 'inventario:ver_inventario' %}">
-                                    <i class="mdi mdi-database"></i>
-                                    <span> Equipo </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{% url 'ambulancia:ver_ambulancias' %}">
-                                    <i class="mdi mdi-ambulance"></i>
-                                    <span> Unidad </span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if user.is_administrador %}
-                            <li>
-                                <a href="{% url 'ambulancia:ver_control_ambulancias' %}">
-                                    <i class="mdi mdi-clipboard-check-outline"></i>
-                                    <span> Control de Unidades </span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if user.is_adminplus %}
-                            <li>
-                                <a href="{% url 'users:ver_usuarios' %}">
-                                    <i class="mdi mdi-account-multiple-outline"></i>
-                                    <span> Usuarios y Permisos </span>
-                                </a>
-                            </li>
-                            {% endif %}
-                        </ul>
-
-                    </div>
-                    <!-- End Sidebar -->
-
-                    <div class="clearfix"></div>
-
-                </div>
-                <!-- Sidebar -left -->
+                    {% endif %}
+                    {% if user.is_adminplus %}
+                        <li>
+                            <a href="{% url 'revision:reportes_materiales' %}">
+                                <i class="mdi mdi-record"></i>
+                                <span> Reportes </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'users:ver_usuarios' %}">
+                                <i class="mdi mdi-account-multiple-outline"></i>
+                                <span> Usuarios y Permisos </span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
 
             </div>
-            <!-- Left Sidebar End -->
+            <!-- End Sidebar -->
 
-            <!--==========================
-            Content Block
-            ============================-->
-            <div class="content-page">
-                <div class="content">
+            <div class="clearfix"></div>
 
-                    {% block content %}
+        </div>
+        <!-- Sidebar -left -->
 
-                    {% endblock %}
+    </div>
+    <!-- Left Sidebar End -->
 
-                </div>
+    <!--==========================
+    Content Block
+    ============================-->
+    <div class="content-page">
+        <div class="content">
 
-                    <!--==========================
-                    Footer
-                    ============================-->
-                    <footer class="footer">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-6">
-                                   Vostok Dashboard App by <a href="">Impulse</a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- end Footer -->
+            {% block content %}
 
-            </div>
+            {% endblock %}
+
         </div>
 
         <!--==========================
-        Scripts
+        Footer
         ============================-->
-        <!-- Vendor js -->
-        <script src="{% static 'dashboard/js/vendor.min.js' %}"></script>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        Vostok Dashboard App by <a href="">Impulse</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+</div>
+
+<!--==========================
+Scripts
+============================-->
+<!-- Vendor js -->
+<script src="{% static 'dashboard/js/vendor.min.js' %}"></script>
 
 
-        <!-- Modal js -->
-        <script src="{% static 'dashboard/libs/custombox/custombox.min.js' %}"></script>
+<!-- Modal js -->
+<script src="{% static 'dashboard/libs/custombox/custombox.min.js' %}"></script>
 
-        <!-- Plugins Js -->
-        <script src="{% static 'dashboard/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
-        <script src="{% static 'dashboard/libs/switchery/switchery.min.js' %}"></script>
-        <script src="{% static 'dashboard/libs/multiselect/jquery.multi-select.js' %}"></script>
-        <script src="{% static 'dashboard/libs/jquery-quicksearch/jquery.quicksearch.min.js' %}"></script>
+<!-- Plugins Js -->
+<script src="{% static 'dashboard/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/switchery/switchery.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/multiselect/jquery.multi-select.js' %}"></script>
+<script src="{% static 'dashboard/libs/jquery-quicksearch/jquery.quicksearch.min.js' %}"></script>
 
-        <script src="{% static 'dashboard/libs/select2/select2.min.js' %}"></script>
-        <script src="{% static 'dashboard/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
-        <script src="{% static 'dashboard/libs/jquery-mask-plugin/jquery.mask.min.js' %}"></script>
-        <script src="{% static 'dashboard/libs/moment/moment.js' %}"></script>
-        <script src="{% static 'dashboard/libs/bootstrap-timepicker/bootstrap-timepicker.min.js' %}"></script>
-        <script src="{% static 'dashboard/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js' %}"></script>
-        <script src="{% static 'dashboard/libs/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
-        <script src="{% static 'dashboard/libs/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
-        <script src="{% static 'dashboard/libs/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/select2/select2.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/jquery-mask-plugin/jquery.mask.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/moment/moment.js' %}"></script>
+<script src="{% static 'dashboard/libs/bootstrap-timepicker/bootstrap-timepicker.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'dashboard/libs/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+<script src="{% static 'dashboard/libs/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
 
-        <!-- Init js-->
-        <script src="{% static 'dashboard/js/pages/form-advanced.init.js' %}"></script>
+<!-- Init js-->
+<script src="{% static 'dashboard/js/pages/form-advanced.init.js' %}"></script>
 
-        <!-- App js -->
-        <script src="{% static 'dashboard/js/app.min.js' %}"></script>
+<!-- App js -->
+<script src="{% static 'dashboard/js/app.min.js' %}"></script>
 
-    </body>
+</body>
 
 </html>

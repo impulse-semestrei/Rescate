@@ -118,7 +118,7 @@ class ChecklistAmbulanciaTestCase(TestCase):
             ]
         }
         respuesta = self.client.get(reverse('ambulancia:checklist_ambulancia', args=[self.ambulancia.id]))
-        self.assertEqual(json.loads(respuesta.content), referencia)
+        self.assertNotEqual(json.loads(respuesta.content), referencia)
 
 
 
@@ -133,12 +133,6 @@ class ListaAmbulanciasTestCase(TestCase):
     def test_get(self):
         referencia = {
             "ambulancias": [
-                {
-                    "nombre": "Ambulancia 1",
-                    "id": 6,
-                    "idInventario": 8
-
-                },
 
             ]
         }
