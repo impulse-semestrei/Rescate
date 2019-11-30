@@ -283,7 +283,7 @@ def ver_control_ambulancias(request):
         'ambulancias': Ambulancia.objects.all().order_by('id'),
         'form': CambiarEstado,
     }
-    if request.method == 'POST' and request.user.is_administrador:
+    if request.method == 'POST' and (request.user.is_administrador or request.user.is_adminplus):
         # post request
         try:
             Activables.objects.create(cantidad=request.POST['activables'], fecha=timezone.now())
