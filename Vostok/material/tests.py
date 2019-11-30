@@ -24,6 +24,7 @@ class CrearMaterialTestCase(TestCase):
         La forma es valida para guardarse en la bd
         """
         data = {
+            'codigo': 'codigo1',
             'nombre': 'alcohol',
             'descripcion': 'desinfección',
             'cantidad': 4,
