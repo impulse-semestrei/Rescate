@@ -75,13 +75,11 @@ def agregar_material_inventario(request, pk):
                 cantidad = form.cleaned_data.get('cantidad')
                 context['nombre_material'] = material
                 #context['cantidad'] = cantidad
-
                 try:
-                    with transaction.atomic():
-                        inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
-                        inventario_material.cantidad += cantidad
-                        inventario_material.save()
-                        context['status'] = STATUS_UPDATED
+                    inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
+                    inventario_material.cantidad += cantidad
+                    inventario_material.save()
+                    context['status'] = STATUS_UPDATED
                 except ObjectDoesNotExist:
                     InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad)
                     context['status'] = STATUS_CREATED
