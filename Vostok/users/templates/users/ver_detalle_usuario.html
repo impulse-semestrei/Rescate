@@ -39,7 +39,9 @@
                     <br>
                     <strong>Celular: </strong>{{ usuario.cellphone }}
                     <br>
-                    <strong>Fecha de Nacimiento: </strong>{{ usuario.date_of_birth }}
+                    <strong>Fecha de Nacimiento: </strong>{{ usuario.date_of_birth }}<br>
+                    <strong>Pin: </strong>{{ usuario.pin}}<br>
+                    <a class="btn btn-success" href="{% url "users:generar_pin" usuario.id %}">Generar un pin nuevo</a>
                 </p>
             </div>
 

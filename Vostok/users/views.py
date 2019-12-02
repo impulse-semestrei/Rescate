@@ -9,6 +9,7 @@ from .decorators import voluntario_required,administrador_required,adminplus_req
 from .models import CustomUser
 from .forms import CustomUserUpdateForm
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from django.contrib.auth import get_user_model
 
@@ -77,10 +78,14 @@ def ver_detalle_usuarios(request,id):
         return render(request,'../templates/data_base_error.html') #cambiar esto a pantalla de error
 #### CONTROLLER US12 ####
 
-
+@adminplus_required
+def generar_pin(request, pk):
+    get_user_model().objects.get(id=pk).generar_pin()
+    return redirect(reverse('users:detalle_usuario', args=[pk]))
 
 
 class UserViewSet(viewsets.ModelViewSet):
     User = get_user_model()
     queryset = User.objects.all()
     serializer_class = UserSerializer
+

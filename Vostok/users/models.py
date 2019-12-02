@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+import random
+import math
 
 turnoChoices=[
     (1, 'Nocturno Viernes'),
@@ -20,5 +21,11 @@ class CustomUser(AbstractUser):
     date_of_birth = models.DateField(null=True)
     cellphone = models.TextField(null=True, max_length=15)
     turno = models.IntegerField(choices=turnoChoices,default=None,null=True)
+    pin = models.IntegerField(unique=True, null=True)
+
+    def generar_pin(self):
+        self.pin = self.id * 10000 + random.randint(999, 10000)
+        self.save()
+
 ### MODELS US12 ##
 
