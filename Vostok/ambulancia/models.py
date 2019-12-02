@@ -23,6 +23,8 @@ class Ambulancia(models.Model):
 
     ambulancia_lista = models.BooleanField(default=False)
     inventario_listo = models.BooleanField(default=False)
+    botiquin_listo = models.BooleanField(default=False)
+    monitor_listo = models.BooleanField(default=False)
 
     objetivo_gasolina = 100
     objetivo_liquido_frenos = 100

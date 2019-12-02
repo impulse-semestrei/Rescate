@@ -203,6 +203,8 @@ def serializar_inventario(inventario):
 
 def guardar_inventario(inventario, request):
     datos = json.loads(request.body)
+    nombre = datos['nombre']
+    print(nombre)
     objects = []
     fecha = timezone.now()
     try:
@@ -217,7 +219,12 @@ def guardar_inventario(inventario, request):
     )
 
     try:
-        ambulancia = Ambulancia.objects.get(inventario=inventario)
+        if nombre == 'inventario':
+            ambulancia = Ambulancia.objects.get(inventario=inventario)
+        elif nombre == 'botiquin':
+            ambulancia = Ambulancia.objects.get(botiquin=inventario)
+        elif nombre == 'monitor':
+            ambulancia = Ambulancia.objects.get(monitor=inventario)
     except ObjectDoesNotExist:
         return False
 
@@ -240,7 +247,12 @@ def guardar_inventario(inventario, request):
             )
         for item in objects:
             item.save()
-        ambulancia.inventario_listo = listo
+        if nombre == 'inventario':
+            ambulancia.inventario_listo = listo
+        elif nombre == 'botiquin':
+            ambulancia.botiquin_listo = listo
+        elif nombre == 'monitor':
+            ambulancia.monitor_listo = listo
         ambulancia.save()
     return True
 

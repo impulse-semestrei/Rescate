@@ -222,7 +222,7 @@ def checklist_ambulancia(request, pk):
 @csrf_exempt
 def lista_ambulancias(request):
     activas = Ambulancia.objects.filter(estado=Ambulancia.activa)
-    revisadas = activas.filter(ambulancia_lista=True, inventario_listo=True)
+    revisadas = activas.filter(ambulancia_lista=True, botiquin_listo=True, inventario_listo=True)
     try:
         num_activables = Activables.objects.order_by('-fecha').first().cantidad
     except AttributeError:
@@ -234,6 +234,8 @@ def lista_ambulancias(request):
             .first()
         antigua.ambulancia_lista = False
         antigua.inventario_listo = False
+        antigua.botiquin_listo = False
+        antigua.monitor_listo = False
         antigua.save()
     output = {'ambulancias': []}
     for ambulancia in activas:
@@ -245,6 +247,8 @@ def lista_ambulancias(request):
                 'idBotiquin': ambulancia.botiquin_id,
                 'idMonitor': ambulancia.monitor_id,
                 'inventarioListo': ambulancia.inventario_listo,
+                'botiquinListo': ambulancia.botiquin_listo,
+                'monitorListo': ambulancia.monitor_listo,
                 'ambulanciaLista': ambulancia.ambulancia_lista,
             }
         )

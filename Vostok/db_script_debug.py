@@ -17,6 +17,17 @@ materiales = []
 materiales.append(Material.objects.create(nombre="Desinfectante para manos", descripcion="", cantidad=1))
 materiales.append(Material.objects.create(nombre="Férula de tracción", descripcion="", cantidad=1, medida="Presión"))
 
+materialesBotiquin = []
+# Materiales de botiquín
+materialesBotiquin.append(Material.objects.create(nombre="Material botiquín 1", descripcion="", cantidad=1))
+materialesBotiquin.append(Material.objects.create(nombre="Material botiquín 2", descripcion="", cantidad=2, medida="Porcentaje"))
+
+materialesMonitor = []
+# Materiales de monitor
+materialesMonitor.append(Material.objects.create(nombre="Material monitor 1", descripcion="", cantidad=1))
+materialesMonitor.append(Material.objects.create(nombre="Material monitor 2", descripcion="", cantidad=2, medida="Porcentaje"))
+
+
 fecha = timezone.now()
 
 nombres = ['Azul 1', 'Azul 2', 'Azul 3', 'Azul 4', 'Azul 5']
@@ -34,7 +45,9 @@ for nombre in nombres:
         monitor=monitor,
         estado=Ambulancia.activa
     )
-    revision = Revision.objects.create(fecha=fecha, usuario=user)
+    revisionInventario = Revision.objects.create(fecha=fecha, usuario=user)
+    revisionBotiquin = Revision.objects.create(fecha=fecha, usuario=user)
+    revisionMonitor = Revision.objects.create(fecha=fecha, usuario=user)
     revision_ambulancia = RevisionAmbulancia.objects.create(
         fecha=fecha,
         ambulancia=ambulancia,
@@ -52,7 +65,21 @@ for nombre in nombres:
             inventario=inventario,
             material=material,
             cantidad=material.cantidad,
-            revision=revision,
+            revision=revisionInventario,
+        )
+    for material in materialesBotiquin:
+        InventarioMaterial.objects.create(
+            inventario=botiquin,
+            material=material,
+            cantidad=material.cantidad,
+            revision=revisionBotiquin,
+        )
+    for material in materialesMonitor:
+        InventarioMaterial.objects.create(
+            inventario=monitor,
+            material=material,
+            cantidad=material.cantidad,
+            revision=revisionMonitor,
         )
 
 ambulancia_desactivada = Ambulancia.objects.get(nombre=nombres[len(nombres) - 1])

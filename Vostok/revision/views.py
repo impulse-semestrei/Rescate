@@ -9,6 +9,7 @@ from users.decorators import voluntario_required,administrador_required,adminplu
 from django.utils.decorators import method_decorator
 # Create your views here.
 from django.db.models import Sum, F, Func
+from django.db.models import Q
 
 
 ##### CONTROLLER US09 #####
@@ -17,8 +18,9 @@ from django.db.models import Sum, F, Func
 @administrador_required
 def ver_revisiones(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
-    inventario = ambulancia.inventario
-    registros =InventarioMaterial.objects.filter(inventario=inventario).distinct('revision')
+    registros = InventarioMaterial.objects.filter(
+        Q(inventario=ambulancia.inventario) | Q(inventario=ambulancia.botiquin) | Q(inventario=ambulancia.monitor)
+    ).distinct('revision')
     context = {'registros': registros, 'ambulancia': ambulancia}
     return render(request, '../templates/revision/ver_revisiones.html', context)
 ##### CONTROLLER US09 #####
@@ -68,8 +70,9 @@ def Reportes(request):
     for ambulancia in ambulancias.iterator():
         ambu = Ambulancia.objects.get(id=ambulancia.id)
         unidad.append(Ambulancia.objects.get(id=ambulancia.id))
-        inventario = ambu.inventario
-        materialesInventario = InventarioMaterial.objects.filter(inventario=inventario).distinct('revision').order_by('-revision__id').first()
+        materialesInventario = InventarioMaterial.objects.filter(
+            Q(inventario=ambu.inventario) | Q(inventario=ambu.botiquin) | Q(inventario=ambu.monitor)
+        ).distinct('revision').order_by('-revision__id').first()
         revision = materialesInventario.revision
         materiales.append(InventarioMaterial.objects.filter(revision=revision))
     objetos=[{}]
