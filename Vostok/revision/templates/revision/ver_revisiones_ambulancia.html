@@ -36,7 +36,7 @@
                 {% for revision in revisiones %}
 
                     <tr>
-                        <td>{{ revision.fecha }}</td>
+                        <td>{{ revision.fecha|date:"d/m/y"  }}</td>
                         <td>{{ revision.usuario.first_name }}{{ revision.usuario.last_name }}</td>
                         <td>{{ revision.usuario.get_turno_display }}</td>
                         <td><a href="{% url 'revision:detalle_ambulancia' id=ambulancia.id id_revision=revision.id %}">

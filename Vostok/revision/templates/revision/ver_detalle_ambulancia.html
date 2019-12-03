@@ -3,7 +3,6 @@
 {% block content %}
     <!--######## VIEW US30 ########-->
 
-
     <h2>Historial de revisiones del estado de la ambulancia</h2>
       <a href="{% url "revision:revisiones_ambulancia"  id=ambulancia.id %}">
                 <button class="btn btn-dark" type="button" data-toggle="modal"
@@ -11,6 +10,7 @@
                         class="fas fa-arrow-left"></i></button>
             </a>
     <br>
+    <h2>Revisión de la unidad {{ ambulancia.nombre }}</h2>
     {% if  revision %}
 
         <br>
