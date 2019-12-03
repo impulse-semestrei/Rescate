@@ -117,7 +117,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'Vostok',
             'USER': 'postgres',
-            'PASSWORD': 'quirotagoras1595',
+            'PASSWORD': '1234567890',
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
