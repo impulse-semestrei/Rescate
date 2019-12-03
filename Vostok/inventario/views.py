@@ -113,7 +113,6 @@ def ver_inventario(request):
     inventarios = Inventario.objects.all().order_by('id')
     context = {
                 'inventarios': inventarios,
-                'form': crearInventarioForm(),
     }
     return render(request, '../templates/inventario/ver_inventario.html', context)
 ####### CONTROLLER US07############
@@ -124,12 +123,8 @@ def ver_inventario(request):
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.delete()
-    inventarios = Inventario.objects.all()
 
-    context = {'inventarios': inventarios,
-               'form': crearInventarioForm(),
-    }
-    return render(request, '../templates/inventario/ver_inventario.html', context)
+    return redirect('inventario:ver_inventario')
 
 
 ###### CONTROLLER US06 #######
