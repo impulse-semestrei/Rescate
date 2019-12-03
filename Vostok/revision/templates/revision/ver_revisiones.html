@@ -36,6 +36,7 @@
                     <th>Fecha de Revision</th>
                     <th>Paramédico</th>
                     <th>Guardia</th>
+                    <th>Tipo</th>
                 </tr>
                 </thead>
 
@@ -45,6 +46,7 @@
                         <td>{{ registro.revision.fecha }}</td>
                         <td>{{ registro.revision.usuario.first_name }} {{ registro.revision.usuario.last_name }}</td>
                         <th>{{ registro.revision.usuario.get_turno_display }}</th>
+                        <th>{{ registro.revision.tipo }}</th>
                         <td><a href="{{ registro.revision.id }}">
                             <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Ver detalle
                             </button>

@@ -9,6 +9,20 @@ class Revision(models.Model):
     fecha = models.DateTimeField(null=False, default=timezone.now)
     observaciones = models.TextField(max_length=250)
 
+    tipo_inventario = 'Inventario'
+    tipo_botiquin = 'Botiqui'
+    tipo_monitor = 3
+
+    tipos_revision = [
+        (tipo_inventario, 'Inventario'),
+        (tipo_botiquin, 'Botiquin'),
+        (tipo_monitor, 'Monitor'),
+    ]
+
+    tipo = models.IntegerField(choices=tipos_revision, default=tipo_inventario)
+
+    def get_turno(self):
+        return self.tipos_revision[self.tipo]
 ######## MODEL US41 ########
 
 ####### Model US-29############

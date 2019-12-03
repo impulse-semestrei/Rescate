@@ -212,10 +212,18 @@ def guardar_inventario(inventario, request):
     except ObjectDoesNotExist:
         return False
 
+    if nombre == 'inventario':
+        tipo = Revision.tipo_inventario
+    elif nombre == 'botiquin':
+        tipo = Revision.tipo_botiquin
+    elif nombre == 'monitor':
+        tipo = Revision.tipo_monitor
+
     revision = Revision(
         fecha=fecha,
         usuario=usuario,
-        observaciones=datos['observaciones']
+        observaciones=datos['observaciones'],
+        tipo=tipo
     )
 
     try:
