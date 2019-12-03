@@ -242,8 +242,6 @@ def lista_ambulancias(request):
                 'nombre': ambulancia.nombre,
                 'id': ambulancia.id,
                 'idInventario': ambulancia.inventario_id,
-                'idBotiquin': ambulancia.botiquin_id,
-                'idMonitor': ambulancia.monitor_id,
                 'inventarioListo': ambulancia.inventario_listo,
                 'ambulanciaLista': ambulancia.ambulancia_lista,
             }
