@@ -42,7 +42,7 @@
             <br>
                 {% for registro in registros %}
                     <tr>
-                        <td>{{ registro.revision.fecha }}</td>
+                        <td>{{ registro.revision.fecha|date:"d/m/y"  }}</td>
                         <td>{{ registro.revision.usuario.first_name }} {{ registro.revision.usuario.last_name }}</td>
                         <th>{{ registro.revision.usuario.get_turno_display }}</th>
                         <td><a href="{{ registro.revision.id }}">

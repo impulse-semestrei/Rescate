@@ -58,7 +58,7 @@ def crearInventarioView(request):
 
 ######## CONTROLLER US1 ########
 
-@administrador_required
+@adminplus_required
 def agregar_material_inventario(request, pk):
     inventario = Inventario.objects.get(id=pk)
     context = {
@@ -75,16 +75,26 @@ def agregar_material_inventario(request, pk):
                 cantidad = form.cleaned_data.get('cantidad')
                 context['nombre_material'] = material
                 #context['cantidad'] = cantidad
-
                 try:
-                    with transaction.atomic():
-                        inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
-                        inventario_material.cantidad += cantidad
-                        inventario_material.save()
-                        context['status'] = STATUS_UPDATED
+                    inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
+                    inventario_material.cantidad += cantidad
+                    inventario_material.save()
+                    context['status'] = STATUS_UPDATED
                 except ObjectDoesNotExist:
-                    InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad)
-                    context['status'] = STATUS_CREATED
+                    if InventarioMaterial.objects.filter(inventario=inventario):
+                        registros = InventarioMaterial.objects.filter(inventario=inventario)
+                        revision = registros.order_by('-revision__fecha').first().revision
+                        material=InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad, revision=revision)
+                        material.save()
+
+                        context['status'] = STATUS_CREATED
+                    else:
+                        revision = Revision.objects.create(usuario=request.user, observaciones="Primer revision")
+                        material = InventarioMaterial.objects.create(inventario=inventario, material=material,
+                                                                     cantidad=cantidad, revision=revision)
+                        material.save()
+
+
                 return render(request, '../templates/inventario/agregar_material_inventario.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
@@ -110,7 +120,7 @@ def ver_inventario(request):
 
 
 ###### CONTROLLER US06 #######
-@administrador_required
+@adminplus_required
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.delete()
@@ -150,7 +160,7 @@ def ver_inventario_material(request, pk):
 
 
 ###### CONTROLLER US03 ########
-@administrador_required
+@adminplus_required
 def eliminar_material_inventario(request, inventario_id, material_id):
     material = InventarioMaterial.objects.get(id=material_id)
     material.delete()
@@ -166,7 +176,7 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 
 
 # ###### CONTROLLER US08 ########
-@administrador_required
+@adminplus_required
 def editar_inventario(request, pk):
     estado = 'get'
     inventario = Inventario.objects.get(id=pk)
