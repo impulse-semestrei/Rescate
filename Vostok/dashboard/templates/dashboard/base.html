@@ -162,6 +162,12 @@ Head
                                 <span> Unidad </span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{% url 'revision:reportes_materiales' %}">
+                                <i class="mdi mdi-record"></i>
+                                <span> Reportes </span>
+                            </a>
+                        </li>
                     {% endif %}
                     {% if user.is_administrador or user.is_adminplus%}
                         <li>
@@ -173,12 +179,6 @@ Head
 
                     {% endif %}
                     {% if user.is_adminplus %}
-                        <li>
-                            <a href="{% url 'revision:reportes_materiales' %}">
-                                <i class="mdi mdi-record"></i>
-                                <span> Reportes </span>
-                            </a>
-                        </li>
                         <li>
                             <a href="{% url 'users:ver_usuarios' %}">
                                 <i class="mdi mdi-account-multiple-outline"></i>
@@ -217,8 +217,11 @@ Head
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
-                        Vostok Dashboard App by <a href="">Impulse</a>
+                    <div class="col-6">
+                        Vostok Dashboard App by <a href="https://impulse-semestrei.github.io/">Impulse</a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <a href="{% static "dashboard/images/vostok_dp.pdf" %}">Política de Datos Personales</a>
                     </div>
                 </div>
             </div>

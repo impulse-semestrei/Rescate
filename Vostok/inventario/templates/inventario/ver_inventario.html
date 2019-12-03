@@ -16,7 +16,7 @@
 
             <div class="col" align="right">
 
-                {% if user.is_administrador or user.is_adminplus %}
+                {% if user.is_adminplus %}
                 <a href="{% url 'inventario:crear_inventario' %}">
                     <button type="button" class="btn btn-bordred-success waves-effect  width-md waves-light"><i
                             class="fas fa-plus"></i> Agregar Equipo
@@ -39,7 +39,7 @@
                 <tr align="center">
                     <th scope="col">Nombre</th>
                     <th scope="col">Ver Detalle</th>
-                    {% if user.is_administrador or user.is_adminplus %}
+                    {% if user.is_adminplus %}
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                     {% endif %}
@@ -57,7 +57,7 @@
                             <button class="btn btn-info"><i class="fas fa-eye"></i>
                             </button>
                         </a></td>
-                        {% if user.is_administrador or user.is_adminplus %}
+                        {% if user.is_adminplus %}
                         <td><a href="{% url 'inventario:editar_inventario_view' Inventario.id %}">
                             <button class="btn btn-success"><i class="fas fa-edit"></i>
                             </button>

@@ -14,7 +14,7 @@ from django.db.models import Sum, F, Func
 ##### CONTROLLER US09 #####
 
 
-@administrador_required
+@adminplus_required
 def ver_revisiones(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     inventario = ambulancia.inventario
@@ -24,7 +24,7 @@ def ver_revisiones(request, id):
 ##### CONTROLLER US09 #####
 
 
-@administrador_required
+@adminplus_required
 #### CONTROLLER US42 ######
 def ver_detalle_revsion(request, id, id_revision):
 
@@ -40,7 +40,7 @@ def ver_detalle_revsion(request, id, id_revision):
 
 #### CONTROLLER US29 ######
 
-@administrador_required
+@adminplus_required
 def ver_revisiones_ambulancia(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     revisiones = RevisionAmbulancia.objects.filter(ambulancia=ambulancia)
@@ -49,7 +49,7 @@ def ver_revisiones_ambulancia(request, id):
 #### CONTROLLER US29 ######
 
 #### CONTROLLER US30 ######
-@administrador_required
+@adminplus_required
 def ver_detalle_ambulancia(request, id, id_revision):
     revision = RevisionAmbulancia.objects.get(id=id_revision)
     ambulancia = Ambulancia.objects.get(id=id)
@@ -61,6 +61,7 @@ def ver_detalle_ambulancia(request, id, id_revision):
 
 #### CONTROLLER US30 ######
 
+@voluntario_required
 def Reportes(request):
     ambulancias = Ambulancia.objects.all()
     materiales = []
