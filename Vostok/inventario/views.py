@@ -58,7 +58,7 @@ def crearInventarioView(request):
 
 ######## CONTROLLER US1 ########
 
-@administrador_required
+@adminplus_required
 def agregar_material_inventario(request, pk):
     inventario = Inventario.objects.get(id=pk)
     context = {
@@ -120,7 +120,7 @@ def ver_inventario(request):
 
 
 ###### CONTROLLER US06 #######
-@administrador_required
+@adminplus_required
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.delete()
@@ -160,7 +160,7 @@ def ver_inventario_material(request, pk):
 
 
 ###### CONTROLLER US03 ########
-@administrador_required
+@adminplus_required
 def eliminar_material_inventario(request, inventario_id, material_id):
     material = InventarioMaterial.objects.get(id=material_id)
     material.delete()
@@ -176,7 +176,7 @@ def eliminar_material_inventario(request, inventario_id, material_id):
 
 
 # ###### CONTROLLER US08 ########
-@administrador_required
+@adminplus_required
 def editar_inventario(request, pk):
     estado = 'get'
     inventario = Inventario.objects.get(id=pk)

@@ -11,6 +11,7 @@ class CrearMaterial(ModelForm):
     """
     codigo = forms.CharField(label='Código')
     descripcion = forms.CharField(label='Descripción')
+    cantidad = forms.CharField(label='Cantidad Ideal')
 
     class Meta:
         model = Material
