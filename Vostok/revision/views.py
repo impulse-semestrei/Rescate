@@ -61,6 +61,7 @@ def ver_detalle_ambulancia(request, id, id_revision):
 
 #### CONTROLLER US30 ######
 
+@voluntario_required
 def Reportes(request):
     ambulancias = Ambulancia.objects.all()
     materiales = []
