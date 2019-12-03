@@ -28,6 +28,36 @@ STATUS_SAVED = 'SAVED'
 # Create your views here.
 ####### CONTROLLER US04############
 
+@administrador_required
+def crearInventarioView(request):
+    form = crearInventarioForm(request.POST)
+    if form.is_valid():
+
+        try:
+            temp_form = form.save(commit=False)
+            temp_form.save()
+
+            inventarios = Inventario.objects.filter(status=True)
+            context = {
+                'inventarios': inventarios,
+                'form': crearInventarioForm(),
+                'status': STATUS_SAVED,
+            }
+            #messages.info(request, 'Se ha creado el inventario')
+            return render(request, '../templates/inventario/crear_inventario.html', context)
+
+        except DatabaseError:
+            messages.info(request, 'Ya existe un inventario con ese nombre.')
+            return render(request, '../templates/data_base_error.html')
+    context = {'form': form}
+
+    return render(request, '../templates/inventario/crear_inventario.html', context)
+
+####### CONTROLLER US04############
+
+
+######## CONTROLLER US1 ########
+
 @adminplus_required
 def agregar_material_inventario(request, pk):
     inventario = Inventario.objects.get(id=pk)
@@ -76,6 +106,8 @@ def agregar_material_inventario(request, pk):
         form = AgregarMaterialInventario()
     context['form'] = form
     return render(request, '../templates/inventario/agregar_material_inventario.html', context)
+
+
 
 ######## CONTROLLER US1 ########
 
