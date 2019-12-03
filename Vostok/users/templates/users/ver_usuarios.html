@@ -12,7 +12,7 @@
             <div class="col-8">
 
                 <div id="datatable_filter" class="dataTables_filter"><label>Buscar:<input
-                        type="search" class="form-control form-control-sm" placeholder="Nombre de usuario..."
+                        type="search" class="form-control form-control-sm" placeholder="Email, rol o turno..."
                         aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
             </div>
             <div class="col-4">
@@ -144,16 +144,22 @@
 
     <script>
         function Filter() {
-            var input, filter, table, tr, td, i, txtValue;
+            var input, filter, table, tr, td, i, txtValue, role, turno, second, third;
             input = document.getElementById("myInput");
             filter = input.value.toUpperCase();
             table = document.getElementById("usuarios");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
                 td = tr[i].getElementsByTagName("td")[1];
+                role = tr[i].getElementsByTagName("td")[5];
+                turno = tr[i].getElementsByTagName("td")[6];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    second = role.textContent || role.innerText;
+                    third = turno.textContent || turno.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1 ||
+                        second.toUpperCase().indexOf(filter) > -1 ||
+                        third.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
                     } else {
                         tr[i].style.display = "none";

@@ -16,7 +16,10 @@ from django.contrib.auth import get_user_model
 
 
 def login(request):
-    return render(request, '../templates/users/login.html')
+    if request.user.is_active:
+        return render(request, '../templates/dashboard/index.html')
+    else:
+        return render(request, '../templates/users/login.html')
 
 # CONTROLLER US-14 #
 
