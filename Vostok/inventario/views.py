@@ -108,6 +108,7 @@ def agregar_material_inventario(request, pk):
     return render(request, '../templates/inventario/agregar_material_inventario.html', context)
 
 
+
 ######## CONTROLLER US1 ########
 
 ####### CONTROLLER US07############

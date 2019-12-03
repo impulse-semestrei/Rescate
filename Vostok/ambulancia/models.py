@@ -16,10 +16,7 @@ class Ambulancia(models.Model):
     ]
     nombre = models.CharField(max_length=255, null=False, unique=True)
     estado = models.IntegerField(choices=estados_ambulancias, default=desactivada)
-
-    inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, unique=True, related_name='inventario')
-    botiquin = models.ForeignKey(Inventario, on_delete=models.CASCADE, unique=True, related_name='botiquin')
-    monitor = models.ForeignKey(Inventario, on_delete=models.CASCADE, unique=True, related_name='monitor')
+    inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, unique=True)
 
     ambulancia_lista = models.BooleanField(default=False)
     inventario_listo = models.BooleanField(default=False)

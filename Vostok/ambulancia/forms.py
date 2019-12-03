@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 class CrearAmbulancia(forms.ModelForm):
     class Meta:
         model = Ambulancia
-        fields = ['nombre', 'inventario', 'botiquin', 'monitor']
+        fields = ['nombre', 'inventario',]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -21,14 +21,6 @@ class CrearAmbulancia(forms.ModelForm):
         self.fields['inventario'].widget.attrs['class'] = 'form-control'
         self.fields['inventario'].queryset = Inventario.objects.filter()
         self.fields['inventario'].label_from_instance = lambda obj: "%s " % obj.nombre
-
-        self.fields['botiquin'].widget.attrs['class'] = 'form-control'
-        self.fields['botiquin'].queryset = Inventario.objects.filter()
-        self.fields['botiquin'].label_from_instance = lambda obj: "%s " % obj.nombre
-
-        self.fields['monitor'].widget.attrs['class'] = 'form-control'
-        self.fields['monitor'].queryset = Inventario.objects.filter()
-        self.fields['monitor'].label_from_instance = lambda obj: "%s " % obj.nombre
 
 
 ####### FORMS US44############

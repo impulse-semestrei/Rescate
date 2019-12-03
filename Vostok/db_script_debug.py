@@ -25,15 +25,7 @@ user = get_user_model().objects.all().first()
 
 for nombre in nombres:
     inventario = Inventario.objects.create(nombre="inventario "+nombre)
-    botiquin = Inventario.objects.create(nombre="botiquin "+nombre)
-    monitor = Inventario.objects.create(nombre="monitor "+nombre)
-    ambulancia = Ambulancia.objects.create(
-        nombre=nombre,
-        inventario=inventario,
-        botiquin=botiquin,
-        monitor=monitor,
-        estado=Ambulancia.activa
-    )
+    ambulancia = Ambulancia.objects.create(nombre=nombre, inventario=inventario, estado=Ambulancia.activa)
     revision = Revision.objects.create(fecha=fecha, usuario=user)
     revision_ambulancia = RevisionAmbulancia.objects.create(
         fecha=fecha,
