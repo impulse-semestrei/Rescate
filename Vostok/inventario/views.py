@@ -67,7 +67,7 @@ def agregar_material_inventario(request, pk):
         'lista_materiales': Material.objects.all()
     }
     if request.method == 'POST':
-        form = AgregarMaterialInventario(request.POST)
+        form = AgregarMaterialInventario(request.POST or None   )
         context['form'] = form
         if form.is_valid():
             try:
