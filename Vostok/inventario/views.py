@@ -74,22 +74,25 @@ def agregar_material_inventario(request, pk):
                 material = form.cleaned_data.get('material')
                 cantidad = form.cleaned_data.get('cantidad')
                 context['nombre_material'] = material
-                #context['cantidad'] = cantidad
+                registros = InventarioMaterial.objects.filter(inventario=inventario)
+                revision = registros.order_by('-revision__fecha').first().revision
                 try:
-                    inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
-                    inventario_material.cantidad += cantidad
+                    inventario_material = InventarioMaterial.objects.get(
+                        inventario=inventario,
+                        material=material,
+                        revision=revision
+                    )
+                    inventario_material.cantidad = cantidad
                     inventario_material.save()
                     context['status'] = STATUS_UPDATED
                 except ObjectDoesNotExist:
                     if InventarioMaterial.objects.filter(inventario=inventario):
-                        registros = InventarioMaterial.objects.filter(inventario=inventario)
-                        revision = registros.order_by('-revision__fecha').first().revision
                         material=InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad, revision=revision)
                         material.save()
 
                         context['status'] = STATUS_CREATED
                     else:
-                        revision = Revision.objects.create(usuario=request.user, observaciones="Primer revision")
+                        revision = Revision.objects.create(usuario=request.user, observaciones="Primera revision")
                         material = InventarioMaterial.objects.create(inventario=inventario, material=material,
                                                                      cantidad=cantidad, revision=revision)
                         material.save()
