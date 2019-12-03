@@ -75,7 +75,7 @@
                                 <button type="button" class=" btn btn-warning"><i class="fas fa-route"></i>
                                 </button>
                             </a></td>
-                            {% if user.is_administrador or user.is_adminplus %}
+                            {% if user.is_adminplus %}
                         <td><a href="#delete-modal-{{ ambulancia.id }}" data-animation="blur"
                                    data-plugin="custommodal" data-overlaycolor="#36404a">
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
