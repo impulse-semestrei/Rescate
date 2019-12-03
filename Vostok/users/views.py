@@ -9,6 +9,7 @@ from .decorators import voluntario_required,administrador_required,adminplus_req
 from .models import CustomUser
 from .forms import CustomUserUpdateForm
 from django.http import HttpResponseRedirect
+from dashboard.views import index
 
 from django.contrib.auth import get_user_model
 
@@ -17,7 +18,7 @@ from django.contrib.auth import get_user_model
 
 def login(request):
     if request.user.is_active:
-        return render(request, '../templates/dashboard/index.html')
+        return index(request)
     else:
         return render(request, '../templates/users/login.html')
 
