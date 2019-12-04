@@ -74,8 +74,14 @@ def agregar_material_inventario(request, pk):
                 material = form.cleaned_data.get('material')
                 cantidad = form.cleaned_data.get('cantidad')
                 context['nombre_material'] = material
-                registros = InventarioMaterial.objects.filter(inventario=inventario)
-                revision = registros.order_by('-revision__fecha').first().revision
+                try:
+                    registros = InventarioMaterial.objects.filter(inventario=inventario)
+                    revision = registros.order_by('-revision__fecha').first().revision
+                except AttributeError:
+                        revision = Revision.objects.create(usuario=request.user, observaciones="Primera revision")
+                        material = InventarioMaterial.objects.create(inventario=inventario, material=material,
+                                                                     cantidad=cantidad, revision=revision)
+                        material.save()
                 try:
                     inventario_material = InventarioMaterial.objects.get(
                         inventario=inventario,
