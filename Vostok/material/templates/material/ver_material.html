@@ -17,7 +17,7 @@
 
             </div>
 
-            {% if user.is_administrador or user.is_adminplus %}
+            {% if user.is_adminplus %}
             <div class="col">
                 <br>
                 <a href="{% url 'material:crear' %}">
@@ -67,7 +67,7 @@
                     <td>{{ material.nombre }}</td>
                     <td>{{ material.descripcion }}</td>
                     <td>{{ material.cantidad }}</td>
-                    {% if user.is_administrador or user.is_adminplus %}
+                    {% if  user.is_adminplus %}
                     <td><a
                             href="{% url 'material:editar_material' material.id %}">
                         <button class="btn btn-success"><i class="fas fa-edit"></i>
@@ -136,7 +136,7 @@
             table = document.getElementById("Materiales");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
+                td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {

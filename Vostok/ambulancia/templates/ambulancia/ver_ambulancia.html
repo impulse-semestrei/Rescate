@@ -100,11 +100,11 @@
                                             unidad {{ ambulancia.nombre }}?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger"
+                                        <button type="button" class="btn btn-secondary"
                                                 onclick="Custombox.modal.close();">Cancelar
                                         </button>
                                         <a href="{% url "ambulancia:eliminar_ambulancia"  id=ambulancia.id %}">
-                                            <button class="btn btn-success">Guardar</button>
+                                            <button class="btn btn-danger">Eliminar</button>
                                         </a>
                                     </div>
 
