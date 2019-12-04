@@ -74,27 +74,29 @@ def agregar_material_inventario(request, pk):
                 material = form.cleaned_data.get('material')
                 cantidad = form.cleaned_data.get('cantidad')
                 context['nombre_material'] = material
-                #context['cantidad'] = cantidad
+                context['cantidad'] = cantidad
+                # revisar si hay revisiones para ese inventario
+                if InventarioMaterial.objects.filter(inventario=inventario):
+                    registros = InventarioMaterial.objects.filter(inventario=inventario)
+                    revision = registros.order_by('-revision__fecha').first().revision
+                else:
+                    revision = Revision.objects.create(usuario=request.user, observaciones="Primera revision")
+                # agregar material al inventario
                 try:
-                    inventario_material = InventarioMaterial.objects.get(inventario=inventario, material=material)
-                    inventario_material.cantidad += cantidad
+                    # primero revisar si ya existe
+                    inventario_material = InventarioMaterial.objects.get(
+                        inventario=inventario,
+                        material=material,
+                        revision=revision
+                    )
+                    inventario_material.cantidad = cantidad
                     inventario_material.save()
                     context['status'] = STATUS_UPDATED
                 except ObjectDoesNotExist:
-                    if InventarioMaterial.objects.filter(inventario=inventario):
-                        registros = InventarioMaterial.objects.filter(inventario=inventario)
-                        revision = registros.order_by('-revision__fecha').first().revision
-                        material=InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad, revision=revision)
-                        material.save()
-
-                        context['status'] = STATUS_CREATED
-                    else:
-                        revision = Revision.objects.create(usuario=request.user, observaciones="Primer revision")
-                        material = InventarioMaterial.objects.create(inventario=inventario, material=material,
-                                                                     cantidad=cantidad, revision=revision)
-                        material.save()
-
-
+                    # si no existe, crearlo
+                    material=InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad, revision=revision)
+                    material.save()
+                    context['status'] = STATUS_CREATED
                 return render(request, '../templates/inventario/agregar_material_inventario.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
@@ -105,6 +107,7 @@ def agregar_material_inventario(request, pk):
     return render(request, '../templates/inventario/agregar_material_inventario.html', context)
 
 
+
 ######## CONTROLLER US1 ########
 
 ####### CONTROLLER US07############
@@ -113,7 +116,6 @@ def ver_inventario(request):
     inventarios = Inventario.objects.all().order_by('id')
     context = {
                 'inventarios': inventarios,
-                'form': crearInventarioForm(),
     }
     return render(request, '../templates/inventario/ver_inventario.html', context)
 ####### CONTROLLER US07############
@@ -124,12 +126,8 @@ def ver_inventario(request):
 def delete_inventario(request, id):
     inventario = Inventario.objects.get(id=id)
     inventario.delete()
-    inventarios = Inventario.objects.all()
 
-    context = {'inventarios': inventarios,
-               'form': crearInventarioForm(),
-    }
-    return render(request, '../templates/inventario/ver_inventario.html', context)
+    return redirect('inventario:ver_inventario')
 
 
 ###### CONTROLLER US06 #######
@@ -145,7 +143,7 @@ def ver_inventario_material(request, pk):
         materiales = registros.filter(revision=revision)
 
     except AttributeError:
-        print("error")
+        print('error')
         materiales= None
 
 

@@ -29,7 +29,6 @@ def crear_material(request):
         if form.is_valid():
             try:
                 new_material = Material(
-                    codigo=form.cleaned_data.get('codigo'),
                     nombre=form.cleaned_data.get('nombre'),
                     descripcion=form.cleaned_data.get('descripcion'),
                     cantidad=form.cleaned_data.get('cantidad'),
@@ -59,7 +58,6 @@ def ver_material(request):
     materiales = Material.objects.filter(status=True).order_by('id')
     nombre = Material.objects.all()
     context = {'materiales':materiales,
-               'form':CrearMaterial(),
                'nombre': nombre,
                }
     return render(request, '../templates/material/ver_material.html', context)
@@ -74,13 +72,7 @@ def delete_material(request, id):
 
     Material.objects.get(id=id).delete()
 
-    materiales = Material.objects.all()
-    context = {
-        'materiales': materiales,
-        'form': CrearMaterial(),
-    }
-    return render(request, '../templates/material/ver_material.html', context)
-
+    return redirect('material:ver_material')
 ######## CONTROLLER US39 ########
 
 
