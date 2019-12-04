@@ -227,7 +227,7 @@ def lista_ambulancias(request):
         num_activables = Activables.objects.order_by('-fecha').first().cantidad
     except AttributeError:
         num_activables = 0
-    if activas.count() - revisadas.count() < num_activables:
+    if activas.count() > 0 and activas.count() - revisadas.count() < num_activables:
         antigua = revisadas\
             .annotate(fecha=Max('inventario__inventariomaterial__revision__fecha'))\
             .order_by('fecha')\

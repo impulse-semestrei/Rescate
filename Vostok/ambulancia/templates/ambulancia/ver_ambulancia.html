@@ -43,9 +43,6 @@
                     <th>Estado de Unidad</th>
                 {% endif %}
                 {% if user.is_adminplus %}
-                    <th>Historial de Viajes</th>
-                {% endif %}
-                {% if user.is_adminplus %}
                     <th>Eliminar</th>
                 {% endif %}
                 </tr>
@@ -76,11 +73,7 @@
                                 </button>
                             </a></td>
                         {% endif %}
-                            <td><a href="{% url "ambulancia:viajes_ambulancia"  id=ambulancia.id %}"
-                                   data-animation="blur" data-overlaycolor="#36404a">
-                                <button type="button" class=" btn btn-warning"><i class="fas fa-route"></i>
-                                </button>
-                            </a></td>
+                            
                             {% if user.is_adminplus %}
                         <td><a href="#delete-modal-{{ ambulancia.id }}" data-animation="blur"
                                    data-plugin="custommodal" data-overlaycolor="#36404a">
