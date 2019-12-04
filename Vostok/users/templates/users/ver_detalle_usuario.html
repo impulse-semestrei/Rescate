@@ -28,7 +28,7 @@
                     <strong>Turno: </strong>{{ usuario.get_turno_display }}
                     <br>
                     <strong>Rol: </strong>{% if usuario.is_anon %}
-                            Anónimo
+                            Usuario Desactivado
                             {% elif usuario.is_voluntario %}
                             Voluntario
                             {% elif usuario.is_administrador %}
@@ -64,7 +64,7 @@
                         <div class="col-sm-10">
                             <select class="form-control" name="rol">
                                 <option value="0">Sin cambios</option>
-                                <option value="1">Anónimo</option>
+                                <option value="1">Usuario Desactivado</option>
                                 <option value="2">Voluntario</option>
                                 <option value="3">Administrador</option>
                                 <option value="4">Admin Plus</option>
@@ -88,7 +88,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <h4>Anónimo</h4>
+                    <h4>Usuario Desactivado</h4>
                     <p>
                         No tiene acceso a ninguna funcionalidad del sistema.
                         <br>
