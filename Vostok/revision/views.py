@@ -71,8 +71,11 @@ def Reportes(request):
         unidad.append(Ambulancia.objects.get(id=ambulancia.id))
         inventario = ambu.inventario
         materialesInventario = InventarioMaterial.objects.filter(inventario=inventario).distinct('revision').order_by('-revision__id').first()
-        revision = materialesInventario.revision
-        materiales.append(InventarioMaterial.objects.filter(revision=revision))
+        try:
+            revision = materialesInventario.revision
+            materiales.append(InventarioMaterial.objects.filter(revision=revision))
+        except AttributeError:
+            print('Error')
     objetos=[{}]
     info=[{}]
     for i in materiales:
@@ -82,7 +85,6 @@ def Reportes(request):
         objetos.append(i)
 
     fusion = zip(info, objetos)
-    print(fusion)
 
     context={'info':fusion}
 
