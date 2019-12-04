@@ -74,9 +74,16 @@ def agregar_material_inventario(request, pk):
                 material = form.cleaned_data.get('material')
                 cantidad = form.cleaned_data.get('cantidad')
                 context['nombre_material'] = material
-                registros = InventarioMaterial.objects.filter(inventario=inventario)
-                revision = registros.order_by('-revision__fecha').first().revision
+                context['cantidad'] = cantidad
+                # revisar si hay revisiones para ese inventario
+                if InventarioMaterial.objects.filter(inventario=inventario):
+                    registros = InventarioMaterial.objects.filter(inventario=inventario)
+                    revision = registros.order_by('-revision__fecha').first().revision
+                else:
+                    revision = Revision.objects.create(usuario=request.user, observaciones="Primera revision")
+                # agregar material al inventario
                 try:
+                    # primero revisar si ya existe
                     inventario_material = InventarioMaterial.objects.get(
                         inventario=inventario,
                         material=material,
@@ -86,18 +93,10 @@ def agregar_material_inventario(request, pk):
                     inventario_material.save()
                     context['status'] = STATUS_UPDATED
                 except ObjectDoesNotExist:
-                    if InventarioMaterial.objects.filter(inventario=inventario):
-                        material=InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad, revision=revision)
-                        material.save()
-
-                        context['status'] = STATUS_CREATED
-                    else:
-                        revision = Revision.objects.create(usuario=request.user, observaciones="Primera revision")
-                        material = InventarioMaterial.objects.create(inventario=inventario, material=material,
-                                                                     cantidad=cantidad, revision=revision)
-                        material.save()
-
-
+                    # si no existe, crearlo
+                    material=InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=cantidad, revision=revision)
+                    material.save()
+                    context['status'] = STATUS_CREATED
                 return render(request, '../templates/inventario/agregar_material_inventario.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
@@ -144,7 +143,7 @@ def ver_inventario_material(request, pk):
         materiales = registros.filter(revision=revision)
 
     except AttributeError:
-        print("error")
+        print('error')
         materiales= None
 
 
