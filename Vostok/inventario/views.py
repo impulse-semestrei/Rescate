@@ -140,7 +140,7 @@ def ver_inventario_material(request, pk):
         materiales = registros.filter(revision=revision)
 
     except AttributeError:
-        print("error")
+        print('error')
         materiales= None
 
 
