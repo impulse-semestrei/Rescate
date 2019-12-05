@@ -29,23 +29,22 @@ STATUS_SAVED = 'SAVED'
 
 @administrador_required
 def crearInventarioView(request):
-    form = crearInventarioForm(request.POST)
-    if form.is_valid():
+    if request.method == 'POST':
+        form = crearInventarioForm(request.POST)
+        if form.is_valid():
 
-        try:
-            temp_form = form.save(commit=False)
-            temp_form.save()
+            try:
+                form.save()
+                context = {
+                    'form': form,
+                    'status': STATUS_SAVED,
+                }
+                return render(request, '../templates/inventario/crear_inventario.html', context)
 
-            inventarios = Inventario.objects.filter(status=True)
-            context = {
-                'inventarios': inventarios,
-                'form': crearInventarioForm(),
-                'status': STATUS_SAVED,
-            }
-            return render(request, '../templates/inventario/crear_inventario.html', context)
-
-        except DatabaseError:
-            return render(request, '../templates/data_base_error.html')
+            except DatabaseError:
+                return render(request, '../templates/data_base_error.html')
+    else:
+        form = crearInventarioForm()
     context = {'form': form}
 
     return render(request, '../templates/inventario/crear_inventario.html', context)
