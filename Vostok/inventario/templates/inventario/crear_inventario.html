@@ -12,60 +12,39 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 
+    <div class="row">
+        <div class="col text-center m-3">
+            <h1>Agregar nuevo equipo</h1>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 offset-lg-2">
+            <div class="col-md-8 offset-lg-2">
                 <div class="row">
-                    <div class="col mb-6">
-                        <h1>Crear Equipo</h1>
-                            <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel"><i
-                                    class="fas fa-arrow-left"></i></button>
-                        <br><br>
-                        <form method="post">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="card-box">
-                                        {% if user.is_authenticated %}
-                                            <!-- comprueba si la sesión del usuario está iniciada -->
-
-                                            {% if form.errors %}
-                                                {% for field in form %}
-                                                    {% for error in field.errors %}
-                                                        <ul class="messages">
-                                                            <li>{{ error|escape }}</li>
-                                                        </ul>
-                                                    {% endfor %}
-                                                {% endfor %}
-                                                {% for error in form.non_field_errors %}
-                                                    <ul class="messages">
-                                                        <li>{{ error|escape }}</li>
-                                                    </ul>
-                                                {% endfor %}
-                                            {% endif %}
-                                            <div class="input-field ">
-                                                <label class="active">Nombre de Equipo:</label>
-                                                <input class="form-control" name="nombre" maxlength="100" required=""
-                                                       id="nombre">
-
-                                                <br>
-                                                <div class="row">
-                                                    <button class="btn btn-danger" type="button" data-toggle="modal"
+                    <div class="col mb-3">
+                        <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#modalCancel"><i
+                                class="fas fa-arrow-left"></i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card-box">
+                            <form method="post" novalidate>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <button class="btn btn-danger" type="button" data-toggle="modal"
                                                 data-target="#modalCancel">Cancelar
-                                                    </button>
-                                                    <div class="col-md-2 offset-md-7">
-                                                        <button type="submit" class="btn btn-success">Guardar</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-
-                                        {% endif %}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-2 offset-md-8">
+                                        <button class="btn btn-success waves-effect waves-light" type="submit">Guardar
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
