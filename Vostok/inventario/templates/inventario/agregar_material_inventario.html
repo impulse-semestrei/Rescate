@@ -104,18 +104,14 @@
                     <div class="modal-body">
                         <p>Si sales ahora no se guardará el material nuevo</p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <a href="{% url 'inventario:material_inventario' id_inventario %}">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Continuar editando
-                                </button>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{% url 'inventario:material_inventario' id_inventario %}">
-                                <button class="btn btn-primary">Salir sin guardar</button>
-                            </a>
-                        </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'inventario:material_inventario' id_inventario %}">
+                            <button class="btn btn-primary">Salir sin guardar</button>
+                        </a>
+                        <a href="{% url 'inventario:material_inventario' id_inventario %}">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Continuar editando
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
