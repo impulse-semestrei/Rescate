@@ -13,7 +13,6 @@ from material.models import Material
 import json
 from django.http import JsonResponse, HttpResponse
 from revision.models import Revision
-from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import UpdateView
 
@@ -43,11 +42,9 @@ def crearInventarioView(request):
                 'form': crearInventarioForm(),
                 'status': STATUS_SAVED,
             }
-            #messages.info(request, 'Se ha creado el inventario')
             return render(request, '../templates/inventario/crear_inventario.html', context)
 
         except DatabaseError:
-            messages.info(request, 'Ya existe un inventario con ese nombre.')
             return render(request, '../templates/data_base_error.html')
     context = {'form': form}
 
@@ -277,7 +274,6 @@ def editar_material(request, inventario_id, material_id):
     material.cantidad = cantidad
     material.save()
     id = material.inventario
-    messages.info(request, 'Se ha editado la cantidad del material con exito')
     return redirect('inventario:material_inventario', pk=inventario_id)
 
 ###### CONTROLLER US02 ########
