@@ -70,11 +70,11 @@
                                data-animation="blur"
                                data-plugin="custommodal"
                                data-overlaycolor="#36404a">
-                            <button type="button" class="btn btn-danger"
-                                    data-toggle="modal"
-                                    data-target="#modalConfirmacion"><i
-                                    class="fas fa-trash"></i>
-                            </button>
+                                <button type="button" class="btn btn-danger"
+                                        data-toggle="modal"
+                                        data-target="#modalConfirmacion"><i
+                                        class="fas fa-trash"></i>
+                                </button>
                             </a>
                         </td>
                     {% endif %}
@@ -88,18 +88,18 @@
                         </button>
                         <h4 class="custom-modal-title">Confirmación</h4>
                         <div class="custom-modal-text">
-                            ¿Estás seguro de que quieres eliminar el material {{ material.nombre }} del inventario {{ nombre_inventario }}permanentemente?
-                            <form action="#" data-parsley-validate="" novalidate="">
-                                <div class="form-group text-right mb-0">
-                                    <button class="btn btn-danger waves-effect waves-light mr-1" type="submit">
-                                        <a style="color:whitesmoke;" href="{% url 'inventario:eliminar_material_inventario' inventario_pk material.id %}">Eliminar</a>
-                                    </button>
-                                    <button type="reset" class="btn btn-secondary waves-effect waves-light"
-                                            onclick="Custombox.modal.close();">
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </form>
+                            ¿Estás seguro de que quieres eliminar el material {{ material.nombre }} del
+                            inventario {{ nombre_inventario }}permanentemente?
+                            <div class="form-group text-right mb-0">
+
+
+                                <button type="reset" class="btn btn-secondary waves-effect waves-light"
+                                        onclick="Custombox.modal.close();">
+                                    Cancelar
+                                </button>
+                                <a class="btn btn-danger waves-effect waves-light mr-1"
+                                   href="{% url 'inventario:eliminar_material_inventario' inventario_pk material.id %}">Eliminar</a>
+                            </div>
                         </div>
                     </div>
                 {% endif %}
