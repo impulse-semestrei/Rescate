@@ -39,13 +39,6 @@
                 type="search" class="form-control form-control-sm" placeholder="Escribe el material"
                 aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
         <br>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <table class="table table-hover table-dark" id="MaterialInventario">
             <thead>
