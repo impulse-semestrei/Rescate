@@ -10,47 +10,41 @@
                     aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
 
             {% if user.is_adminplus %}
-            <div align="right" class="col">
-                <a href="{% url "ambulancia:crear" %}" type="button"
-                   class="btn btn-bordred-success waves-effect  width-md waves-light"><i class="fas fa-plus"></i>
-                    Agregar Unidad</a>
-            </div>
+                <div align="right" class="col">
+                    <a href="{% url "ambulancia:crear" %}" type="button"
+                       class="btn btn-bordred-success waves-effect  width-md waves-light"><i class="fas fa-plus"></i>
+                        Agregar Unidad</a>
+                </div>
             {% endif %}
 
 
             <br>
             <table class="table table-hover table-dark" id="Ambulancias">
                 <thead>
-                <tr >
+                <tr>
                     <th>Nombre</th>
                     <th>Equipo</th>
 
-                {% if user.is_adminplus %}
-                    <th>Editar nombre</th>
-                {% endif %}
-                {% if user.is_adminplus %}
-                    <th>Revisiones</th>
-                {% endif %}
-                {% if user.is_adminplus %}
-                    <th>Estado de Unidad</th>
-                {% endif %}
-                {% if user.is_adminplus %}
-                    <th>Eliminar</th>
-                {% endif %}
+
+                    {% if user.is_adminplus %}
+                        <th>Revisiones</th>
+                    {% endif %}
+                    {% if user.is_adminplus %}
+                        <th>Estado de Unidad</th>
+                    {% endif %}
+                    {% if user.is_adminplus %}
+                        <th>Editar nombre</th>
+                    {% endif %}
+                    {% if user.is_adminplus %}
+                        <th>Eliminar</th>
+                    {% endif %}
                 </tr>
                 </thead>
-                <tbody >
+                <tbody>
                 {% for ambulancia in Ambulancias %}
-                        <tr>
-                            <td>{{ ambulancia.nombre }}</td>
-                            <td>{{ ambulancia.inventario.nombre }}</td>
-                        {% if user.is_adminplus %}
-                            <td><a href="{% url "ambulancia:editar_ambulancia"  pk=ambulancia.id %}"
-                                   data-animation="blur" data-overlaycolor="#36404a">
-                                <button type="button" class=" btn btn-success"><i class="fas fa-edit"></i>
-                                </button>
-                            </a></td>
-                        {% endif %}
+                    <tr>
+                        <td>{{ ambulancia.nombre }}</td>
+                        <td>{{ ambulancia.inventario.nombre }}</td>
                         {% if user.is_adminplus %}
                             <td><a href="{% url "revision:revisiones"  id=ambulancia.id %}"
                                    data-animation="blur" data-overlaycolor="#36404a">
@@ -66,18 +60,24 @@
                             </a></td>
                         {% endif %}
 
-                            {% if user.is_adminplus %}
-                        <td><a href="#delete-modal-{{ ambulancia.id }}" data-animation="blur"
+                        {% if user.is_adminplus %}
+                            <td><a href="{% url "ambulancia:editar_ambulancia"  pk=ambulancia.id %}"
+                                   data-animation="blur" data-overlaycolor="#36404a">
+                                <button type="button" class=" btn btn-success"><i class="fas fa-edit"></i>
+                                </button>
+                            </a></td>
+                            <td><a href="#delete-modal-{{ ambulancia.id }}" data-animation="blur"
                                    data-plugin="custommodal" data-overlaycolor="#36404a">
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#modalConfirmacion"><i class="fas fa-trash"></i></button>
                             </a></td>
+
                         {% endif %}
-                        </tr>
+                    </tr>
                 {% endfor %}
                 {% if user.is_adminplus %}
-                {% for ambulancia in Ambulancias %}
-                    <!-- US47 -->
+                    {% for ambulancia in Ambulancias %}
+                        <!-- US47 -->
                         <div id="delete-modal-{{ ambulancia.id }}" class="modal-demo">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -95,8 +95,8 @@
                                         <button type="button" class="btn btn-secondary"
                                                 onclick="Custombox.modal.close();">Cancelar
                                         </button>
-                                        <a href="{% url "ambulancia:eliminar_ambulancia"  id=ambulancia.id %}">
-                                            <button class="btn btn-danger">Eliminar</button>
+                                        <a class="btn btn-danger waves-effect waves-light mr-1"
+                                           href="{% url "ambulancia:eliminar_ambulancia"  id=ambulancia.id %}">Eliminar
                                         </a>
                                     </div>
 
@@ -105,7 +105,7 @@
                         </div>
                         <!-- US08 -->
 
-                {% endfor %}
+                    {% endfor %}
                 {% endif %}
                 </tbody>
             </table>
