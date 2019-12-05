@@ -17,7 +17,7 @@
 
             </div>
 
-            {% if user.is_administrador or user.is_adminplus %}
+            {% if user.is_adminplus %}
             <div class="col">
                 <br>
                 <a href="{% url 'material:crear' %}">
@@ -67,7 +67,7 @@
                     <td>{{ material.nombre }}</td>
                     <td>{{ material.descripcion }}</td>
                     <td>{{ material.cantidad }}</td>
-                    {% if user.is_administrador or user.is_adminplus %}
+                    {% if  user.is_adminplus %}
                     <td><a
                             href="{% url 'material:editar_material' material.id %}">
                         <button class="btn btn-success"><i class="fas fa-edit"></i>
@@ -97,10 +97,9 @@
             <button type="button" class="close" onclick="Custombox.modal.close();">
                 <span>×</span><span class="sr-only">Close</span>
             </button>
-            <h4 class="custom-modal-title">Eliminar el material
-                <span>{{ material.nombre }}</span>?</h4>
+            <h4 class="custom-modal-title">Confirmación</h4>
             <div class="custom-modal-text">
-                Quieres eliminar el material {{ material.nombre }} permanentemente?
+                ¿Estás seguro de que quieres eliminar el material {{ material.nombre }} permanentemente?
                 <form action="#" data-parsley-validate="" novalidate="">
                     <div class="form-group text-right mb-0">
                         <button class="btn btn-danger waves-effect waves-light mr-1"
@@ -136,7 +135,7 @@
             table = document.getElementById("Materiales");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
+                td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
