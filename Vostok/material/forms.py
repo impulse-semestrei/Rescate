@@ -10,7 +10,7 @@ class CrearMaterial(ModelForm):
     Forma para crear material
     """
     descripcion = forms.CharField(label='Descripción')
-    cantidad = forms.CharField(label='Cantidad Ideal')
+    cantidad = forms.IntegerField(label='Cantidad Ideal')
 
     class Meta:
         model = Material

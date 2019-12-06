@@ -13,7 +13,6 @@ from material.models import Material
 import json
 from django.http import JsonResponse, HttpResponse
 from revision.models import Revision
-from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import UpdateView
 
@@ -30,25 +29,22 @@ STATUS_SAVED = 'SAVED'
 
 @administrador_required
 def crearInventarioView(request):
-    form = crearInventarioForm(request.POST)
-    if form.is_valid():
+    if request.method == 'POST':
+        form = crearInventarioForm(request.POST)
+        if form.is_valid():
 
-        try:
-            temp_form = form.save(commit=False)
-            temp_form.save()
+            try:
+                form.save()
+                context = {
+                    'form': form,
+                    'status': STATUS_SAVED,
+                }
+                return render(request, '../templates/inventario/crear_inventario.html', context)
 
-            inventarios = Inventario.objects.filter(status=True)
-            context = {
-                'inventarios': inventarios,
-                'form': crearInventarioForm(),
-                'status': STATUS_SAVED,
-            }
-            #messages.info(request, 'Se ha creado el inventario')
-            return render(request, '../templates/inventario/crear_inventario.html', context)
-
-        except DatabaseError:
-            messages.info(request, 'Ya existe un inventario con ese nombre.')
-            return render(request, '../templates/data_base_error.html')
+            except DatabaseError:
+                return render(request, '../templates/data_base_error.html')
+    else:
+        form = crearInventarioForm()
     context = {'form': form}
 
     return render(request, '../templates/inventario/crear_inventario.html', context)
@@ -277,7 +273,6 @@ def editar_material(request, inventario_id, material_id):
     material.cantidad = cantidad
     material.save()
     id = material.inventario
-    messages.info(request, 'Se ha editado la cantidad del material con exito')
     return redirect('inventario:material_inventario', pk=inventario_id)
 
 ###### CONTROLLER US02 ########

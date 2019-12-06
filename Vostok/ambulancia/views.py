@@ -8,7 +8,6 @@ from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from inventario.models import Inventario
-from django.contrib import messages
 from django.views.generic.edit import UpdateView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -307,8 +306,6 @@ def control_ambulancias(request, id):
         ambulancia.save()
         print(ambulancia.estado)
         print('llega')
-
-    messages.info(request, 'Se ha cambiado el estado de la ambulancia!')
     return redirect ('ambulancia:ver_control_ambulancias')
 ####### CONTROLLER US26 ###########
 

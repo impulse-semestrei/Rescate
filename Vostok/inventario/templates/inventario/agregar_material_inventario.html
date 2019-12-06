@@ -61,7 +61,9 @@
                                 a {{ nombre_inventario }}</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="{% url 'inventario:material_inventario' id_inventario %}"><button class="btn btn-success">De acuerdo</button></a>
+                            <a href="{% url 'inventario:material_inventario' id_inventario %}">
+                                <button class="btn btn-success">Aceptar</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -77,12 +79,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <p>Se han agregado {{ nombre_material }}
-                                a {{ nombre_inventario }} </p>
+                            <p>Ahora hay {{ cantidad }} unidades de {{ nombre_material }}
+                                en {{ nombre_inventario }} </p>
                         </div>
                         <div class="modal-footer">
                             <a href="{% url 'inventario:material_inventario' id_inventario %}">
-                                <button class="btn btn-success">De acuerdo</button>
+                                <button class="btn btn-success">Aceptar</button>
                             </a>
                         </div>
                     </div>

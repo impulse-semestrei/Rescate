@@ -137,7 +137,7 @@ class EliminarMaterialInventarioTestCase(TestCase):
         usuario = CustomUser.objects.create(is_anon=False, is_adminplus=True)
         revision = Revision.objects.create(usuario=usuario,fecha=timezone.now(), observaciones='Observacion')
         inventario = Inventario.objects.create(nombre="almacen")
-        material = Material.objects.create(codigo='codigo1', nombre='curita', descripcion='proteccion de herida', cantidad=4)
+        material = Material.objects.create(nombre='curita', descripcion='proteccion de herida', cantidad=4)
         mat_inv = InventarioMaterial.objects.create(inventario=inventario, material=material, cantidad=4, revision=revision)
         mat_inv.delete()
         self.assertFalse(InventarioMaterial.objects.filter(material=mat_inv.material))
@@ -151,13 +151,11 @@ class ChecklistTestCase(TestCase):
         revision = Revision.objects.create(usuario=usuario, fecha=timezone.now(), observaciones='Observacion')
         self.inventario = Inventario.objects.create(nombre="inventario")
         self.material1 = Material.objects.create(
-            codigo='codigo1',
             nombre="material1",
             descripcion="material1",
             cantidad=1
         )
         self.material2 = Material.objects.create(
-            codigo='codigo2',
             nombre="material2",
             descripcion="material2",
             cantidad=2
@@ -207,7 +205,7 @@ class EditarMaterialInventarioTest(TestCase):
         usuario = CustomUser.objects.create(is_anon=False, is_adminplus=True)
         revision = Revision.objects.create(usuario=usuario, fecha=timezone.now(), observaciones='Observacion')
         self.inventario = Inventario.objects.create(nombre="almacen")
-        self.material = Material.objects.create(codigo='codigo1', nombre='curita', descripcion='proteccion de herida', cantidad=1)
+        self.material = Material.objects.create( nombre='curita', descripcion='proteccion de herida', cantidad=1)
         self.MatInv = InventarioMaterial.objects.create(
             inventario=self.inventario,
             material=self.material,
