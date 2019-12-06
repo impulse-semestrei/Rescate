@@ -9,7 +9,7 @@
     <!--######## VIEW US41 ########-->
 
 
-    <h2>Historial de revisiones de equipos</h2>
+    <h2>Historial de revisiones de equipo</h2>
     <a href="{% url "ambulancia:ver_ambulancias" %}">
                 <button class="btn btn-dark" type="button" data-toggle="modal"
                         data-target="#modalCancel"><i
@@ -26,16 +26,17 @@
 
     {% if  registros %}
         <br>
-        <div class="card-box">
+        <div>
         <br>
 
         <div class="table-responsive">
-            <table class="table table-dark mb-0" id="Revisiones">
+            <table class="table table-hover table-dark mb-0" id="Revisiones">
                 <thead>
                 <tr>
-                    <th>Fecha de Revision</th>
+                    <th>Fecha de Revisión</th>
                     <th>Paramédico</th>
                     <th>Guardia</th>
+                    <th>Ver detalle</th>
                 </tr>
                 </thead>
 
@@ -45,10 +46,12 @@
                         <td>{{ registro.revision.fecha|date:"d/m/y"  }}</td>
                         <td>{{ registro.revision.usuario.first_name }} {{ registro.revision.usuario.last_name }}</td>
                         <th>{{ registro.revision.usuario.get_turno_display }}</th>
-                        <td><a href="{{ registro.revision.id }}">
-                            <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Ver detalle
-                            </button>
-                        </a></td>
+                        <td>
+                            <a href="{{ registro.revision.id }}">
+                                <button class="btn btn-info"><i class="fas fa-eye"></i>
+                                </button>
+                            </a>
+                        </td>
 
                     </tr>
                 {% endfor %}
