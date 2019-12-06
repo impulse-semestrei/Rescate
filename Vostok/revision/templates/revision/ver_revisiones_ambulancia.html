@@ -11,10 +11,9 @@
                         class="fas fa-arrow-left"></i></button>
             </a>
        <div id="datatable_filter" class="dataTables_filter"><label>Buscar:<input
-                        type="search" class="form-control form-control-sm" placeholder="Buscar Detalle..."
+                        type="search" class="form-control form-control-sm" placeholder="Fecha de la revisión"
                         aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
 
-            </div>
 
     {% if  revisiones %}
         <div class="card-box">
@@ -105,7 +104,7 @@
             table = document.getElementById("Revisiones");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
+                td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
