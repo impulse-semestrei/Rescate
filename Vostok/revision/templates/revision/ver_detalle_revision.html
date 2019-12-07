@@ -4,19 +4,22 @@
     <!--######## VIEW US42 ########-->
 
 
-    <h1>Información de materiales en revisión</h1>
+    <h1>Detalle de revisión de equipo</h1>
     <a href="{% url "revision:revisiones" id=ambulancia.id %}">
-                <button class="btn btn-dark" type="button" data-toggle="modal"
-                        data-target="#modalCancel"><i
-                        class="fas fa-arrow-left"></i></button>
-            </a>
+        <button class="btn btn-dark" type="button" data-toggle="modal"
+                data-target="#modalCancel"><i
+                class="fas fa-arrow-left"></i></button>
+    </a>
 
 
     {% if  materiales %}
+        <div class="card-box">
+
         <div class="table-responsive">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Ambulancia: {{ ambulancia.nombre }}</li>
-                <li class="list-group-item">Responsable: {{ revision.usuario.first_name }} {{ revision.usuario.last_name }}</li>
+                <li class="list-group-item">
+                    Responsable: {{ revision.usuario.first_name }} {{ revision.usuario.last_name }}</li>
                 <li class="list-group-item">Email del responsable: {{ revision.usuario.email }}</li>
                 <li class="list-group-item">Guardia: {{ revision.usuario.get_turno_display }}</li>
                 <li class="list-group-item">Fecha de revisión: {{ revision.fecha }}</li>
@@ -24,21 +27,16 @@
             </ul>
         </div>
 
-        <p align="right"><a href="{% url "revision:revisiones" id=ambulancia.id %}">
-            <button class="btn btn-primary btn-rounded width-md waves-effect waves-light">Regresar a revisiones</button>
-        </a></p>
-
-        <div class="card-box">
         <br>
 
         <div class="row">
             <div id="datatable_filter" class="col"><label>Buscar:<input
-                    type="search" class="form-control form-control-sm" placeholder="Buscar Material"
+                    type="search" class="form-control form-control-sm" placeholder="Nombre del mterial"
                     aria-controls="datatable" id="myInput" onkeyup="Filter()"></label></div>
         </div>
         <br>
         <div class="table-responsive">
-            <table class="table table-dark mb-0" id="Materiales">
+            <table class="table table-dark table-hover mb-0" id="Materiales">
                 <thead>
                 <tr>
 
@@ -51,7 +49,9 @@
                 <tbody>
                 {% for material in materiales %}
 
-                    <tr {% if material.cantidad < material.material.cantidad  %} style="background: #c22301; color: white" {% elif material.cantidad > material.material.cantidad %} style="background: dodgerblue; color: white" {% endif %}>
+                    <tr {% if material.cantidad < material.material.cantidad %}
+                        style="background: #c22301; color: white" {% elif material.cantidad > material.material.cantidad %}
+                        style="background: dodgerblue; color: white" {% endif %}>
 
                         <td>{{ material.material }}</td>
                         <td>{{ material.cantidad }}</td>
