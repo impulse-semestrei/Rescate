@@ -9,7 +9,7 @@ from users.decorators import voluntario_required,administrador_required,adminplu
 from django.utils.decorators import method_decorator
 # Create your views here.
 from django.db.models import Sum, F, Func
-
+from django.db.models import Subquery
 
 ##### CONTROLLER US09 #####
 
@@ -18,7 +18,12 @@ from django.db.models import Sum, F, Func
 def ver_revisiones(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
     inventario = ambulancia.inventario
-    registros =InventarioMaterial.objects.filter(inventario=inventario).distinct('revision')
+    registros = InventarioMaterial.objects.filter(
+        id__in=Subquery(
+            InventarioMaterial.objects.filter(inventario=inventario).distinct('revision').values('id')
+        )
+    ).order_by('-revision__fecha')
+
     context = {'registros': registros, 'ambulancia': ambulancia}
     return render(request, '../templates/revision/ver_revisiones.html', context)
 ##### CONTROLLER US09 #####
@@ -43,7 +48,7 @@ def ver_detalle_revsion(request, id, id_revision):
 @adminplus_required
 def ver_revisiones_ambulancia(request, id):
     ambulancia = Ambulancia.objects.get(id=id)
-    revisiones = RevisionAmbulancia.objects.filter(ambulancia=ambulancia)
+    revisiones = RevisionAmbulancia.objects.filter(ambulancia=ambulancia).order_by('-fecha')
     context = {'revisiones': revisiones, 'ambulancia':ambulancia}
     return render(request, '../templates/revision/ver_revisiones_ambulancia.html', context)
 #### CONTROLLER US29 ######

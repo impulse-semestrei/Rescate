@@ -176,9 +176,10 @@ def guardar_ambulancia(ambulancia, request):
     datos = json.loads(request.body)
     try:
         usuario = get_user_model().objects.get(email=datos["email_paramedico"])
+        if not (usuario.is_voluntario or usuario.is_administrador or usuario.is_adminplus):
+            return False
     except ObjectDoesNotExist:
         return False
-
 
     cantidades = {}
     listo = True
