@@ -28,7 +28,7 @@
                     <strong>Turno: </strong>{{ usuario.get_turno_display }}
                     <br>
                     <strong>Rol: </strong>{% if usuario.is_anon %}
-                            Usuario Desactivado
+                            Desactivado
                             {% elif usuario.is_voluntario %}
                             Voluntario
                             {% elif usuario.is_administrador %}

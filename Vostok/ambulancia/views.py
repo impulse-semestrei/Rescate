@@ -48,6 +48,18 @@ def crear_ambulancia(request):
                 new_ambulancia.save()
                 context['status'] = STATUS_SAVED
                 context['ambulancia_name'] = new_ambulancia.nombre
+                RevisionAmbulancia.objects.create(
+                    ambulancia=new_ambulancia,
+                    usuario=request.user,
+                    fecha=timezone.now(),
+                    gasolina=100,
+                    liquido_frenos=100,
+                    aceite_motor=100,
+                    aceite_direccion=100,
+                    anticongelante=100,
+                    kilometraje=0,
+                    liquido_limpiaparabrisas=100,
+                )
                 return render(request, '../templates/ambulancia/crear_ambulancia.html', context)
             except DatabaseError:
                 context['status'] = STATUS_ERROR
