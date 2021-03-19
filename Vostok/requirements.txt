@@ -18,5 +18,5 @@ django-allauth
 sqlparse==0.3.0
 urllib3==1.25.6
 django-filter==2.1.0
-djangorestframework==3.9.3
+djangorestframework==3.11.2
 Markdown==3.1
